@@ -1,20 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { Button, Col, Row } from 'react-bootstrap'
 import Layout from '../../components/Layout/Layout'
 import Input from '../../components/UI/Input/Input'
 
 const Signup = () => {
+  const [firstname, setFirstname] = useState('')
+  const [lastname, setLastname] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+    console.log(firstname, lastname, email, password)
+    setFirstname('')
+    setLastname('')
+    setEmail('')
+    setPassword('')
+  }
+
   return (
     <Layout>
       <Row style={{ marginTop: '50px' }}>
         <Col md={{ span: 4, offset: 4 }}>
-          <Form className="container">
+          <Form className="container" onSubmit={submitHandler}>
             <Row>
               <Col md={6}>
                 <Input
-                  value=""
-                  onChange={() => {}}
+                  value={firstname}
+                  onChange={setFirstname}
                   label="First Name"
                   type="text"
                   placeholder="Enter First Name"
@@ -23,8 +37,8 @@ const Signup = () => {
               </Col>
               <Col md={6}>
                 <Input
-                  value=""
-                  onChange={() => {}}
+                  value={lastname}
+                  onChange={setLastname}
                   label="Last Name"
                   type="text"
                   placeholder="Enter Last Name"
@@ -34,8 +48,8 @@ const Signup = () => {
             </Row>
 
             <Input
-              value=""
-              onChange={() => {}}
+              value={email}
+              onChange={setEmail}
               label="Email Address"
               type="email"
               placeholder="Enter Email Address"
@@ -43,8 +57,8 @@ const Signup = () => {
             />
 
             <Input
-              value=""
-              onChange={() => {}}
+              value={password}
+              onChange={setPassword}
               label="Password"
               type="password"
               placeholder="Enter Password"
