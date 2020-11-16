@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import path from 'path'
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
+import categoryRoutes from './routes/categoryRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
 import connectDB from './config/db.js'
 import errorHandler from './middlewares/errorHandler.js'
@@ -38,7 +39,9 @@ app.use(express.json())
 app.use(cors())
 app.use(passport.initialize())
 
-if (process.env.NODE_ENV === 'development') app.use(morgan('dev'))
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'))
+}
 
 // DATBASE CONNECTION
 connectDB()
@@ -49,6 +52,7 @@ app.get('/api', (req, res) => {
 })
 app.use('/api', userRoutes)
 app.use('/api/admin', adminRoutes)
+app.use('/api', categoryRoutes)
 
 /* app.use('/auth/google', googleAuthRoutes)
 app.use('/api/products', productRoutes)

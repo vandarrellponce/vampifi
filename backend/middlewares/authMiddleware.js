@@ -7,7 +7,7 @@ const auth = expressAsyncHandler(async (req, res, next) => {
     // Retrieve token from the header
     /* 	let token = req.headers.authorization.replace('Bearer ', '') */
     const token = req.cookies.x_token
-
+    console.log(token)
     // Protection if no token provided
     if (!token) throw new Error('Not authorized - No token provided')
 
