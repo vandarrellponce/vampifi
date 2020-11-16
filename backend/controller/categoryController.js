@@ -21,3 +21,13 @@ export const createCategory = expressAsyncHandler(async (req, res) => {
     throw new Error(error.message)
   }
 })
+
+export const getCategories = async (req, res) => {
+  try {
+    const categories = await Category.find()
+    res.send(categories)
+  } catch (error) {
+    res.status(401)
+    throw new Error(error.message)
+  }
+}
