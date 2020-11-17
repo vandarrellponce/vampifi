@@ -1,20 +1,21 @@
 import express from 'express'
 import multer from 'multer'
 import path from 'path'
+import admin from '../middlewares/adminMiddleware.js'
 import auth from '../middlewares/authMiddleware.js'
 const router = express.Router()
 
 // CREATE LOCAL STORAGE FOR MULTER FILES
 const storage = multer.diskStorage({
-	destination(req, file, cb) {
-		cb(null, 'uploads/')
-	},
-	filename(req, file, cb) {
-		cb(
-			null,
-			`${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
-		)
-	},
+  destination(req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename(req, file, cb) {
+    cb(
+      null,
+      `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
+    )
+  }
 })
 
 // CHECK FOR FILE TYPES
@@ -29,22 +30,23 @@ const storage = multer.diskStorage({
 } */
 
 // CREATE UPLOAD MIDDLEWARE
-const upload = multer({
-	storage,
-	limits: {
-		fileSize: 2000000,
-	},
-	fileFilter(req, file, cb) {
-		if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
-			cb(new Error('Allowed files are jpg, jpeg and png only'))
-		}
-		cb(undefined, true)
-	},
+export const upload = multer({
+  storage,
+  limits: {
+    fileSize: 2000000
+  },
+  fileFilter(_, file, cb) {
+    if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+      cb(new Error('Allowed files are jpg, jpeg and png only'))
+    }
+    cb(undefined, true)
+  }
 })
 
 // FINALLY THE UPLOAD ROUTE
-router.post('/', auth, upload.single('image'), (req, res) => {
-	res.send(`/${req.file.path}`)
+router.post('/', auth, admin, upload.array('image'), (req, res) => {
+  const paths = req.files.map((file) => `/${file.path}`)
+  res.send(paths)
 })
 
 export default router

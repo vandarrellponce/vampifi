@@ -1,11 +1,10 @@
 import express from 'express'
 import {
-	createReview,
-	getProductById,
-	getProductsWithOptions,
+  createReview,
+  getProductById,
+  getProductsWithOptions
 } from '../controller/productController.js'
 import auth from '../middlewares/authMiddleware.js'
-
 const router = express.Router()
 
 router.route('/').post(getProductsWithOptions)

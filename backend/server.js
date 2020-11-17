@@ -60,8 +60,8 @@ app.use('/api/orders', orderRoutes)
 app.get('/api/config/paypal', (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID)
 )
-app.use('/api/uploads', uploadRoutes)
 app.use('/api/notifications', notifRoutes) */
+app.use('/api/uploads', uploadRoutes)
 
 const __dirname = path.resolve()
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))

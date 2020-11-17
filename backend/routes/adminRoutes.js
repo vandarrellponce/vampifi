@@ -12,20 +12,27 @@ import {
 } from '../controller/userController.js'
 import admin from '../middlewares/adminMiddleware.js'
 import auth from '../middlewares/authMiddleware.js'
+import { upload } from './uploadRoutes.js'
 const router = express.Router()
 
 /* app.use('/api/admin', adminRoutes) - prefix */
+// products
+router
+  .route('/products')
+  .post(auth, admin, upload.array('image'), createProduct)
+router
+  .route('/products/:id')
+  .delete(auth, admin, deleteProduct)
+  .put(auth, admin, updateProduct)
+
+// orders
 router.route('/orders').post(auth, admin, getOrders)
-router.route('/products').post(auth, admin, createProduct)
+
+// users
 router
   .route('/users/:id')
   .delete(auth, admin, deleteUser)
   .get(auth, admin, getUser)
   .put(auth, admin, updateUser)
-
-router
-  .route('/products/:id')
-  .delete(auth, admin, deleteProduct)
-  .put(auth, admin, updateProduct)
 
 export default router
