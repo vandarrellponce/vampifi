@@ -12,6 +12,7 @@ import adminRoutes from './routes/adminRoutes.js'
 import uploadRoutes from './routes/uploadRoutes.js'
 import googleAuthRoutes from './routes/googleAuthRoutes.js'
 import notifRoutes from './routes/notifRoutes.js'
+import cartRoutes from './routes/cartRoutes.js'
 import morgan from 'morgan'
 import cookieParser from 'cookie-parser'
 import './config/passport.js'
@@ -53,6 +54,7 @@ app.get('/api', (req, res) => {
 app.use('/api', userRoutes)
 app.use('/api/admin', adminRoutes)
 app.use('/api', categoryRoutes)
+app.use('/api', cartRoutes)
 
 /* app.use('/auth/google', googleAuthRoutes)
 app.use('/api/products', productRoutes)
