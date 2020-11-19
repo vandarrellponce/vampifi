@@ -14,6 +14,9 @@ const categorySchema = mongoose.Schema(
     },
     parentId: {
       type: String
+    },
+    imageUrl: {
+      type: String
     }
   },
   { timestamps: true }

@@ -10,6 +10,8 @@ export const createCategory = expressAsyncHandler(async (req, res) => {
       slug: slugify(req.body.name)
     }
 
+    if (req.file) categoryObj.imageUrl = `/${req.file.path}`
+
     if (req.body.parentId) {
       categoryObj.parentId = req.body.parentId
     }

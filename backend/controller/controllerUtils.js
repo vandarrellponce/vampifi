@@ -10,6 +10,7 @@ export const organizeCategory = (categories, parentId = null) => {
 
   category.forEach((cat) => {
     categoryList.push({
+      ...cat._doc,
       _id: cat._id,
       name: cat.name,
       slug: cat.slug,

@@ -13,7 +13,7 @@ export const addToCart = expressAsyncHandler(async (req, res) => {
       const cartItemExist = cartExist.cartItems.find(
         (i) => i.product == newItem.product
       )
-      // If item is in the cart, change the item to the new item
+      // If item is in the cart, add quantity to that item
       if (cartItemExist) {
         const updatedCartItems = cartExist.cartItems.map((currentItem) => {
           return currentItem.product == newItem.product
