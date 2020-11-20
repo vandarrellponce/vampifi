@@ -16,7 +16,7 @@ export const createUser = expressAsyncHandler(async (req, res) => {
     const username = Math.random().toString()
     const newUser = await new User({ ...req.body, username }).save()
     const token = await newUser.generateAuthToken()
-    res.cookie('x_token', token).status(201).send({ user, token })
+    res.cookie('flipkart_token', token).status(201).send(user)
   } catch (error) {
     res.status(404)
     throw new Error(error.message)
@@ -30,14 +30,14 @@ export const authUser = expressAsyncHandler(async (req, res) => {
   try {
     const user = await User.findByCredentials(req.body.email, req.body.password)
     const token = await user.generateAuthToken()
-    res.cookie('x_token', token).status(200).send({ user, token })
+    res.cookie('flipkart_token', token).status(200).send(user)
   } catch (error) {
     res.status(401)
     throw new Error(error.message)
   }
 })
 
-// @desc	Get user profile
+// @desc	Get current user profile
 // @route	Post /api/users/profile
 // @access	Private
 export const getUserProfile = expressAsyncHandler(async (req, res) => {
