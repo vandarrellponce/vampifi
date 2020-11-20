@@ -1,0 +1,123 @@
+.sidebar {
+  padding: 20px;
+  position: fixed;
+  height: 100%;
+  width: 70%;
+  max-width: 300px;
+  z-index: 700;
+  background: rgb(0, 0, 0, 0.8);
+  top: 0;
+  left: 0;
+  box-shadow: 2px 0px 2px rgba(0, 0, 0, 0.3);
+
+  display: flex;
+  flex-direction: column;
+
+  transform: translateX(-100%);
+  transition: transform 0.1s ease-out;
+}
+.sidebar.open {
+  transform: translateX(0);
+  /* box-shadow: 5px 0px 5px 2040px rgba(0, 0, 0, 0.3); */
+}
+
+.sidebar__brand {
+  font-family: 'Bangers', cursive;
+  font-size: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar__searchbox {
+  display: flex;
+  margin-top: 10px;
+  justify-content: center;
+  align-items: center;
+
+  margin-left: 5px !important;
+}
+
+.sidebar__container1 {
+  margin-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-bottom: 1px solid rgb(224, 224, 224);
+  font-size: 16px;
+}
+
+.sidebar__nav__item {
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 10px;
+  display: flex;
+  height: 40px;
+  max-width: 300px;
+  justify-content: space-between;
+  align-items: center;
+  color: rgb(200, 255, 255);
+}
+.sidebar__nav__item:hover {
+  background-color: rgb(231, 231, 231);
+  border-radius: 5px;
+}
+
+.sidebar__nav__item:active {
+  background-color: rgb(231, 231, 231);
+  border-radius: 5px;
+}
+.sidebar__nav__item[tabindex]:focus {
+  background-color: rgb(231, 231, 231);
+  border-radius: 5px;
+  outline: none;
+}
+
+.sidebar__link {
+  text-decoration: none !important;
+  width: 100%;
+  color: black;
+}
+
+.sidebar__container2 {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 540px) {
+  .view {
+    width: 400px;
+  }
+  .sidebar__container1 {
+    font-size: 16px;
+  }
+  .sidebar__nav__item {
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 3px;
+    height: 30px;
+  }
+}
+
+@media screen and (min-width: 540px) and (max-width: 900px) {
+  .view {
+    width: 600px;
+  }
+  .sidebar__container1 {
+    font-size: 16px;
+  }
+  .sidebar__nav__item {
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 3px;
+    height: 30px;
+  }
+}

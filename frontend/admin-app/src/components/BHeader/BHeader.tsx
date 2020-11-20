@@ -1,9 +1,12 @@
 import React from 'react'
 import { Nav, Navbar } from 'react-bootstrap'
 import { Link, NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import './BHeader.css'
 
 const BHeader = () => {
+  const { currentUserInfo } = useSelector((state) => state.user)
+
   return (
     <div>
       <Navbar bg="light" expand="lg">

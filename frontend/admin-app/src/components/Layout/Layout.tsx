@@ -1,11 +1,11 @@
 import React from 'react'
-import BHeader from '../BHeader/BHeader'
+import Toolbar from '../Header/Toolbar/Toolbar'
 import './Layout.css'
 
 const Layout = (props) => {
   return (
     <div>
-      <BHeader />
+      <Toolbar />
       {props.children}
     </div>
   )
