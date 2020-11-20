@@ -27,16 +27,16 @@ const SigninScreen = (props) => {
     await dispatch(loginUser(email, password))
     setLoading(false)
   }
-  useEffect(() => {
+  /*   useEffect(() => {
     if (currentUserInfo) props.history.push('/')
-  }, [currentUserInfo, props])
+  }, [currentUserInfo, props]) */
 
-  if (currentUserInfo)
+  /*  if (currentUserInfo)
     return (
       <Layout>
         <Loader />
       </Layout>
-    )
+    ) */
 
   return (
     <Layout>

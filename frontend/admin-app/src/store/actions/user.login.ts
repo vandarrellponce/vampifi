@@ -1,10 +1,10 @@
-import Axios from 'axios'
+import axiosHelper from '../../helpers/axios'
 import { USER_LOGIN_FAIL, USER_LOGIN_SUCCESS } from '../constants/user'
 
 const loginUser = (email, password) => async (dispatch) => {
   try {
     const currentUser = await (
-      await Axios.post('/api/users/login', { email, password })
+      await axiosHelper.post('/users/login', { email, password })
     ).data
     dispatch({ type: USER_LOGIN_SUCCESS, payload: currentUser })
   } catch (error) {
