@@ -2,11 +2,10 @@ import React from 'react'
 import { Badge } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, Route } from 'react-router-dom'
-/* import logoutUser from '../../../actions/users/logoutUser' */
-
 import { IoIosArrowBack } from 'react-icons/io'
 import './Sidebar.css'
 import SearchBox from '../SearchBox/SearchBox'
+import logoutUser from '../../../store/actions/user.logout'
 
 const Sidebar = (props) => {
   const { currentUserInfo } = useSelector((state) => state.user)
@@ -15,10 +14,10 @@ const Sidebar = (props) => {
   if (props.show) className = 'sidebar open'
 
   // HANDLERS
-  const logoutHandler = (e) => {
+  const logoutHandler = async (e) => {
     e.preventDefault()
-    /*  dispatch(logoutUser()) */
-    /* window.location.reload() */
+    await dispatch(logoutUser())
+    window.location.reload()
   }
   return (
     <div className={className}>
@@ -79,7 +78,7 @@ const Sidebar = (props) => {
             </Link>
           </div>
         ) : (
-          <Link to="/Login" className="sidebar__link">
+          <Link to="/signin" className="sidebar__link">
             <div className="sidebar__nav__item" tabIndex={1}>
               Login
             </div>
