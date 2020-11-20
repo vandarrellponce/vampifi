@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Link, Route } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 /* import socketIOClient from 'socket.io-client' */
-
+import { useDispatch } from 'react-redux'
 import './Toolbar.css'
 import Axios from 'axios'
-/* import logoutUser from '../../../actions/users/logoutUser' */
 import Sidebar from '../Sidebar/Sidebar'
 import Backdrop from '../Backdrop/Backdrop'
 import { CSSTransition } from 'react-transition-group'
@@ -18,6 +17,7 @@ import { FaBars } from 'react-icons/fa'
 import { Spring } from 'react-spring/renderprops'
 import Submenu from '../Submenu/Submenu'
 import SearchBox from '../SearchBox/SearchBox'
+import logoutUser from '../../../store/actions/user.logout'
 /* const ENDPOINT = '/' */
 
 const Toolbar = () => {
@@ -25,7 +25,7 @@ const Toolbar = () => {
   // const { cartItems } = useSelector((state) => state.cart)
   const [notifs, setNotifs] = useState([])
   const [totalNotifs, setTotalNotifs] = useState(0)
-  /*   const dispatch = useDispatch() */
+  const dispatch = useDispatch()
 
   const getNotifications = () => {
     if (currentUserInfo && currentUserInfo.isAdmin) {
@@ -55,7 +55,7 @@ const Toolbar = () => {
   // HANDLERS
   const logoutHandler = (e) => {
     e.preventDefault()
-    /*  dispatch(logoutUser()).then((_) => window.location.reload())  */
+    dispatch(logoutUser()).then((_) => window.location.reload())
   }
 
   const [sideBarOpen, setSideBarOpen] = useState(false)
@@ -266,7 +266,7 @@ const Toolbar = () => {
             </div>
           ) : (
             authError && (
-              <Link to="/login" className="toolbar__link" tabIndex={1}>
+              <Link to="/signin" className="toolbar__link" tabIndex={1}>
                 Login
               </Link>
             )

@@ -2,13 +2,17 @@ import {
   USER_AUTH_FAIL,
   USER_AUTH_SUCCESS,
   USER_LOGIN_FAIL,
-  USER_LOGIN_SUCCESS
+  USER_LOGIN_SUCCESS,
+  USER_LOGOUT,
+  USER_LOGOUT_FAIL
 } from '../constants/user'
 
 const initState = {
   currentUserInfo: null,
   loginError: null,
-  authError: null
+  authError: null,
+
+  logoutError: null
 }
 
 const userReducer = (state = initState, action) => {
@@ -42,6 +46,16 @@ const userReducer = (state = initState, action) => {
         ...state,
         currentUserInfo: null,
         authError: action.payload
+      }
+    }
+    // USER LOGOUT
+    case USER_LOGOUT: {
+      return {}
+    }
+    case USER_LOGOUT_FAIL: {
+      return {
+        ...state,
+        logoutError: action.payload
       }
     }
     default:
