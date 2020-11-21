@@ -14,7 +14,6 @@ import { RiNotification2Line } from 'react-icons/ri'
 import { BiExit } from 'react-icons/bi'
 import { CgProfile } from 'react-icons/cg'
 import { FaBars } from 'react-icons/fa'
-import { Spring } from 'react-spring/renderprops'
 import Submenu from '../Submenu/Submenu'
 import SearchBox from '../SearchBox/SearchBox'
 import logoutUser from '../../../store/actions/user.logout'
@@ -202,7 +201,7 @@ const Toolbar = () => {
           <Link to="/" style={{ textDecoration: 'none' }}>
             <div className="toolbar__brand">
               <Image
-                src="https://lh3.googleusercontent.com/pw/ACtC-3eqBeeewn73OBqrscdXJ_y4n0ncalkT3tZnpWuZYDTwdanyCC_7jjVs6WypAIKqQEd-4S5C7tcJRLpPyU03eaDA1FoNGtQc7j4vueewRj8Ae60IEGgMiBnygmyaqkbQRv8UV52vzurCTrJPUhDJgRna=w978-h323-no?authuser=0"
+                src="https://lh3.googleusercontent.com/O1qYQQ3bKAPxMXHjR1mmnGmt3Hi2ieotKU1dyoTwx7w3XrMvyCMmSogwrAmgl9EKj4fYnGGbUgiA_RshABqTH_uZrPKqGMkiSRRBoetnMM0Rdn5lnJJXsQa7Ou0HgqLKGrXnM9_kpoYGENV2dPU1aeSF0vKxgfT6hD8ZUN7CAqHqTLjFFVxjhH3aXJr1Ak-CcTes50PU-yGohlDNrWeBmpbUWD54TzJA0J55alibd4L3QT4Axgdg-AnuGXJ8IvGJJbLL8V936IfWwJQ9rvyt66rqMTSKsQ5LVp8NVDThZh_VzLaLFot1dCZEa92xCMN6MwiF3HiiNg_ylRVUdLIj68F9y4GcCehDU2kdU2Y1b9KNxdO4JkW7F-AqoK0RA7jmKOXHrT-EGo2YglGFjLal7GLITqz2hzM_18VQRPYg1DyZFwKci2cOaD1sWjF1Qt2wEkqsL3l73TaYfvRUNMKqCViYcPhsSL_KU-2-svIDkTQI5G1M0T3mfEOXyRFe4IBfHhr-d-b_NeUaFSZGdDAv8TzbMw3wlBvnamIb2J7a_KVHzqtqIIFDaKboReuexWHANRBhf5PRCfeTJOkhKpRs33n7Bnzv3YuUx4XPl4ITZB1mL_ywCoMeOU4KTbePWKB4eawh2yy1UZ_byj1GSGf-T-Kezpb2HVaScD31fFTNIkQjFQV-eOzLz6pC0qfCpA=w1237-h523-no?authuser=0"
                 style={{
                   objectFit: 'contain',
                   maxWidth: '100%',

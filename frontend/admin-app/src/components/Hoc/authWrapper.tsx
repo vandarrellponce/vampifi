@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import authUser from '../../store/actions/user.auth'
 
-const authWrapper = (Component, adminRoute) => {
+const authWrapper = (Component, privateRoute, adminRoute) => {
   const Wrapper = (props) => {
     const { currentUserInfo } = useSelector((state) => state.user)
     const dispatch = useDispatch()
@@ -16,14 +15,15 @@ const authWrapper = (Component, adminRoute) => {
         try {
           /* dispatch(getCart()) */
 
-          //IF AUTHENTICATED
+          if (!currentUserInfo && privateRoute) return props.history.push('/')
+
+          if (currentUserInfo && !privateRoute) return props.history.push('/')
+
+          // TRYING ADMIN ROUTE BUT NOT ADMIN
           if (currentUserInfo) {
-            // TRYING ADMIN ROUTE BUT NOT ADMIN
             if (currentUserInfo.role === 'user' && adminRoute) {
               return props.history.push('/')
             }
-
-            props.history.push('/')
           }
         } catch (e) {
           console.log(e)
