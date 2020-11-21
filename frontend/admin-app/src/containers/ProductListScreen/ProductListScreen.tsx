@@ -143,7 +143,7 @@ const ProductListScreen = ({ history }) => {
                           <LinkContainer
                             to={`/admin/products/${product._id}/edit`}
                           >
-                            <Button variant="info" className="btn-sm">
+                            <Button variant="dark" className="btn-sm">
                               <i className="fas fa-edit"></i>
                             </Button>
                           </LinkContainer>

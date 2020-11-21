@@ -1,7 +1,10 @@
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
+
 import Toolbar from '../Header/Toolbar/Toolbar'
+
 import './Layout.css'
+import LayoutSidebar from './LayoutSidebar/LayoutSidebar'
 
 const Layout = (props) => {
   return (
@@ -10,8 +13,8 @@ const Layout = (props) => {
       {props.showSidebar ? (
         <Container fluid>
           <Row>
-            <Col md={2} className="layout__sidebar">
-              Sidebar
+            <Col md={2}>
+              <LayoutSidebar />
             </Col>
             <Col md={10} className="layout__container">
               <Container fluid>{props.children}</Container>

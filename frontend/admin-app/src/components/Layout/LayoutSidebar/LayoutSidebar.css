@@ -1,0 +1,122 @@
+.layout__sidebar {
+  padding: 20px;
+  padding-top: 70px;
+  height: 100vh;
+  width: 100%;
+  background: rgb(255, 255, 255);
+  top: 0;
+  left: 0;
+  position: absolute;
+  /*   -webkit-box-shadow: 5px -1px 2px -4px rgba(0, 0, 0, 0.42);
+  box-shadow: 5px -1px 2px -4px rgba(0, 0, 0, 0.42); */
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgb(240, 240, 240);
+
+  /*   transform: translateX(-100%); */
+  transition: transform 0.1s ease-out;
+}
+.sidebar.open {
+  transform: translateX(0);
+  /* box-shadow: 5px 0px 5px 2040px rgba(0, 0, 0, 0.3); */
+}
+
+.layout__sidebar__container1 {
+  margin-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-bottom: 1px solid rgb(204, 203, 203);
+  font-size: 14px;
+}
+
+.layout__sidebar__container1__title {
+  align-self: baseline;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgb(165, 165, 165);
+}
+
+.layout__sidebar__nav__item {
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 10px;
+  display: flex;
+  height: 35px;
+
+  max-width: 300px;
+  justify-content: space-between;
+  align-items: center;
+  color: rgb(0, 0, 0);
+}
+.layout__sidebar__nav__item:hover {
+  background-color: rgb(99, 99, 99);
+  border-radius: 5px;
+}
+
+.layout__sidebar__nav__item:active {
+  background-color: rgb(231, 231, 231);
+  border-radius: 5px;
+}
+.layout__sidebar__nav__item[tabindex]:focus {
+  background-color: rgb(231, 231, 231);
+  border-radius: 5px;
+  outline: none;
+}
+
+.layout__sidebar__link {
+  text-decoration: none !important;
+  width: 100%;
+  color: black;
+}
+
+.layout__sidebar__container2 {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 540px) {
+  .view {
+    width: 400px;
+  }
+  .layout__sidebar {
+    display: none;
+  }
+
+  .layout__sidebar__container1 {
+    font-size: 16px;
+  }
+  .layout__sidebar__nav__item {
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 3px;
+    height: 30px;
+  }
+}
+
+@media screen and (min-width: 540px) and (max-width: 760px) {
+  .view {
+    width: 600px;
+  }
+  .layout__sidebar {
+    display: none;
+  }
+
+  .layout__sidebar__container1 {
+    font-size: 16px;
+  }
+  .layout__sidebar__nav__item {
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 3px;
+    height: 30px;
+  }
+}

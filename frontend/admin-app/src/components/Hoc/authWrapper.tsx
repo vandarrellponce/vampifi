@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const authWrapper = (Component, privateRoute, adminRoute) => {
   const Wrapper = (props) => {
-    const { currentUserInfo } = useSelector((state) => state.user)
+    const { currentUserInfo, authError } = useSelector((state) => state.user)
     const dispatch = useDispatch()
 
     // null - anyone can access
@@ -15,13 +15,13 @@ const authWrapper = (Component, privateRoute, adminRoute) => {
         try {
           /* dispatch(getCart()) */
 
-          if (!currentUserInfo && privateRoute) return props.history.push('/')
+          if (authError && privateRoute) return props.history.push('/')
 
           if (currentUserInfo && !privateRoute) return props.history.push('/')
 
           // TRYING ADMIN ROUTE BUT NOT ADMIN
           if (currentUserInfo) {
-            if (currentUserInfo.role === 'user' && adminRoute) {
+            if (!currentUserInfo.isAdmin && adminRoute) {
               return props.history.push('/')
             }
           }
@@ -30,7 +30,7 @@ const authWrapper = (Component, privateRoute, adminRoute) => {
         }
       }
       check()
-    }, [dispatch, props.history, currentUserInfo])
+    }, [dispatch, props.history, currentUserInfo, authError])
 
     /* if (!currentUserInfo) return <div></div> */
 

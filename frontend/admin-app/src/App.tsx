@@ -7,6 +7,8 @@ import authUser from './store/actions/user.auth'
 import { useDispatch } from 'react-redux'
 import authWrapper from './components/Hoc/authWrapper'
 import ProductListScreen from './containers/ProductListScreen/ProductListScreen'
+import OrderListScreen from './containers/OrderlistScreen/OrderListScreen'
+import UserListScreen from './containers/UserListScreen/UserListScreen'
 
 const App = () => {
   // Authenticate user everytime the app starts
@@ -26,6 +28,14 @@ const App = () => {
         <Route
           path="/productlist"
           component={authWrapper(ProductListScreen, true, true)}
+        />
+        <Route
+          path="/orderlist"
+          component={authWrapper(OrderListScreen, true, true)}
+        />
+        <Route
+          path="/userlist"
+          component={authWrapper(UserListScreen, true, true)}
         />
       </BrowserRouter>
     </div>

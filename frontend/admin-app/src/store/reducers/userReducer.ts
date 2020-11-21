@@ -25,7 +25,8 @@ const userReducer = (state = initState, action) => {
       return {
         ...state,
         currentUserInfo: action.payload,
-        loginError: null
+        loginError: null,
+        authError: null
       }
     }
     case USER_LOGIN_FAIL: {
@@ -41,7 +42,8 @@ const userReducer = (state = initState, action) => {
       return {
         ...state,
         currentUserInfo: action.payload,
-        authError: null
+        authError: null,
+        loginError: null
       }
     }
     case USER_AUTH_FAIL: {
