@@ -18,6 +18,7 @@ import { Spring } from 'react-spring/renderprops'
 import Submenu from '../Submenu/Submenu'
 import SearchBox from '../SearchBox/SearchBox'
 import logoutUser from '../../../store/actions/user.logout'
+import Animate from '../../Hoc/animate'
 /* const ENDPOINT = '/' */
 
 const Toolbar = () => {
@@ -48,61 +49,45 @@ const Toolbar = () => {
     return (
       <div className="toolbar__right__links__signedin">
         {/*  NOTIFICATIONS  */}
-        <Spring
+        <Animate
           from={{ opacity: 0, marginTop: -500 }}
           to={{ opacity: 1, marginTop: 0 }}
           config={{ delay: 1200, duration: 1000 }}
         >
-          {(sprops) => (
-            <div style={sprops}>
-              <div className="toolbar__link" tabIndex={1}>
-                <RiNotification2Line
-                  onClick={(e) => toggleSubMenu(e)}
-                  size="25px"
-                  className="toolbar__link__icon notification"
-                />
-                <Badge variant="secondary" className="toolbar__badge">
-                  {totalNotifs > 0 ? totalNotifs : null}
-                </Badge>
-              </div>
-            </div>
-          )}
-        </Spring>
+          <div className="toolbar__link" tabIndex={1}>
+            <RiNotification2Line
+              onClick={(e) => toggleSubMenu(e)}
+              size="25px"
+              className="toolbar__link__icon notification"
+            />
+            <Badge variant="secondary" className="toolbar__badge">
+              {totalNotifs > 0 ? totalNotifs : null}
+            </Badge>
+          </div>
+        </Animate>
 
         {/*  PROFILE  */}
-        <Spring
+        <Animate
           from={{ opacity: 0, marginTop: -500 }}
           to={{ opacity: 1, marginTop: 0 }}
           config={{ delay: 1300, duration: 1000 }}
         >
-          {(sprops) => (
-            <div style={sprops}>
-              <Link to="/profile" className="toolbar__link" tabIndex={1}>
-                {currentUserInfo.name}{' '}
-                <CgProfile size="25px" className="toolbar__link__icon" />
-              </Link>
-            </div>
-          )}
-        </Spring>
+          <Link to="/profile" className="toolbar__link" tabIndex={1}>
+            {currentUserInfo.name}{' '}
+            <CgProfile size="25px" className="toolbar__link__icon" />
+          </Link>
+        </Animate>
 
         {/* LOGOUT */}
-        <Spring
+        <Animate
           from={{ opacity: 0, marginTop: -500 }}
           to={{ opacity: 1, marginTop: 0 }}
           config={{ delay: 1400, duration: 1000 }}
         >
-          {(sprops) => (
-            <div style={sprops}>
-              <div
-                className="toolbar__link"
-                tabIndex={1}
-                onClick={logoutHandler}
-              >
-                Logout <BiExit size="25px" className="toolbar__link__icon" />
-              </div>
-            </div>
-          )}
-        </Spring>
+          <div className="toolbar__link" tabIndex={1} onClick={logoutHandler}>
+            Logout <BiExit size="25px" className="toolbar__link__icon" />
+          </div>
+        </Animate>
       </div>
     )
   }
@@ -209,72 +194,58 @@ const Toolbar = () => {
         </div>
 
         {/* LOGO */}
-        <Spring
+        <Animate
           from={{ opacity: 0, marginLeft: -100 }}
           to={{ opacity: 1, marginLeft: 0 }}
           config={{ delay: 1500, duration: 500 }}
         >
-          {(sprops) => (
-            <div style={sprops}>
-              <Link to="/" style={{ textDecoration: 'none' }}>
-                <div className="toolbar__brand">
-                  <Image
-                    src="https://lh3.googleusercontent.com/pw/ACtC-3eqBeeewn73OBqrscdXJ_y4n0ncalkT3tZnpWuZYDTwdanyCC_7jjVs6WypAIKqQEd-4S5C7tcJRLpPyU03eaDA1FoNGtQc7j4vueewRj8Ae60IEGgMiBnygmyaqkbQRv8UV52vzurCTrJPUhDJgRna=w978-h323-no?authuser=0"
-                    style={{
-                      objectFit: 'contain',
-                      maxWidth: '100%',
-                      height: '60px'
-                    }}
-                  ></Image>
-                </div>
-              </Link>
+          <Link to="/" style={{ textDecoration: 'none' }}>
+            <div className="toolbar__brand">
+              <Image
+                src="https://lh3.googleusercontent.com/pw/ACtC-3eqBeeewn73OBqrscdXJ_y4n0ncalkT3tZnpWuZYDTwdanyCC_7jjVs6WypAIKqQEd-4S5C7tcJRLpPyU03eaDA1FoNGtQc7j4vueewRj8Ae60IEGgMiBnygmyaqkbQRv8UV52vzurCTrJPUhDJgRna=w978-h323-no?authuser=0"
+                style={{
+                  objectFit: 'contain',
+                  maxWidth: '100%',
+                  height: '60px'
+                }}
+              ></Image>
             </div>
-          )}
-        </Spring>
+          </Link>
+        </Animate>
 
-        <Spring
+        <Animate
           from={{ opacity: 0, marginLeft: -100 }}
           to={{ opacity: 1, marginLeft: 0 }}
           config={{ delay: 2000, duration: 500 }}
         >
-          {(sprops) => (
-            <div style={sprops}>
-              <div className="toolbar__searchbox">
-                <Route
-                  render={({ history }) => <SearchBox history={history} />}
-                />
-              </div>
-            </div>
-          )}
-        </Spring>
+          <div className="toolbar__searchbox">
+            <Route render={({ history }) => <SearchBox history={history} />} />
+          </div>
+        </Animate>
 
         <div className="spacer"></div>
 
         {/* LINKS */}
         <div className="toolbar__right__links">
           {/* CART */}
-          <Spring
+          <Animate
             from={{ opacity: 0, marginRight: -500 }}
             to={{ opacity: 1, marginRight: 0 }}
             config={{ delay: 1000, duration: 1000 }}
           >
-            {(sprops) => (
-              <div style={sprops}>
-                <Link to="/cart" className="toolbar__link" tabIndex={1}>
-                  <FiShoppingCart
-                    size="25px"
-                    className="toolbar__link__icon cart"
-                    /*  onMouseOver={(e) => openSubMenu(e)}
+            <Link to="/cart" className="toolbar__link" tabIndex={1}>
+              <FiShoppingCart
+                size="25px"
+                className="toolbar__link__icon cart"
+                /*  onMouseOver={(e) => openSubMenu(e)}
                     onMouseOut={(e) => closeSubMenu(e)} */
-                  />
-                  {/* cart */}
-                  <Badge variant="primary" className="toolbar__badge">
-                    {/*  {cartItems.length > 0 ? cartItems.length : null} */}
-                  </Badge>
-                </Link>
-              </div>
-            )}
-          </Spring>
+              />
+              {/* cart */}
+              <Badge variant="primary" className="toolbar__badge">
+                {/*  {cartItems.length > 0 ? cartItems.length : null} */}
+              </Badge>
+            </Link>
+          </Animate>
 
           {currentUserInfo
             ? renderPrivateLinks()
