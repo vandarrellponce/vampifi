@@ -74,7 +74,7 @@ const UserListScreen = ({ history }) => {
             content="We sell the best milk tea in town"
           />
         </Helmet>
-        <h1>Orders</h1>
+        <h2>Orders</h2>
         {loading ? (
           <Loader />
         ) : error ? (

@@ -84,7 +84,7 @@ const UserListScreen = ({ history }) => {
             content="We sell the best milk tea in town"
           />
         </Helmet>
-        <h1>Users</h1>
+        <h2>Users</h2>
         {loading ? (
           <Loader />
         ) : error ? (
@@ -113,7 +113,7 @@ const UserListScreen = ({ history }) => {
                   users.map((user) => (
                     <tr key={user._id}>
                       <td>{user._id}</td>
-                      <td>{user.name}</td>
+                      <td>{`${user.firstname} ${user.lastname}`}</td>
                       <td>
                         <a href={`mailto:${user.email}`}>{user.email}</a>
                       </td>

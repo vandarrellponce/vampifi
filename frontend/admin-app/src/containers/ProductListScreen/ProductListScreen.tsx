@@ -91,7 +91,7 @@ const ProductListScreen = ({ history }) => {
         </Helmet>
         <Row className="align-items-center">
           <Col>
-            <h1>Products</h1>
+            <h2>Products</h2>
           </Col>
           <Col className="text-right">
             <Button
