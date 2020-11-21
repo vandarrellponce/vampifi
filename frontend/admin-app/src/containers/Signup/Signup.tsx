@@ -12,7 +12,7 @@ const Signup = () => {
 
   const submitHandler = (e) => {
     e.preventDefault()
-    console.log(firstname, lastname, email, password)
+
     setFirstname('')
     setLastname('')
     setEmail('')

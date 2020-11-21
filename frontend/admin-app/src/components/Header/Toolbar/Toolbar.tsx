@@ -43,6 +43,77 @@ const Toolbar = () => {
     }
   }
 
+  // PRIVATE LINKS
+  const renderPrivateLinks = () => {
+    return (
+      <div className="toolbar__right__links__signedin">
+        {/*  NOTIFICATIONS  */}
+        <Spring
+          from={{ opacity: 0, marginTop: -500 }}
+          to={{ opacity: 1, marginTop: 0 }}
+          config={{ delay: 1200, duration: 1000 }}
+        >
+          {(sprops) => (
+            <div style={sprops}>
+              <div className="toolbar__link" tabIndex={1}>
+                <RiNotification2Line
+                  onClick={(e) => toggleSubMenu(e)}
+                  size="25px"
+                  className="toolbar__link__icon notification"
+                />
+                <Badge variant="secondary" className="toolbar__badge">
+                  {totalNotifs > 0 ? totalNotifs : null}
+                </Badge>
+              </div>
+            </div>
+          )}
+        </Spring>
+
+        {/*  PROFILE  */}
+        <Spring
+          from={{ opacity: 0, marginTop: -500 }}
+          to={{ opacity: 1, marginTop: 0 }}
+          config={{ delay: 1300, duration: 1000 }}
+        >
+          {(sprops) => (
+            <div style={sprops}>
+              <Link to="/profile" className="toolbar__link" tabIndex={1}>
+                {currentUserInfo.name}{' '}
+                <CgProfile size="25px" className="toolbar__link__icon" />
+              </Link>
+            </div>
+          )}
+        </Spring>
+
+        {/* LOGOUT */}
+        <Spring
+          from={{ opacity: 0, marginTop: -500 }}
+          to={{ opacity: 1, marginTop: 0 }}
+          config={{ delay: 1400, duration: 1000 }}
+        >
+          {(sprops) => (
+            <div style={sprops}>
+              <div
+                className="toolbar__link"
+                tabIndex={1}
+                onClick={logoutHandler}
+              >
+                Logout <BiExit size="25px" className="toolbar__link__icon" />
+              </div>
+            </div>
+          )}
+        </Spring>
+      </div>
+    )
+  }
+
+  // PUBLIC LINKS
+  const renderPublicLinks = () => (
+    <Link to="/signin" className="toolbar__link" tabIndex={1}>
+      Login
+    </Link>
+  )
+
   useEffect(() => {
     /* getNotifications() */
     /*  const socket = socketIOClient(ENDPOINT)
@@ -205,72 +276,9 @@ const Toolbar = () => {
             )}
           </Spring>
 
-          {currentUserInfo ? (
-            <div className="toolbar__right__links__signedin">
-              {/* NOTIFICATIONS */}
-              <Spring
-                from={{ opacity: 0, marginTop: -500 }}
-                to={{ opacity: 1, marginTop: 0 }}
-                config={{ delay: 1200, duration: 1000 }}
-              >
-                {(sprops) => (
-                  <div style={sprops}>
-                    <div className="toolbar__link" tabIndex={1}>
-                      <RiNotification2Line
-                        onClick={(e) => toggleSubMenu(e)}
-                        size="25px"
-                        className="toolbar__link__icon notification"
-                      />
-                      <Badge variant="secondary" className="toolbar__badge">
-                        {totalNotifs > 0 ? totalNotifs : null}
-                      </Badge>
-                    </div>
-                  </div>
-                )}
-              </Spring>
-
-              {/* PROFILE */}
-              <Spring
-                from={{ opacity: 0, marginTop: -500 }}
-                to={{ opacity: 1, marginTop: 0 }}
-                config={{ delay: 1300, duration: 1000 }}
-              >
-                {(sprops) => (
-                  <div style={sprops}>
-                    <Link to="/profile" className="toolbar__link" tabIndex={1}>
-                      {currentUserInfo.name}{' '}
-                      <CgProfile size="25px" className="toolbar__link__icon" />
-                    </Link>
-                  </div>
-                )}
-              </Spring>
-
-              <Spring
-                from={{ opacity: 0, marginTop: -500 }}
-                to={{ opacity: 1, marginTop: 0 }}
-                config={{ delay: 1400, duration: 1000 }}
-              >
-                {(sprops) => (
-                  <div style={sprops}>
-                    <div
-                      className="toolbar__link"
-                      tabIndex={1}
-                      onClick={logoutHandler}
-                    >
-                      Logout{' '}
-                      <BiExit size="25px" className="toolbar__link__icon" />
-                    </div>
-                  </div>
-                )}
-              </Spring>
-            </div>
-          ) : (
-            authError && (
-              <Link to="/signin" className="toolbar__link" tabIndex={1}>
-                Login
-              </Link>
-            )
-          )}
+          {currentUserInfo
+            ? renderPrivateLinks()
+            : authError && renderPublicLinks()}
         </div>
       </nav>
     </header>

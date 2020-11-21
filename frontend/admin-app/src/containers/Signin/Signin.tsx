@@ -16,7 +16,7 @@ const SigninScreen = (props) => {
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
 
-  const { currentUserInfo, loginError } = useSelector((state) => state.user)
+  const { loginError } = useSelector((state) => state.user)
   const dispatch = useDispatch()
 
   // HANDLERS
@@ -27,16 +27,6 @@ const SigninScreen = (props) => {
     await dispatch(loginUser(email, password))
     setLoading(false)
   }
-  /*   useEffect(() => {
-    if (currentUserInfo) props.history.push('/')
-  }, [currentUserInfo, props]) */
-
-  /*  if (currentUserInfo)
-    return (
-      <Layout>
-        <Loader />
-      </Layout>
-    ) */
 
   return (
     <Layout>
