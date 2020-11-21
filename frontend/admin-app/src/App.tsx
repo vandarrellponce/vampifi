@@ -21,7 +21,7 @@ const App = () => {
     <div className="app">
       <BrowserRouter>
         <Route exact path="/" component={Home} />
-        <Route exact path="/signup" component={Signup} />
+        <Route path="/signup" component={authWrapper(Signup, publicRoute)} />
         <Route path="/signin" component={authWrapper(Signin, publicRoute)} />
       </BrowserRouter>
     </div>

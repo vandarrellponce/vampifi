@@ -4,7 +4,9 @@ import {
   USER_LOGIN_FAIL,
   USER_LOGIN_SUCCESS,
   USER_LOGOUT,
-  USER_LOGOUT_FAIL
+  USER_LOGOUT_FAIL,
+  USER_REGISTER_FAIL,
+  USER_REGISTER_SUCCESS
 } from '../constants/user'
 
 const initState = {
@@ -12,7 +14,8 @@ const initState = {
   loginError: null,
   authError: null,
 
-  logoutError: null
+  logoutError: null,
+  registerError: null
 }
 
 const userReducer = (state = initState, action) => {
@@ -56,6 +59,24 @@ const userReducer = (state = initState, action) => {
       return {
         ...state,
         logoutError: action.payload
+      }
+    }
+
+    // USER REGISTER:
+    case USER_REGISTER_SUCCESS: {
+      return {
+        ...state,
+        currentUserInfo: action.payload,
+        registerError: null,
+        authError: null
+      }
+    }
+
+    case USER_REGISTER_FAIL: {
+      return {
+        ...state,
+        currentUserInfo: null,
+        registerError: action.payload
       }
     }
     default:

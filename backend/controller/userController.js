@@ -16,7 +16,7 @@ export const createUser = expressAsyncHandler(async (req, res) => {
     const username = Math.random().toString()
     const newUser = await new User({ ...req.body, username }).save()
     const token = await newUser.generateAuthToken()
-    res.cookie('flipkart_token', token).status(201).send(user)
+    res.cookie('flipkart_token', token).status(201).send(newUser)
   } catch (error) {
     res.status(404)
     throw new Error(error.message)

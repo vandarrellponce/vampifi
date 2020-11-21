@@ -16,10 +16,6 @@ const authWrapper = (Component, adminRoute) => {
         try {
           /* dispatch(getCart()) */
 
-          // IF NOT AUTHENTICATED
-          if (!currentUserInfo) {
-            props.history.push('/signin')
-          }
           //IF AUTHENTICATED
           if (currentUserInfo) {
             // TRYING ADMIN ROUTE BUT NOT ADMIN
