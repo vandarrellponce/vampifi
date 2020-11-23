@@ -1,5 +1,4 @@
 import React from 'react'
-import { Row, Col, Container } from 'react-bootstrap'
 import Layout from '../../components/Layout/Layout'
 import './Home.css'
 
