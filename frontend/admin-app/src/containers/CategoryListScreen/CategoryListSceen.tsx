@@ -54,13 +54,9 @@ const CategoryListSceen = () => {
 
   const handleClose = () => {
     const form = new FormData()
-    const newCat = {
-      name: newCatName,
-      parentId: newCatParent,
-      imageUrl: newCatImage
-    }
-
-    console.log(newCat)
+    form.append('name', newCatName)
+    form.append('parentId', newCatParent)
+    form.append('imageUrl', newCatImage)
   }
 
   const toggleModal = () => {
