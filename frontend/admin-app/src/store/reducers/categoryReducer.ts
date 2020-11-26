@@ -1,16 +1,20 @@
 import {
+  CATEGORY_CREATE_FAIL,
+  CATEGORY_CREATE_SUCCESS,
   CATEGORY_LIST_FAIL,
   CATEGORY_LIST_SUCCESS
 } from '../constants/category'
 
 const initState = {
   categoryList: null,
-  categoryListError: null
+  categoryListError: null,
+  createdCategory: null,
+  categoryCreateError: null
 }
 
 const categoryReducer = (state = initState, action) => {
   switch (action.type) {
-    // USER LOGIN
+    // GET CATEGORIES
     case CATEGORY_LIST_SUCCESS: {
       return {
         ...state,
@@ -22,6 +26,22 @@ const categoryReducer = (state = initState, action) => {
         ...state,
         categoryList: null,
         categoryListError: action.payload
+      }
+    }
+
+    // CREATE CATEGORY
+    case CATEGORY_CREATE_SUCCESS: {
+      return {
+        ...state,
+        createdCategory: action.payload,
+        categoryCreateError: null
+      }
+    }
+    case CATEGORY_CREATE_FAIL: {
+      return {
+        ...state,
+        createdCategory: null,
+        categoryCreateError: action.payload
       }
     }
 

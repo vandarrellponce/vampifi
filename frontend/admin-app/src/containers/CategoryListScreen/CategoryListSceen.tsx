@@ -7,6 +7,7 @@ import getCategories from '../../store/actions/category.getCategories'
 import Message from '../../components/Message/Message'
 import Loader from '../../components/Loader/Loader'
 import Input from '../../components/UI/Input/Input'
+import addCategory from '../../store/actions/category.addCategory'
 
 const CategoryListSceen = () => {
   const [loading, setLoading] = useState(false)
@@ -52,11 +53,16 @@ const CategoryListSceen = () => {
     return options
   }
 
-  const handleClose = () => {
+  const handleClose = async () => {
     const form = new FormData()
     form.append('name', newCatName)
     form.append('parentId', newCatParent)
-    form.append('imageUrl', newCatImage)
+    form.append('categoryImage', newCatImage)
+
+    setLoading(true)
+    await dispatch(addCategory(form))
+    await dispatch(getCategories())
+    setLoading(false)
   }
 
   const toggleModal = () => {
