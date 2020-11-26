@@ -3,6 +3,9 @@ import Category from '../models/categoryModel.js'
 import slugify from 'slugify'
 import { organizeCategory } from './controllerUtils.js'
 
+// @desc	Create Category
+// @route	GET /api/category/create
+// @access	Private, Admin
 export const createCategory = expressAsyncHandler(async (req, res) => {
   try {
     const categoryObj = {
@@ -25,7 +28,10 @@ export const createCategory = expressAsyncHandler(async (req, res) => {
   }
 })
 
-export const getCategories = async (req, res) => {
+// @desc	Get all categories
+// @route	GET /api/category
+// @access	Public
+export const getCategories = async (_, res) => {
   try {
     const categories = await Category.find()
     const categoryList = organizeCategory(categories)

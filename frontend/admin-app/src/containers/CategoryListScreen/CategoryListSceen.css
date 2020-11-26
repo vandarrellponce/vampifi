@@ -1,0 +1,4 @@
+.categorylist__col__one {
+  display: flex;
+  justify-content: space-between;
+}

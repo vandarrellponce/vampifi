@@ -9,6 +9,7 @@ import authWrapper from './components/Hoc/authWrapper'
 import ProductListScreen from './containers/ProductListScreen/ProductListScreen'
 import OrderListScreen from './containers/OrderlistScreen/OrderListScreen'
 import UserListScreen from './containers/UserListScreen/UserListScreen'
+import CategoryListSceen from './containers/CategoryListScreen/CategoryListSceen'
 
 const App = () => {
   // Authenticate user everytime the app starts
@@ -36,6 +37,11 @@ const App = () => {
         <Route
           path="/userlist"
           component={authWrapper(UserListScreen, true, true)}
+        />
+
+        <Route
+          path="/categorylist"
+          component={authWrapper(CategoryListSceen, true, true)}
         />
       </BrowserRouter>
     </div>
