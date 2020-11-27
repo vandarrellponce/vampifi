@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
 import Axios from 'axios'
 import { Helmet } from 'react-helmet'
@@ -11,8 +11,13 @@ import Message from '../../components/Message/Message'
 import Loader from '../../components/Loader/Loader'
 import Paginate from '../../components/Paginate/Paginate'
 import Layout from '../../components/Layout/Layout'
+import { Modal } from 'react-bootstrap'
+import Input from '../../components/UI/Input/Input'
+import getCategories from '../../store/actions/category.getCategories'
+import addProduct from '../../store/actions/product.addProduct'
 
 const ProductListScreen = ({ history }) => {
+  const dispatch = useDispatch()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [products, setProducts] = useState([])
@@ -23,6 +28,16 @@ const ProductListScreen = ({ history }) => {
 
   const [deleteError, setDeleteError] = useState('')
   const { currentUserInfo } = useSelector((state) => state.user)
+  const { categoryList } = useSelector((state) => state.category)
+
+  const [showModal, setShowModal] = useState(false)
+
+  const [name, setName] = useState('')
+  const [quantity, setQuantity] = useState('')
+  const [price, setPrice] = useState('')
+  const [description, setDescription] = useState('')
+  const [categoryId, setCategoryId] = useState('')
+  const [productImages, setProductImages] = useState([])
 
   const getProducts = (options) => {
     setLoading(true)
@@ -76,6 +91,41 @@ const ProductListScreen = ({ history }) => {
     getProducts(options)
   }
 
+  const toggleModal = async () => {
+    if (!categoryList?.length) await dispatch(getCategories())
+    setShowModal((prevState) => !prevState)
+  }
+
+  const handleClose = async () => {}
+
+  const submitForm = async () => {
+    const form = new FormData()
+    form.append('name', name)
+    form.append('quantity', quantity)
+    form.append('price', price)
+    form.append('description', description)
+    form.append('category', categoryId)
+    productImages.forEach((image) => form.append('productImages', image))
+    await dispatch(addProduct(form))
+    getProducts({ pageSize, page })
+    toggleModal()
+  }
+
+  const handleImages = (e) => {
+    setProductImages([...productImages, e.target.files[0]])
+  }
+
+  const listCategoryOptions = (categories, options = []) => {
+    categories.forEach((cat) => {
+      options.push({ value: cat._id, name: cat.name })
+      if (cat.children.length) {
+        listCategoryOptions(cat.children, options)
+      }
+    })
+
+    return options
+  }
+
   /*  if (!currentUserInfo)
     return <Message>Please Log in as Admin, Or go back to home page</Message> */
   if (deleteError) return <Message children={deleteError} variant="warning" />
@@ -94,11 +144,7 @@ const ProductListScreen = ({ history }) => {
             <h2>Products</h2>
           </Col>
           <Col className="text-right">
-            <Button
-              className="my-3"
-              onClick={createProductHandler}
-              variant="dark"
-            >
+            <Button className="my-3" onClick={toggleModal} variant="dark">
               <i className="fas fa-plus"></i>
               Create Product
             </Button>
@@ -169,6 +215,75 @@ const ProductListScreen = ({ history }) => {
           </div>
         )}
       </div>
+      <Modal show={showModal} onHide={toggleModal}>
+        <Modal.Header>
+          <Modal.Title>Add new Product</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Input
+            label="Name"
+            required={true}
+            type="text"
+            value={name}
+            placeholder={`Product Name`}
+            onChange={setName}
+          />
+          <Input
+            label="Quantity"
+            type="number"
+            required={true}
+            value={quantity}
+            placeholder={`Quantity`}
+            onChange={setQuantity}
+          />
+          <Input
+            label="Price"
+            type="number"
+            required={true}
+            value={price}
+            placeholder={`Price`}
+            onChange={setPrice}
+          />
+          <Input
+            label="Description"
+            type="text"
+            required={true}
+            value={description}
+            placeholder={`Description`}
+            onChange={setDescription}
+          />
+
+          <select
+            value={categoryId}
+            className="form-control"
+            onChange={(e) => setCategoryId(e.target.value)}
+          >
+            <option value={null}>select category</option>
+            {categoryList?.length > 0 &&
+              listCategoryOptions(categoryList).map((option) => {
+                return (
+                  <option value={option.value} key={option.value}>
+                    {option.name}
+                  </option>
+                )
+              })}
+          </select>
+
+          {productImages.length > 0 &&
+            productImages.map((image, i) => <div key={i}>{image.name}</div>)}
+
+          <input type="file" name="images" onChange={handleImages} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+
+          <Button variant="dark" onClick={submitForm}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Layout>
   )
 }

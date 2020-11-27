@@ -19,7 +19,7 @@ const router = express.Router()
 // products
 router
   .route('/products')
-  .post(auth, admin, upload.array('image'), createProduct)
+  .post(auth, admin, upload.array('productImages'), createProduct)
 router
   .route('/products/:id')
   .delete(auth, admin, deleteProduct)

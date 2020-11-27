@@ -56,7 +56,6 @@ const productSchema = mongoose.Schema(
       ref: 'Category'
     },
     reviews: [reviewSchema],
-    brand: { type: String, required: true },
 
     rating: { type: Number, required: true, default: 0 },
     numReviews: { type: Number, required: true, default: 0 },
