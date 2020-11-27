@@ -1,6 +1,6 @@
 .layout__sidebar {
-  padding: 20px;
   padding-top: 70px;
+  padding-left: 20px;
   height: 100vh;
   width: 100%;
   background: rgb(255, 255, 255);
@@ -42,8 +42,11 @@
 
 .layout__sidebar__nav__item {
   margin-left: 5px;
-  margin-right: 5px;
-  padding: 10px;
+  margin-right: 0px;
+
+  padding-left: 10px;
+  padding-right: 0px;
+
   display: flex;
   height: 35px;
 
@@ -54,16 +57,21 @@
 }
 .layout__sidebar__nav__item:hover {
   background-color: rgb(99, 99, 99);
-  border-radius: 5px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  color: white;
 }
 
 .layout__sidebar__nav__item:active {
-  background-color: rgb(231, 231, 231);
-  border-radius: 5px;
+  background-color: rgb(99, 99, 99);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 .layout__sidebar__nav__item[tabindex]:focus {
-  background-color: rgb(231, 231, 231);
-  border-radius: 5px;
+  background-color: rgb(99, 99, 99);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  color: white;
   outline: none;
 }
 
