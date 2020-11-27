@@ -56,7 +56,7 @@ const CategoryListSceen = () => {
   const handleClose = async () => {
     const form = new FormData()
     form.append('name', newCatName)
-    form.append('parentId', newCatParent)
+    if (newCatParent) form.append('parentId', newCatParent)
     form.append('categoryImage', newCatImage)
 
     setLoading(true)
@@ -120,7 +120,7 @@ const CategoryListSceen = () => {
             value={newCatParent}
             onChange={handleChange}
           >
-            <option>select category</option>
+            <option value={null}>select category</option>
             {categoryList?.length > 0 &&
               listCategoryOptions(categoryList).map((option) => {
                 return (
