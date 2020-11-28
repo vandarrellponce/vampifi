@@ -8,6 +8,7 @@ import Message from '../../components/Message/Message'
 import Loader from '../../components/Loader/Loader'
 import Input from '../../components/UI/Input/Input'
 import addCategory from '../../store/actions/category.addCategory'
+import CustomModal from '../../components/CustomModal/CustomModal'
 
 const CategoryListSceen = () => {
   const [loading, setLoading] = useState(false)
@@ -109,47 +110,39 @@ const CategoryListSceen = () => {
         </Row>
       </Container>
 
-      <Modal show={showModal} onHide={toggleModal}>
-        <Modal.Header>
-          <Modal.Title>Add new Category</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Input
-            type="text"
-            label="Category Name"
-            placeholder="Enter category name"
-            required={true}
-            value={newCatName}
-            onChange={setNewCatName}
-          />
-          Parent Category <br />
-          <select
-            className="form-control"
-            value={newCatParent}
-            onChange={handleChange}
-          >
-            <option value={'Main'}>select category</option>
-            {categoryList?.length > 0 &&
-              listCategoryOptions(categoryList).map((option) => {
-                return (
-                  <option value={option.value} key={option.value}>
-                    {option.name}
-                  </option>
-                )
-              })}
-          </select>
-          <input type="file" name="categoryImage" onChange={handleImage} />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-
-          <Button variant="dark" onClick={submitForm}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <CustomModal
+        modalTitle="Add New Category"
+        showModal={showModal}
+        toggleModal={toggleModal}
+        handleClose={handleClose}
+        submitForm={submitForm}
+      >
+        <Input
+          type="text"
+          label="Category Name"
+          placeholder="Enter category name"
+          required={true}
+          value={newCatName}
+          onChange={setNewCatName}
+        />
+        Parent Category <br />
+        <select
+          className="form-control"
+          value={newCatParent}
+          onChange={handleChange}
+        >
+          <option value={'Main'}>select category</option>
+          {categoryList?.length > 0 &&
+            listCategoryOptions(categoryList).map((option) => {
+              return (
+                <option value={option.value} key={option.value}>
+                  {option.name}
+                </option>
+              )
+            })}
+        </select>
+        <input type="file" name="categoryImage" onChange={handleImage} />
+      </CustomModal>
     </Layout>
   )
 }

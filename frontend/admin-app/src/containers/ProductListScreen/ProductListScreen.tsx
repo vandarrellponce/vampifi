@@ -15,6 +15,7 @@ import { Modal } from 'react-bootstrap'
 import Input from '../../components/UI/Input/Input'
 import getCategories from '../../store/actions/category.getCategories'
 import addProduct from '../../store/actions/product.addProduct'
+import CustomModal from '../../components/CustomModal/CustomModal'
 
 const ProductListScreen = ({ history }) => {
   const dispatch = useDispatch()
@@ -215,73 +216,65 @@ const ProductListScreen = ({ history }) => {
           </div>
         )}
       </div>
-      <Modal show={showModal} onHide={toggleModal}>
-        <Modal.Header>
-          <Modal.Title>Add new Product</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Input
-            label="Name"
-            required={true}
-            type="text"
-            value={name}
-            placeholder={`Product Name`}
-            onChange={setName}
-          />
-          <Input
-            label="Quantity"
-            type="number"
-            required={true}
-            value={quantity}
-            placeholder={`Quantity`}
-            onChange={setQuantity}
-          />
-          <Input
-            label="Price"
-            type="number"
-            required={true}
-            value={price}
-            placeholder={`Price`}
-            onChange={setPrice}
-          />
-          <Input
-            label="Description"
-            type="text"
-            required={true}
-            value={description}
-            placeholder={`Description`}
-            onChange={setDescription}
-          />
+      <CustomModal
+        modalTitle="Add New Category"
+        showModal={showModal}
+        toggleModal={toggleModal}
+        handleClose={handleClose}
+        submitForm={submitForm}
+      >
+        <Input
+          label="Name"
+          required={true}
+          type="text"
+          value={name}
+          placeholder={`Product Name`}
+          onChange={setName}
+        />
+        <Input
+          label="Quantity"
+          type="number"
+          required={true}
+          value={quantity}
+          placeholder={`Quantity`}
+          onChange={setQuantity}
+        />
+        <Input
+          label="Price"
+          type="number"
+          required={true}
+          value={price}
+          placeholder={`Price`}
+          onChange={setPrice}
+        />
+        <Input
+          label="Description"
+          type="text"
+          required={true}
+          value={description}
+          placeholder={`Description`}
+          onChange={setDescription}
+        />
 
-          <select
-            value={categoryId}
-            className="form-control"
-            onChange={(e) => setCategoryId(e.target.value)}
-          >
-            <option value={null}>select category</option>
-            {categoryList?.length > 0 &&
-              listCategoryOptions(categoryList).map((option) => {
-                return (
-                  <option value={option.value} key={option.value}>
-                    {option.name}
-                  </option>
-                )
-              })}
-          </select>
-          {productImages.length > 0 &&
-            productImages.map((image, i) => <div key={i}>{image.name}</div>)}
-          <input type="file" name="images" onChange={handleImages} />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-
-          <Button variant="dark" onClick={submitForm}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
+        <select
+          value={categoryId}
+          className="form-control"
+          onChange={(e) => setCategoryId(e.target.value)}
+        >
+          <option value={null}>select category</option>
+          {categoryList?.length > 0 &&
+            listCategoryOptions(categoryList).map((option) => {
+              return (
+                <option value={option.value} key={option.value}>
+                  {option.name}
+                </option>
+              )
+            })}
+        </select>
+        {productImages.length > 0 &&
+          productImages.map((image, i) => <div key={i}>{image.name}</div>)}
+        <input type="file" name="images" onChange={handleImages} />
+      </CustomModal>
     </Layout>
   )
 }
