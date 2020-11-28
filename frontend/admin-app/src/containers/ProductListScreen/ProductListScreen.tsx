@@ -268,10 +268,8 @@ const ProductListScreen = ({ history }) => {
                 )
               })}
           </select>
-
           {productImages.length > 0 &&
             productImages.map((image, i) => <div key={i}>{image.name}</div>)}
-
           <input type="file" name="images" onChange={handleImages} />
         </Modal.Body>
         <Modal.Footer>

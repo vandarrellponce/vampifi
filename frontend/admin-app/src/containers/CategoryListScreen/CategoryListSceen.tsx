@@ -54,15 +54,23 @@ const CategoryListSceen = () => {
   }
 
   const handleClose = async () => {
+    setShowModal(false)
+  }
+
+  const submitForm = async () => {
     const form = new FormData()
     form.append('name', newCatName)
-    if (newCatParent) form.append('parentId', newCatParent)
+    if (newCatParent !== 'Main') form.append('parentId', newCatParent)
     form.append('categoryImage', newCatImage)
 
     setLoading(true)
     await dispatch(addCategory(form))
+    setNewCatName('')
+    setNewCatParent('')
+    setNewCatImage('')
     await dispatch(getCategories())
     setLoading(false)
+    toggleModal()
   }
 
   const toggleModal = () => {
@@ -120,7 +128,7 @@ const CategoryListSceen = () => {
             value={newCatParent}
             onChange={handleChange}
           >
-            <option value={null}>select category</option>
+            <option value={'Main'}>select category</option>
             {categoryList?.length > 0 &&
               listCategoryOptions(categoryList).map((option) => {
                 return (
@@ -137,7 +145,7 @@ const CategoryListSceen = () => {
             Close
           </Button>
 
-          <Button variant="dark" onClick={handleClose}>
+          <Button variant="dark" onClick={submitForm}>
             Save Changes
           </Button>
         </Modal.Footer>
