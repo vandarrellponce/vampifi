@@ -87,7 +87,7 @@ const CategoryListSceen = () => {
 
   return (
     <Layout showSidebar>
-      <Container>
+      <Container fluid>
         {categoryListError && <Message children={categoryListError} />}
         {loading && <Loader />}
         <Row>
