@@ -168,24 +168,22 @@ const ProductListScreen = ({ history }) => {
             <Table striped hover responsive className="table-sm">
               <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>NO.</th>
                   <th>NAME</th>
                   <th>PRICE</th>
                   <th>CATEGORY</th>
-                  <th>BRAND</th>
-                  <th></th>
+                  <th>ACTIONS</th>
                 </tr>
               </thead>
               <tbody>
                 {products &&
-                  products.map((product) => {
+                  products.map((product, i) => {
                     return (
                       <tr key={product._id}>
-                        <td>{product._id}</td>
+                        <td>{i + 1}</td>
                         <td>{product.name}</td>
                         <td>{product.price}</td>
-                        <td>{product.category}</td>
-                        <td>{product.brand}</td>
+                        <td>{product.category.name}</td>
                         <td>
                           <LinkContainer
                             to={`/admin/products/${product._id}/edit`}

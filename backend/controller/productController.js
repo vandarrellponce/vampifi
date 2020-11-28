@@ -90,6 +90,7 @@ export const getProductsWithOptions = expressAsyncHandler(async (req, res) => {
     : {}
   const count = await Product.countDocuments({ ...keyword })
   const products = await Product.find({ ...keyword })
+    .populate('category', 'name')
     .limit(pageSize)
     .skip(pageSize * (page - 1))
     .sort({ createdAt: -1 })
