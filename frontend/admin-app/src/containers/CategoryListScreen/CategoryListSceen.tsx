@@ -8,7 +8,7 @@ import Message from '../../components/Message/Message'
 import Loader from '../../components/Loader/Loader'
 import Input from '../../components/UI/Input/Input'
 import addCategory from '../../store/actions/category.addCategory'
-import CustomModal from '../../components/CustomModal/CustomModal'
+import CustomModal from '../../components/Modals/CustomModal/CustomModal'
 
 const CategoryListSceen = () => {
   const [loading, setLoading] = useState(false)

@@ -11,11 +11,11 @@ import Message from '../../components/Message/Message'
 import Loader from '../../components/Loader/Loader'
 import Paginate from '../../components/Paginate/Paginate'
 import Layout from '../../components/Layout/Layout'
-import { Modal } from 'react-bootstrap'
 import Input from '../../components/UI/Input/Input'
 import getCategories from '../../store/actions/category.getCategories'
 import addProduct from '../../store/actions/product.addProduct'
-import CustomModal from '../../components/CustomModal/CustomModal'
+import CustomModal from '../../components/Modals/CustomModal/CustomModal'
+import { Form } from 'react-bootstrap'
 
 const ProductListScreen = ({ history }) => {
   const dispatch = useDispatch()
@@ -34,7 +34,7 @@ const ProductListScreen = ({ history }) => {
   const [showModal, setShowModal] = useState(false)
 
   const [name, setName] = useState('')
-  const [quantity, setQuantity] = useState('')
+  const [countInStock, setCountInStock] = useState('')
   const [price, setPrice] = useState('')
   const [description, setDescription] = useState('')
   const [categoryId, setCategoryId] = useState('')
@@ -97,12 +97,14 @@ const ProductListScreen = ({ history }) => {
     setShowModal((prevState) => !prevState)
   }
 
-  const handleClose = async () => {}
+  const handleClose = () => {
+    setShowModal(false)
+  }
 
   const submitForm = async () => {
     const form = new FormData()
     form.append('name', name)
-    form.append('quantity', quantity)
+    form.append('countInStock', countInStock)
     form.append('price', price)
     form.append('description', description)
     form.append('category', categoryId)
@@ -165,7 +167,13 @@ const ProductListScreen = ({ history }) => {
               justifyContent: 'center'
             }}
           >
-            <Table striped hover responsive className="table-sm">
+            <Table
+              style={{ fontSize: '14px' }}
+              striped
+              hover
+              responsive
+              className="table-sm"
+            >
               <thead>
                 <tr>
                   <th>NO.</th>
@@ -214,8 +222,10 @@ const ProductListScreen = ({ history }) => {
           </div>
         )}
       </div>
+
+      {/* ADD PRODUCT MODAL */}
       <CustomModal
-        modalTitle="Add New Category"
+        modalTitle="Create New Product"
         showModal={showModal}
         toggleModal={toggleModal}
         handleClose={handleClose}
@@ -230,12 +240,12 @@ const ProductListScreen = ({ history }) => {
           onChange={setName}
         />
         <Input
-          label="Quantity"
+          label="Count in Stocks"
           type="number"
           required={true}
-          value={quantity}
+          value={countInStock}
           placeholder={`Quantity`}
-          onChange={setQuantity}
+          onChange={setCountInStock}
         />
         <Input
           label="Price"

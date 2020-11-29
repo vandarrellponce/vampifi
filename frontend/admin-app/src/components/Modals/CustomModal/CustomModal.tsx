@@ -2,14 +2,15 @@ import React from 'react'
 import { Button, Modal } from 'react-bootstrap'
 
 interface myProps {
-  showModal: any
-  toggleModal: any
+  showModal?: any
+  toggleModal?: any
   modalTitle: string
-  handleClose: any
-  submitForm: any
+  handleClose?: any
+  submitForm?: any
 }
 
 const CustomModal: React.FC<myProps> = (props) => {
+  const handleClose = () => {}
   return (
     <div>
       <Modal show={props.showModal} onHide={props.toggleModal}>
@@ -18,11 +19,14 @@ const CustomModal: React.FC<myProps> = (props) => {
         </Modal.Header>
         <Modal.Body>{props.children}</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={props.handleClose}>
+          <Button
+            variant="secondary"
+            onClick={props.handleClose || handleClose}
+          >
             Close
           </Button>
 
-          <Button variant="dark" onClick={props.submitForm}>
+          <Button variant="dark" onClick={props.submitForm} type="submit">
             Save Changes
           </Button>
         </Modal.Footer>
