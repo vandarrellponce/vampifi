@@ -1,6 +1,7 @@
 import expressAsyncHandler from 'express-async-handler'
 import Product from '../models/productModel.js'
 import slugify from 'slugify'
+import Category from '../models/categoryModel.js'
 
 // @desc	Create product
 // @route	POST /api/admin/products
@@ -96,6 +97,20 @@ export const getProductsWithOptions = expressAsyncHandler(async (req, res) => {
     .sort({ createdAt: -1 })
 
   res.send({ products, page, totalPages: Math.ceil(count / pageSize) })
+})
+
+// @desc	Get Product by Slug
+// @route	GET /api/products/slug/:slug
+// @access	Public
+export const getProductsBySlug = expressAsyncHandler(async (req, res) => {
+  try {
+    const slug = req.params.slug
+    const category = await Category.findOne({ slug })
+    const products = await Product.find({ category: category._id })
+    res.send(products)
+  } catch (error) {
+    res.status(401).send(error.message)
+  }
 })
 
 // @desc	Fetch single product

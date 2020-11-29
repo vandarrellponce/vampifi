@@ -5,7 +5,7 @@ const renderCategoriesForMenu = (categories) => {
     return (
       <li key={cat._id}>
         {cat.parentId ? (
-          <a href={cat.slug}>{cat.name}</a>
+          <a href={`/slug/${cat.slug}`}>{cat.name}</a>
         ) : (
           <span>{cat.name}</span>
         )}
