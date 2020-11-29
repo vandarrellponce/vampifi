@@ -1,5 +1,6 @@
 import expressAsyncHandler from 'express-async-handler'
 import User from '../models/userModel.js'
+import shortid from 'shortid'
 
 // @desc	Create user and generate token
 // @route	Post /api/users/register
@@ -13,7 +14,9 @@ export const createUser = expressAsyncHandler(async (req, res) => {
       throw new Error('Email already in use')
     }
     // If does not exist, proceed on creating user
-    const username = Math.random().toString()
+    const username = `${req.body.firstname}-${
+      req.body.lastname
+    }-${shortid.generate()}`
     const newUser = await new User({ ...req.body, username }).save()
     const token = await newUser.generateAuthToken()
     res.cookie('flipkart_token', token).status(201).send(newUser)
