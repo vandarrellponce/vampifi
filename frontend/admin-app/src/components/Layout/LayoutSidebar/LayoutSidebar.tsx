@@ -62,22 +62,22 @@ const LayoutSidebar = (props) => {
           <div className="layout__sidebar__container1__title">
             Admin Controls
           </div>
-          <Link to="/orderlist" className="layout__sidebar__link">
+          <Link to="/admin/orderlist" className="layout__sidebar__link">
             <div className="layout__sidebar__nav__item" tabIndex={1}>
               &#x1F911; Orders
             </div>
           </Link>
-          <Link to="/productlist" className="layout__sidebar__link">
+          <Link to="/admin/productlist" className="layout__sidebar__link">
             <div className="layout__sidebar__nav__item" tabIndex={1}>
               &#x1F964; Products
             </div>
           </Link>
-          <Link to="/userlist" className="layout__sidebar__link">
+          <Link to="/admin/userlist" className="layout__sidebar__link">
             <div className="layout__sidebar__nav__item" tabIndex={1}>
               &#x1F465; Customers
             </div>
           </Link>
-          <Link to="/categorylist" className="layout__sidebar__link">
+          <Link to="/admin/categorylist" className="layout__sidebar__link">
             <div className="layout__sidebar__nav__item" tabIndex={1}>
               &#x1F5C3; Categories
             </div>

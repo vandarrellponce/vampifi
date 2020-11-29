@@ -15,7 +15,6 @@ import Input from '../../components/UI/Input/Input'
 import getCategories from '../../store/actions/category.getCategories'
 import addProduct from '../../store/actions/product.addProduct'
 import CustomModal from '../../components/Modals/CustomModal/CustomModal'
-import { Form } from 'react-bootstrap'
 
 const ProductListScreen = ({ history }) => {
   const dispatch = useDispatch()

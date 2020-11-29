@@ -1,8 +1,8 @@
 import React from 'react'
 import Layout from '../../components/Layout/Layout'
-import './Home.css'
+import './AdminHome.css'
 
-const Home = () => {
+const AdminHome = () => {
   return (
     <Layout showSidebar>
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -156,4 +156,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default AdminHome

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
-import Home from './containers/Home/Home'
 import Signin from './containers/Signin/Signin'
 import Signup from './containers/Signup/Signup'
 import authUser from './store/actions/user.auth'
@@ -11,6 +10,7 @@ import OrderListScreen from './containers/OrderlistScreen/OrderListScreen'
 import UserListScreen from './containers/UserListScreen/UserListScreen'
 import CategoryListSceen from './containers/CategoryListScreen/CategoryListSceen'
 import ProductEditScreen from './containers/ProductEditScreen/ProductEditScreen'
+import AdminHome from './containers/AdminHome/AdminHome'
 
 const App = () => {
   // Authenticate user everytime the app starts
@@ -22,29 +22,34 @@ const App = () => {
   return (
     <div className="app">
       <BrowserRouter>
-        <Route exact path="/" component={Home} />
+        {/* PUBLIC ROUTES */}
+
         {/* Component, privateRoute, adminRoute */}
         <Route path="/signup" component={authWrapper(Signup, false, false)} />
         <Route path="/signin" component={authWrapper(Signin, false, false)} />
 
+        {/* ADMIN ROUTES */}
         <Route
-          path="/productlist"
+          exact
+          path="/admin"
+          component={authWrapper(AdminHome, true, true)}
+        />
+        <Route
+          path="/admin/productlist"
           component={authWrapper(ProductListScreen, true, true)}
         />
         <Route
-          path="/orderlist"
+          path="/admin/orderlist"
           component={authWrapper(OrderListScreen, true, true)}
         />
         <Route
-          path="/userlist"
+          path="/admin/userlist"
           component={authWrapper(UserListScreen, true, true)}
         />
-
         <Route
-          path="/categorylist"
+          path="/admin/categorylist"
           component={authWrapper(CategoryListSceen, true, true)}
         />
-
         <Route
           path="/admin/products/:productId/edit"
           component={authWrapper(ProductEditScreen, true, true)}
