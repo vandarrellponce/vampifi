@@ -101,7 +101,7 @@ const UserListScreen = ({ history }) => {
             <Table striped hover responsive className="table-sm">
               <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>USERNAME</th>
                   <th>NAME</th>
                   <th>EMAIL</th>
                   <th>ADMIN</th>
@@ -112,7 +112,7 @@ const UserListScreen = ({ history }) => {
                 {users &&
                   users.map((user) => (
                     <tr key={user._id}>
-                      <td>{user._id}</td>
+                      <td>{user.username}</td>
                       <td>{`${user.firstname} ${user.lastname}`}</td>
                       <td>
                         <a href={`mailto:${user.email}`}>{user.email}</a>
