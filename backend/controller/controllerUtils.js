@@ -14,6 +14,7 @@ export const organizeCategory = (categories, parentId = null) => {
       _id: cat._id,
       name: cat.name,
       slug: cat.slug,
+      parentId: cat.parentId,
       children: organizeCategory(categories, cat._id.toString())
     })
   })

@@ -9,6 +9,7 @@ import Loader from '../../components/Loader/Loader'
 import Input from '../../components/UI/Input/Input'
 import addCategory from '../../store/actions/category.addCategory'
 import CustomModal from '../../components/Modals/CustomModal/CustomModal'
+import renderCategories from '../../helpers/renderCategories'
 
 const CategoryListSceen = () => {
   const [loading, setLoading] = useState(false)
@@ -32,16 +33,6 @@ const CategoryListSceen = () => {
   }, [dispatch, categoryList])
 
   // FUNCTIONS & HANDLERS
-  const renderCategories = (categories) => {
-    return categories.map((cat) => {
-      return (
-        <li key={cat._id}>
-          {cat.name}
-          {cat.children.length > 0 && <ul>{renderCategories(cat.children)}</ul>}
-        </li>
-      )
-    })
-  }
 
   const listCategoryOptions = (categories, options = []) => {
     categories.forEach((cat) => {

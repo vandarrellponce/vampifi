@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 /* import socketIOClient from 'socket.io-client' */
 import { useDispatch } from 'react-redux'
 import './Toolbar.css'
-import Axios from 'axios'
+/* import Axios from 'axios' */
 import Sidebar from '../Sidebar/Sidebar'
 import Backdrop from '../Backdrop/Backdrop'
 import { CSSTransition } from 'react-transition-group'
@@ -23,10 +23,11 @@ import Animate from '../../Hoc/animate'
 const Toolbar = () => {
   const { currentUserInfo, authError } = useSelector((state) => state.user)
   // const { cartItems } = useSelector((state) => state.cart)
+  /* eslint-disable */
   const [notifs, setNotifs] = useState([])
   const [totalNotifs, setTotalNotifs] = useState(0)
   const dispatch = useDispatch()
-
+  /* 
   const getNotifications = () => {
     if (currentUserInfo && currentUserInfo.isAdmin) {
       Axios.get('/api/notifications/admin?limit=10')
@@ -41,7 +42,7 @@ const Toolbar = () => {
         .then((res) => {})
         .catch((e) => e)
     }
-  }
+  } */
 
   // PRIVATE LINKS
   const renderPrivateLinks = () => {
@@ -205,7 +206,7 @@ const Toolbar = () => {
                 style={{
                   objectFit: 'contain',
                   maxWidth: '100%',
-                  height: '60px'
+                  height: '55px'
                 }}
               ></Image>
             </div>

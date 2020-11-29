@@ -12,6 +12,8 @@ import CategoryListSceen from './containers/CategoryListScreen/CategoryListSceen
 import ProductEditScreen from './containers/ProductEditScreen/ProductEditScreen'
 import AdminHome from './containers/AdminHome/AdminHome'
 import Toolbar from './components/Header/Toolbar/Toolbar'
+import MenuHeader from './components/MenuHeader/MenuHeader'
+import ClientHome from './containers/ClientHome/ClientHome'
 
 const App = () => {
   // Authenticate user everytime the app starts
@@ -27,6 +29,7 @@ const App = () => {
         <Toolbar />
 
         {/* Component, privateRoute, adminRoute */}
+        <Route path="/" exact component={ClientHome} />
         <Route path="/signup" component={authWrapper(Signup, false, false)} />
         <Route path="/signin" component={authWrapper(Signin, false, false)} />
 

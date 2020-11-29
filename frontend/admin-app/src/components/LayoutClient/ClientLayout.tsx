@@ -1,13 +1,12 @@
 import React from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+/* import { Col, Container, Row } from 'react-bootstrap' */
+import MenuHeader from '../MenuHeader/MenuHeader'
 
-import './Layout.css'
-import LayoutSidebar from './LayoutSidebar/LayoutSidebar'
-
-const Layout = (props) => {
+const ClientLayout = (props) => {
   return (
     <div>
-      {props.showSidebar ? (
+      <MenuHeader />
+      {/* {props.showSidebar ? (
         <Container fluid>
           <Row>
             <Col md={2}>
@@ -20,9 +19,10 @@ const Layout = (props) => {
         </Container>
       ) : (
         props.children
-      )}
+      )} */}
+      {props.children}
     </div>
   )
 }
 
-export default Layout
+export default ClientLayout
