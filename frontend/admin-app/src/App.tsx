@@ -11,6 +11,7 @@ import UserListScreen from './containers/UserListScreen/UserListScreen'
 import CategoryListSceen from './containers/CategoryListScreen/CategoryListSceen'
 import ProductEditScreen from './containers/ProductEditScreen/ProductEditScreen'
 import AdminHome from './containers/AdminHome/AdminHome'
+import Toolbar from './components/Header/Toolbar/Toolbar'
 
 const App = () => {
   // Authenticate user everytime the app starts
@@ -23,6 +24,7 @@ const App = () => {
     <div className="app">
       <BrowserRouter>
         {/* PUBLIC ROUTES */}
+        <Toolbar />
 
         {/* Component, privateRoute, adminRoute */}
         <Route path="/signup" component={authWrapper(Signup, false, false)} />

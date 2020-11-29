@@ -9,7 +9,6 @@ import LayoutSidebar from './LayoutSidebar/LayoutSidebar'
 const Layout = (props) => {
   return (
     <div>
-      <Toolbar />
       {props.showSidebar ? (
         <Container fluid>
           <Row>
