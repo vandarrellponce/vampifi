@@ -9,6 +9,8 @@ import FormContainer from '../../components/FormContainer/FormContainer'
 import loginUser from '../../store/actions/user.login'
 import Layout from '../../components/Layout/Layout'
 import Input from '../../components/UI/Input/Input'
+import { Col, Row } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 /* import GoogleButton from 'react-google-button' */
 
 const SigninScreen = (props) => {
@@ -92,12 +94,11 @@ const SigninScreen = (props) => {
           </Form>
           <br />
 
-          {/* 	<Row className="py-3">
-				<Col>
-					New Customer?{' '}
-					<Link to={`/register?redirect=${redirect}`}>Register</Link>
-				</Col>
-			</Row> */}
+          <Row className="py-3">
+            <Col>
+              New Customer? <Link to={`/signup`}>Register</Link>
+            </Col>
+          </Row>
         </FormContainer>
       </div>
     </Layout>
