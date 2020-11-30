@@ -18,7 +18,6 @@ const FormContainer = ({ children }) => {
               fontFamily: 'pacifico',
               fontSize: '88px',
               textShadow: '10px 5px 8px rgba(0,0,0,0.5)',
-              alignItems: 'center',
               justifyContent: 'center',
               height: '100%',
               flexDirection: 'column',
@@ -33,8 +32,7 @@ const FormContainer = ({ children }) => {
               <div
                 style={{
                   fontSize: '32px',
-                  marginBottom: '-20px',
-                  marginLeft: '-170px'
+                  marginBottom: '-20px'
                 }}
               >
                 Welcome to
