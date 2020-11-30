@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ClientLayout from '../../components/LayoutClient/ClientLayout'
 import { useSelector, useDispatch } from 'react-redux'
 import getProductsBySlug from '../../store/actions/products.getProductsBySlug'
 import './SlugScreen.css'
+import generatePublicUrl from '../../helpers/generatePublicUrl'
+import Loader from '../../components/Loader/Loader'
 
 const SlugScreen = (props) => {
   const slug = props.match.params.slug
@@ -10,26 +12,36 @@ const SlugScreen = (props) => {
   const { productsBySlug, productsByPrice, productsBySlugError } = useSelector(
     (state) => state.product
   )
+  const [priceRange] = useState({
+    under5k: 5000,
+    under10k: 10000,
+    under15k: 15000,
+    under20k: 20000,
+    under30k: 30000
+  })
 
   useEffect(() => {
-    if (!productsBySlug.length) dispatch(getProductsBySlug(slug))
-  }, [dispatch, productsBySlug, slug])
+    if (!productsBySlug?.length) dispatch(getProductsBySlug(slug))
+  }, [dispatch, productsBySlug, slug, productsByPrice])
+
+  if (!productsBySlug.length) return <Loader />
   return (
-    <div>
-      <ClientLayout>
-        <div className="slugscreen__card">
-          <div className="slugscreen__card__header">
-            <div>{`${slug} mobiles under 10k`}</div>
-            <button>View All</button>
-          </div>
-          <div className="slugscreen__products__container">
-            {productsBySlug.length > 0 &&
-              productsBySlug.map((product) => (
-                <div className="slugscreen__product__container">
+    <ClientLayout>
+      {Object.keys(priceRange).map((key) => {
+        if (!productsByPrice[key].length) return
+        return (
+          <div className="slugscreen__card" key={key}>
+            <div className="slugscreen__card__header">
+              <div>{`${slug} mobiles under ${priceRange[key]}`}</div>
+              <button>View All</button>
+            </div>
+            <div className="slugscreen__products__container">
+              {productsByPrice[key].map((product, i) => (
+                <div className="slugscreen__product__container" key={i}>
                   <div className="slugscreen__product__image__container">
                     <img
-                      src={`/uploads/${product.images[0].img}`}
-                      alt="slugscreen____product image"
+                      src={generatePublicUrl(product.images[0].img)}
+                      alt="product"
                     />
                   </div>
                   <div className="slugscreen__product__details__container">
@@ -46,10 +58,11 @@ const SlugScreen = (props) => {
                   </div>
                 </div>
               ))}
+            </div>
           </div>
-        </div>
-      </ClientLayout>
-    </div>
+        )
+      })}
+    </ClientLayout>
   )
 }
 
