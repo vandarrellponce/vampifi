@@ -38,7 +38,14 @@ const Signup = (props) => {
 
   return (
     <Layout>
-      <div className="py-3">
+      <div
+        className="py-3"
+        style={{
+          background:
+            'linear-gradient(23deg, rgba(85,212,255,1) 0%, rgba(255,199,103,1) 100%)',
+          height: '100vh'
+        }}
+      >
         <FormContainer>
           <Helmet>
             <title>Kumbatea! | Register</title>
@@ -47,7 +54,16 @@ const Signup = (props) => {
               content="We sell the best milk tea in town"
             />
           </Helmet>
-          <h1>Creat Account</h1>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <h1
+              style={{
+                fontFamily: 'Pacifico',
+                fontWeight: 'bold'
+              }}
+            >
+              Create An Account
+            </h1>
+          </div>
           {registerError && <Message children={registerError} variant="info" />}
           {formError && <Message children={formError} variant="danger" />}
           {loading && <Loader />}
@@ -102,10 +118,11 @@ const Signup = (props) => {
               onChange={setRePassword}
               required={true}
             />
-
-            <Button type="submit" variant="secondary">
-              Submit
-            </Button>
+            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <Button type="submit" variant="dark">
+                Submit
+              </Button>
+            </div>
           </Form>
           <Row className="py-3">
             <Col>

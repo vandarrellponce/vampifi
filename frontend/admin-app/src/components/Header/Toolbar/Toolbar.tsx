@@ -201,32 +201,34 @@ const Toolbar = () => {
         >
           <Link to="/" style={{ textDecoration: 'none' }}>
             <div className="toolbar__brand">
-              <Image
+              {/*  <Image
                 src="https://lh3.googleusercontent.com/O1qYQQ3bKAPxMXHjR1mmnGmt3Hi2ieotKU1dyoTwx7w3XrMvyCMmSogwrAmgl9EKj4fYnGGbUgiA_RshABqTH_uZrPKqGMkiSRRBoetnMM0Rdn5lnJJXsQa7Ou0HgqLKGrXnM9_kpoYGENV2dPU1aeSF0vKxgfT6hD8ZUN7CAqHqTLjFFVxjhH3aXJr1Ak-CcTes50PU-yGohlDNrWeBmpbUWD54TzJA0J55alibd4L3QT4Axgdg-AnuGXJ8IvGJJbLL8V936IfWwJQ9rvyt66rqMTSKsQ5LVp8NVDThZh_VzLaLFot1dCZEa92xCMN6MwiF3HiiNg_ylRVUdLIj68F9y4GcCehDU2kdU2Y1b9KNxdO4JkW7F-AqoK0RA7jmKOXHrT-EGo2YglGFjLal7GLITqz2hzM_18VQRPYg1DyZFwKci2cOaD1sWjF1Qt2wEkqsL3l73TaYfvRUNMKqCViYcPhsSL_KU-2-svIDkTQI5G1M0T3mfEOXyRFe4IBfHhr-d-b_NeUaFSZGdDAv8TzbMw3wlBvnamIb2J7a_KVHzqtqIIFDaKboReuexWHANRBhf5PRCfeTJOkhKpRs33n7Bnzv3YuUx4XPl4ITZB1mL_ywCoMeOU4KTbePWKB4eawh2yy1UZ_byj1GSGf-T-Kezpb2HVaScD31fFTNIkQjFQV-eOzLz6pC0qfCpA=w1237-h523-no?authuser=0"
                 style={{
                   objectFit: 'contain',
                   maxWidth: '100%',
                   height: '55px'
                 }}
-              ></Image>
+              ></Image> */}
+              Rvampify
             </div>
           </Link>
-        </Animate>
-
-        <Animate
-          from={{ opacity: 0, marginLeft: -100 }}
-          to={{ opacity: 1, marginLeft: 0 }}
-          config={{ delay: 2000, duration: 500 }}
-        >
-          <div className="toolbar__searchbox">
-            <Route render={({ history }) => <SearchBox history={history} />} />
-          </div>
         </Animate>
 
         <div className="spacer"></div>
 
         {/* LINKS */}
         <div className="toolbar__right__links">
+          <Animate
+            from={{ opacity: 0 }}
+            to={{ opacity: 1 }}
+            config={{ delay: 2500, duration: 1000 }}
+          >
+            <div className="toolbar__searchbox">
+              <Route
+                render={({ history }) => <SearchBox history={history} />}
+              />
+            </div>
+          </Animate>
           {/* CART */}
           <Animate
             from={{ opacity: 0, marginRight: -500 }}

@@ -30,7 +30,14 @@ const SigninScreen = (props) => {
 
   return (
     <Layout>
-      <div className="py-3">
+      <div
+        className="py-3"
+        style={{
+          background:
+            'linear-gradient(23deg, rgba(85,212,255,1) 0%, rgba(255,199,103,1) 100%)',
+          height: '95vh'
+        }}
+      >
         <FormContainer>
           {/*  <a href="/auth/google" style={{ textDecoration: 'none' }}>
           <GoogleButton
@@ -45,7 +52,16 @@ const SigninScreen = (props) => {
               content="We sell the best milk tea in town"
             />
           </Helmet>
-          <h4>ADMIN LOGIN</h4>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <h1
+              style={{
+                fontFamily: 'Pacifico',
+                fontWeight: 'bold'
+              }}
+            >
+              Sign In
+            </h1>
+          </div>
           {loginError && <Message children={loginError} variant="info" />}
 
           {loading && <Loader />}
@@ -68,9 +84,11 @@ const SigninScreen = (props) => {
               value={password}
             />
 
-            <Button type="submit" variant="secondary" size="sm">
-              Submit
-            </Button>
+            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <Button type="submit" variant="dark">
+                Submit
+              </Button>
+            </div>
           </Form>
           <br />
 
