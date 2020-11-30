@@ -49,45 +49,30 @@ const Toolbar = () => {
     return (
       <div className="toolbar__right__links__signedin">
         {/*  NOTIFICATIONS  */}
-        <Animate
-          from={{ opacity: 0, marginTop: -500 }}
-          to={{ opacity: 1, marginTop: 0 }}
-          config={{ delay: 100, duration: 300 }}
-        >
-          <div className="toolbar__link" tabIndex={1}>
-            <RiNotification2Line
-              onClick={(e) => toggleSubMenu(e)}
-              size="25px"
-              className="toolbar__link__icon notification"
-            />
-            <Badge variant="secondary" className="toolbar__badge">
-              {totalNotifs > 0 ? totalNotifs : null}
-            </Badge>
-          </div>
-        </Animate>
+
+        <div className="toolbar__link" tabIndex={1}>
+          <RiNotification2Line
+            onClick={(e) => toggleSubMenu(e)}
+            size="25px"
+            className="toolbar__link__icon notification"
+          />
+          <Badge variant="secondary" className="toolbar__badge">
+            {totalNotifs > 0 ? totalNotifs : null}
+          </Badge>
+        </div>
 
         {/*  PROFILE  */}
-        <Animate
-          from={{ opacity: 0, marginTop: -500 }}
-          to={{ opacity: 1, marginTop: 0 }}
-          config={{ delay: 200, duration: 300 }}
-        >
-          <Link to="/profile" className="toolbar__link" tabIndex={1}>
-            {currentUserInfo.name}{' '}
-            <CgProfile size="25px" className="toolbar__link__icon" />
-          </Link>
-        </Animate>
+
+        <Link to="/profile" className="toolbar__link" tabIndex={1}>
+          {currentUserInfo.name}{' '}
+          <CgProfile size="25px" className="toolbar__link__icon" />
+        </Link>
 
         {/* LOGOUT */}
-        <Animate
-          from={{ opacity: 0, marginTop: -500 }}
-          to={{ opacity: 1, marginTop: 0 }}
-          config={{ delay: 300, duration: 300 }}
-        >
-          <div className="toolbar__link" tabIndex={1} onClick={logoutHandler}>
-            Logout <BiExit size="25px" className="toolbar__link__icon" />
-          </div>
-        </Animate>
+
+        <div className="toolbar__link" tabIndex={1} onClick={logoutHandler}>
+          Logout <BiExit size="25px" className="toolbar__link__icon" />
+        </div>
       </div>
     )
   }
@@ -230,24 +215,19 @@ const Toolbar = () => {
             </div>
           </Animate>
           {/* CART */}
-          <Animate
-            from={{ opacity: 0, marginRight: -500 }}
-            to={{ opacity: 1, marginRight: 0 }}
-            config={{ duration: 300 }}
-          >
-            <Link to="/cart" className="toolbar__link" tabIndex={1}>
-              <FiShoppingCart
-                size="25px"
-                className="toolbar__link__icon cart"
-                /*  onMouseOver={(e) => openSubMenu(e)}
+
+          <Link to="/cart" className="toolbar__link" tabIndex={1}>
+            <FiShoppingCart
+              size="25px"
+              className="toolbar__link__icon cart"
+              /*  onMouseOver={(e) => openSubMenu(e)}
                     onMouseOut={(e) => closeSubMenu(e)} */
-              />
-              {/* cart */}
-              <Badge variant="primary" className="toolbar__badge">
-                {/*  {cartItems.length > 0 ? cartItems.length : null} */}
-              </Badge>
-            </Link>
-          </Animate>
+            />
+            {/* cart */}
+            <Badge variant="primary" className="toolbar__badge">
+              {/*  {cartItems.length > 0 ? cartItems.length : null} */}
+            </Badge>
+          </Link>
 
           {currentUserInfo
             ? renderPrivateLinks()
