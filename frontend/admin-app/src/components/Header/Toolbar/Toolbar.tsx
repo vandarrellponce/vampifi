@@ -52,7 +52,7 @@ const Toolbar = () => {
         <Animate
           from={{ opacity: 0, marginTop: -500 }}
           to={{ opacity: 1, marginTop: 0 }}
-          config={{ delay: 1200, duration: 1000 }}
+          config={{ delay: 100, duration: 300 }}
         >
           <div className="toolbar__link" tabIndex={1}>
             <RiNotification2Line
@@ -70,7 +70,7 @@ const Toolbar = () => {
         <Animate
           from={{ opacity: 0, marginTop: -500 }}
           to={{ opacity: 1, marginTop: 0 }}
-          config={{ delay: 1300, duration: 1000 }}
+          config={{ delay: 200, duration: 300 }}
         >
           <Link to="/profile" className="toolbar__link" tabIndex={1}>
             {currentUserInfo.name}{' '}
@@ -82,7 +82,7 @@ const Toolbar = () => {
         <Animate
           from={{ opacity: 0, marginTop: -500 }}
           to={{ opacity: 1, marginTop: 0 }}
-          config={{ delay: 1400, duration: 1000 }}
+          config={{ delay: 300, duration: 300 }}
         >
           <div className="toolbar__link" tabIndex={1} onClick={logoutHandler}>
             Logout <BiExit size="25px" className="toolbar__link__icon" />
@@ -197,7 +197,7 @@ const Toolbar = () => {
         <Animate
           from={{ opacity: 0, marginLeft: -100 }}
           to={{ opacity: 1, marginLeft: 0 }}
-          config={{ delay: 1500, duration: 500 }}
+          config={{ duration: 300 }}
         >
           <Link to="/" style={{ textDecoration: 'none' }}>
             <div className="toolbar__brand">
@@ -221,7 +221,7 @@ const Toolbar = () => {
           <Animate
             from={{ opacity: 0 }}
             to={{ opacity: 1 }}
-            config={{ delay: 2500, duration: 1000 }}
+            config={{ duration: 300 }}
           >
             <div className="toolbar__searchbox">
               <Route
@@ -233,7 +233,7 @@ const Toolbar = () => {
           <Animate
             from={{ opacity: 0, marginRight: -500 }}
             to={{ opacity: 1, marginRight: 0 }}
-            config={{ delay: 1000, duration: 1000 }}
+            config={{ duration: 300 }}
           >
             <Link to="/cart" className="toolbar__link" tabIndex={1}>
               <FiShoppingCart
