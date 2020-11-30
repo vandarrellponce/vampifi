@@ -5,6 +5,7 @@ import getProductsBySlug from '../../store/actions/products.getProductsBySlug'
 import './SlugScreen.css'
 import generatePublicUrl from '../../helpers/generatePublicUrl'
 import Loader from '../../components/Loader/Loader'
+import { Button } from 'react-bootstrap'
 
 const SlugScreen = (props) => {
   const slug = props.match.params.slug
@@ -33,7 +34,9 @@ const SlugScreen = (props) => {
           <div className="slugscreen__card" key={key}>
             <div className="slugscreen__card__header">
               <div>{`${slug} mobiles under ${priceRange[key]}`}</div>
-              <button>View All</button>
+              <Button size="sm" variant="dark">
+                View All
+              </Button>
             </div>
             <div className="slugscreen__products__container">
               {productsByPrice[key].map((product, i) => (
