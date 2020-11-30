@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Col, Container, Modal, Row } from 'react-bootstrap'
+import { Col, Container, Row } from 'react-bootstrap'
 import Layout from '../../components/Layout/Layout'
 import { useDispatch, useSelector } from 'react-redux'
 import './CategoryListSceen.css'
@@ -10,6 +10,14 @@ import Input from '../../components/UI/Input/Input'
 import addCategory from '../../store/actions/category.addCategory'
 import CustomModal from '../../components/Modals/CustomModal/CustomModal'
 import renderCategories from '../../helpers/renderCategories'
+import CheckboxTree from 'react-checkbox-tree'
+import 'react-checkbox-tree/lib/react-checkbox-tree.css'
+import {
+  IoIosArrowDown,
+  IoIosArrowForward,
+  IoIosCheckbox,
+  IoIosCheckboxOutline
+} from 'react-icons/io'
 
 const CategoryListSceen = () => {
   const [loading, setLoading] = useState(false)
@@ -18,6 +26,9 @@ const CategoryListSceen = () => {
   const [newCatName, setNewCatName] = useState('')
   const [newCatParent, setNewCatParent] = useState('')
   const [newCatImage, setNewCatImage] = useState('')
+
+  const [checked, setChecked] = useState([])
+  const [expanded, setExpanded] = useState([])
 
   const { categoryList, categoryListError } = useSelector(
     (state) => state.category
@@ -77,6 +88,7 @@ const CategoryListSceen = () => {
     setNewCatParent(e.currentTarget.value)
   }
 
+  if (!categoryList) return <Loader />
   return (
     <Layout showSidebar>
       <Container fluid>
@@ -95,8 +107,21 @@ const CategoryListSceen = () => {
               </button>
             </div>
           </Col>
-          <Col md={12}>
-            <ul>{categoryList && renderCategories(categoryList)}</ul>
+          <Col md={12} style={{ color: 'black' }}>
+            <CheckboxTree
+              nodes={renderCategories(categoryList)}
+              checked={checked}
+              expanded={expanded}
+              onCheck={(checked) => setChecked(checked)}
+              onExpand={(expanded) => setExpanded(expanded)}
+              icons={{
+                check: <IoIosCheckbox />,
+                uncheck: <IoIosCheckboxOutline />,
+                halfCheck: <IoIosCheckboxOutline />,
+                expandClose: <IoIosArrowForward />,
+                expandOpen: <IoIosArrowDown />
+              }}
+            />
           </Col>
         </Row>
       </Container>

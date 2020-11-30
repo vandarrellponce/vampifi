@@ -108,20 +108,6 @@ const Toolbar = () => {
     setSideBarOpen((prevState) => !prevState)
   }
 
-  // open submenu when mouse hover on icon
-  /* const openSubMenu = (e) => {
-    const link = e.target.className.animVal.split(' ')[1]
-    const tempBtn = e.target.getBoundingClientRect()
-    const center = (tempBtn.left + tempBtn.right - 755) / 2
-    const bottom = tempBtn.bottom + 15
-    setLocation({ center, bottom })
-    setSubMenuOpen(true)
-  }
-  const closeSubMenu = (e) => {
-    e.preventDefault()
-    setSubMenuOpen(false)
-  } */
-
   // open submenu when clicked
   const toggleSubMenu = (e) => {
     const link = e.target.className.animVal.split(' ')[1]
@@ -203,17 +189,10 @@ const Toolbar = () => {
 
         {/* LINKS */}
         <div className="toolbar__right__links">
-          <Animate
-            from={{ opacity: 0 }}
-            to={{ opacity: 1 }}
-            config={{ duration: 300 }}
-          >
-            <div className="toolbar__searchbox">
-              <Route
-                render={({ history }) => <SearchBox history={history} />}
-              />
-            </div>
-          </Animate>
+          <div className="toolbar__searchbox">
+            <Route render={({ history }) => <SearchBox history={history} />} />
+          </div>
+
           {/* CART */}
 
           <Link to="/cart" className="toolbar__link" tabIndex={1}>

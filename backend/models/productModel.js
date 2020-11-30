@@ -35,6 +35,9 @@ const productSchema = mongoose.Schema(
       required: true,
       unique: true
     },
+    displayType: {
+      type: String
+    },
     price: {
       type: Number,
       required: true,
