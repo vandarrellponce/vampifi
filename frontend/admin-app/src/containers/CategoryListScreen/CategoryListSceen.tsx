@@ -15,8 +15,8 @@ import 'react-checkbox-tree/lib/react-checkbox-tree.css'
 import {
   IoIosArrowDown,
   IoIosArrowForward,
-  IoIosCheckbox,
-  IoIosCheckboxOutline
+  IoIosCheckmarkCircle,
+  IoIosCheckmarkCircleOutline
 } from 'react-icons/io'
 
 const CategoryListSceen = () => {
@@ -29,6 +29,11 @@ const CategoryListSceen = () => {
 
   const [checked, setChecked] = useState([])
   const [expanded, setExpanded] = useState([])
+
+  const [checkedArray, setCheckedArray] = useState([])
+  const [expandedArray, setExpandedArray] = useState([])
+
+  const [showUCModal, setShowUCModal] = useState(false)
 
   const { categoryList, categoryListError } = useSelector(
     (state) => state.category
@@ -88,6 +93,15 @@ const CategoryListSceen = () => {
     setNewCatParent(e.currentTarget.value)
   }
 
+  const editCategoryHandler = () => {
+    setShowUCModal(true)
+  }
+
+  const handleUCModalClose = () => {
+    console.log(checked, expanded)
+    setShowUCModal(false)
+  }
+
   if (!categoryList) return <Loader />
   return (
     <Layout showSidebar>
@@ -115,13 +129,19 @@ const CategoryListSceen = () => {
               onCheck={(checked) => setChecked(checked)}
               onExpand={(expanded) => setExpanded(expanded)}
               icons={{
-                check: <IoIosCheckbox />,
-                uncheck: <IoIosCheckboxOutline />,
-                halfCheck: <IoIosCheckboxOutline />,
+                check: <IoIosCheckmarkCircle />,
+                uncheck: <IoIosCheckmarkCircleOutline />,
+                halfCheck: <IoIosCheckmarkCircleOutline />,
                 expandClose: <IoIosArrowForward />,
                 expandOpen: <IoIosArrowDown />
               }}
             />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <button>Delete</button>
+            <button onClick={editCategoryHandler}>Edit</button>
           </Col>
         </Row>
       </Container>
@@ -157,6 +177,58 @@ const CategoryListSceen = () => {
               )
             })}
         </select>
+        <input type="file" name="categoryImage" onChange={handleImage} />
+      </CustomModal>
+
+      <CustomModal
+        modalTitle="Edit Category"
+        showModal={showUCModal}
+        handleClose={handleUCModalClose}
+        toggleModal={() => setShowUCModal((prev) => !prev)}
+      >
+        <Row>
+          <Col>
+            <h6>Expanded</h6>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Input
+              type="text"
+              placeholder="Enter category name"
+              required={true}
+              value={newCatName}
+              onChange={setNewCatName}
+            />
+          </Col>
+          <Col>
+            <select
+              className="form-control form-control-sm"
+              value={newCatParent}
+              onChange={handleChange}
+              style={{ width: '100%' }}
+            >
+              <option value={'Main'}>Select Category</option>
+              {categoryList?.length > 0 &&
+                listCategoryOptions(categoryList).map((option) => {
+                  return (
+                    <option value={option.value} key={option.value}>
+                      {option.name}
+                    </option>
+                  )
+                })}
+            </select>
+          </Col>
+          <Col>
+            <select className="form-control form-control-sm">
+              <option value="Main">Select Display</option>
+              <option value="store">Store Type</option>
+              <option value="product">Products Type</option>
+              <option value="page">Page Type</option>
+            </select>
+          </Col>
+        </Row>
+
         <input type="file" name="categoryImage" onChange={handleImage} />
       </CustomModal>
     </Layout>
