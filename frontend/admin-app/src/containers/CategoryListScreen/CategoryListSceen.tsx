@@ -204,7 +204,7 @@ const CategoryListSceen = () => {
           placeholder="Enter category name"
           required={true}
           value={newCatName}
-          onChange={setNewCatName}
+          onChange={(e) => setNewCatName(e.target.value)}
         />
         Parent Category <br />
         <select

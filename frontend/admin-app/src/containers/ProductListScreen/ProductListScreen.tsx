@@ -236,7 +236,7 @@ const ProductListScreen = ({ history }) => {
           type="text"
           value={name}
           placeholder={`Product Name`}
-          onChange={setName}
+          onChange={(e) => setName(e.target.value)}
         />
         <Input
           label="Count in Stocks"
@@ -244,7 +244,7 @@ const ProductListScreen = ({ history }) => {
           required={true}
           value={countInStock}
           placeholder={`Quantity`}
-          onChange={setCountInStock}
+          onChange={(e) => setCountInStock(e.target.value)}
         />
         <Input
           label="Price"
@@ -252,7 +252,7 @@ const ProductListScreen = ({ history }) => {
           required={true}
           value={price}
           placeholder={`Price`}
-          onChange={setPrice}
+          onChange={(e) => setPrice(e.target.value)}
         />
         <Input
           label="Description"
@@ -260,7 +260,7 @@ const ProductListScreen = ({ history }) => {
           required={true}
           value={description}
           placeholder={`Description`}
-          onChange={setDescription}
+          onChange={(e) => setDescription(e.target.value)}
         />
 
         <select
