@@ -16,9 +16,7 @@ const Input: FC<myProps> = (props) => {
       <Form.Group>
         {props.label && <Form.Label>{props.label}</Form.Label>}
         <Form.Control
-          onChange={(e) => {
-            props.onChange(e.target.value)
-          }}
+          onChange={props.onChange}
           value={props.value}
           required={props.required}
           size="sm"
