@@ -69,7 +69,7 @@ const SigninScreen = (props) => {
           {loading && <Loader />}
           <Form onSubmit={submitHandler}>
             <Input
-              onChange={setEmail}
+              onChange={(e) => setEmail(e.target.value)}
               label="Email Address"
               type="text"
               required={true}
@@ -78,7 +78,7 @@ const SigninScreen = (props) => {
             />
 
             <Input
-              onChange={setPassword}
+              onChange={(e) => setPassword(e.target.value)}
               label="Password"
               type="password"
               required={true}

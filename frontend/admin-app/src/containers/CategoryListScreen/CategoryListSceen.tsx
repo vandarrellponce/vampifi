@@ -95,7 +95,6 @@ const CategoryListSceen = () => {
 
   const handleUCModalShow = () => {
     setShowUCModal(true)
-    console.log(checked, expanded)
     setCheckedAndExpandedCategories()
   }
 

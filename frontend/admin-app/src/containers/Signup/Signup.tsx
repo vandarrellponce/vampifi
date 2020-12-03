@@ -76,7 +76,7 @@ const Signup = (props) => {
                   type="text"
                   value={firstname}
                   placeholder="Enter first name"
-                  onChange={setFirstname}
+                  onChange={(e) => setFirstname(e.target.value)}
                   required={true}
                 />
               </Col>
@@ -86,7 +86,7 @@ const Signup = (props) => {
                   type="text"
                   value={lastname}
                   placeholder="Enter last name"
-                  onChange={setLastname}
+                  onChange={(e) => setLastname(e.target.value)}
                   required={true}
                 />
               </Col>
@@ -97,7 +97,7 @@ const Signup = (props) => {
               type="email"
               value={email}
               placeholder="Enter email"
-              onChange={setEmail}
+              onChange={(e) => setEmail(e.target.value)}
               required={true}
             />
 
@@ -106,7 +106,7 @@ const Signup = (props) => {
               type="password"
               value={password}
               placeholder="Enter password"
-              onChange={setPassword}
+              onChange={(e) => setPassword(e.target.value)}
               required={true}
             />
 
