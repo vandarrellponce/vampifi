@@ -18,6 +18,7 @@ import {
   IoIosCheckmarkCircle,
   IoIosCheckmarkCircleOutline
 } from 'react-icons/io'
+import updateCategory from '../../store/actions/category.updateCategory'
 
 const CategoryListSceen = () => {
   const [loading, setLoading] = useState(false)
@@ -52,7 +53,11 @@ const CategoryListSceen = () => {
 
   const listCategoryOptions = (categories, options = []) => {
     categories.forEach((cat) => {
-      options.push({ value: cat._id, name: cat.name, parentId: cat.parentId })
+      options.push({
+        value: cat._id,
+        name: cat.name,
+        parentId: cat.parentId
+      })
       if (cat.children.length) {
         listCategoryOptions(cat.children, options)
       }
@@ -79,6 +84,26 @@ const CategoryListSceen = () => {
     await dispatch(getCategories())
     setLoading(false)
     toggleModal()
+  }
+  const submitUpdateForm = async () => {
+    const form = new FormData()
+
+    expandedArray.forEach((item, i) => {
+      form.append('_id', item.value)
+      form.append('name', item.name)
+      form.append('parentId', item.parentId)
+      form.append('displayType', item.displayType)
+    })
+
+    checkedArray.forEach((item, i) => {
+      form.append('_id', item.value)
+      form.append('name', item.name)
+      form.append('parentId', item.parentId)
+      form.append('displayType', item.displayType)
+    })
+    await dispatch(updateCategory(form))
+    await dispatch(getCategories())
+    setShowUCModal(false)
   }
 
   const toggleModal = () => {
@@ -142,6 +167,162 @@ const CategoryListSceen = () => {
     }
   }
 
+  const renderAddCategoryModal = () => (
+    <CustomModal
+      modalTitle="Add New Category"
+      showModal={showModal}
+      toggleModal={toggleModal}
+      handleClose={handleClose}
+      submitForm={submitForm}
+    >
+      <Input
+        type="text"
+        label="Category Name"
+        placeholder="Enter category name"
+        required={true}
+        value={newCatName}
+        onChange={(e) => setNewCatName(e.target.value)}
+      />
+      Parent Category <br />
+      <select
+        className="form-control"
+        value={newCatParent}
+        onChange={handleChange}
+      >
+        <option value={'Main'}>Main</option>
+        {categoryList?.length > 0 &&
+          listCategoryOptions(categoryList).map((option) => {
+            return (
+              <option value={option.value} key={option.value}>
+                {option.name}
+              </option>
+            )
+          })}
+      </select>
+      <input type="file" name="categoryImage" onChange={handleImage} />
+    </CustomModal>
+  )
+
+  const renderUpdateCategoryModal = () => (
+    <CustomModal
+      modalTitle="Edit Category"
+      showModal={showUCModal}
+      handleClose={handleUCModalClose}
+      toggleModal={() => setShowUCModal((prev) => !prev)}
+      submitForm={submitUpdateForm}
+    >
+      <Row>
+        <Col>
+          <h6>Expanded</h6>
+        </Col>
+      </Row>
+      {expandedArray.length > 0 &&
+        expandedArray.map((item, i) => {
+          return (
+            <Row key={i}>
+              <Col>
+                <Input
+                  type="text"
+                  placeholder="Enter category name"
+                  required={true}
+                  value={item.name}
+                  onChange={(e) =>
+                    updateCategoryName('name', e.target.value, i, 'expanded')
+                  }
+                />
+              </Col>
+              <Col>
+                <select
+                  className="form-control form-control-sm"
+                  value={item.parentId}
+                  onChange={(e) =>
+                    updateCategoryName(
+                      'parentId',
+                      e.target.value,
+                      i,
+                      'expanded'
+                    )
+                  }
+                  style={{ width: '100%' }}
+                >
+                  <option value={'Main'}>Main</option>
+                  {categoryList?.length > 0 &&
+                    listCategoryOptions(categoryList).map((option) => {
+                      return (
+                        <option value={option.value} key={option.value}>
+                          {option.name}
+                        </option>
+                      )
+                    })}
+                </select>
+              </Col>
+              <Col>
+                <select className="form-control form-control-sm">
+                  <option value="Main">Select Display</option>
+                  <option value="store">Store Type</option>
+                  <option value="product">Products Type</option>
+                  <option value="page">Page Type</option>
+                </select>
+              </Col>
+            </Row>
+          )
+        })}
+      <Row>
+        <Col>
+          <h6>Checked</h6>
+        </Col>
+      </Row>
+      {checkedArray.length > 0 &&
+        checkedArray.map((item, i) => {
+          return (
+            <Row key={i}>
+              <Col>
+                <Input
+                  type="text"
+                  placeholder="Enter category name"
+                  required={true}
+                  value={item.name}
+                  onChange={(e) =>
+                    updateCategoryName('name', e.target.value, i, 'checked')
+                  }
+                />
+              </Col>
+              <Col>
+                <select
+                  className="form-control form-control-sm"
+                  value={item.parentId}
+                  onChange={(e) =>
+                    updateCategoryName('parentId', e.target.value, i, 'checked')
+                  }
+                  style={{ width: '100%' }}
+                >
+                  <option value={'Main'}>Main</option>
+                  {categoryList?.length > 0 &&
+                    listCategoryOptions(categoryList).map((option) => {
+                      return (
+                        <option value={option.value} key={option.value}>
+                          {option.name}
+                        </option>
+                      )
+                    })}
+                </select>
+              </Col>
+              <Col>
+                <select className="form-control form-control-sm">
+                  <option value="Main">Select Display</option>
+                  <option value="store">Store Type</option>
+                  <option value="product">Products Type</option>
+                  <option value="page">Page Type</option>
+                </select>
+              </Col>
+            </Row>
+          )
+        })}
+
+      <input type="file" name="categoryImage" onChange={handleImage} />
+    </CustomModal>
+  )
+
   if (!categoryList) return <Loader />
   return (
     <Layout showSidebar>
@@ -189,162 +370,8 @@ const CategoryListSceen = () => {
           </Col>
         </Row>
       </Container>
-
-      <CustomModal
-        modalTitle="Add New Category"
-        showModal={showModal}
-        toggleModal={toggleModal}
-        handleClose={handleClose}
-        submitForm={submitForm}
-      >
-        <Input
-          type="text"
-          label="Category Name"
-          placeholder="Enter category name"
-          required={true}
-          value={newCatName}
-          onChange={(e) => setNewCatName(e.target.value)}
-        />
-        Parent Category <br />
-        <select
-          className="form-control"
-          value={newCatParent}
-          onChange={handleChange}
-        >
-          <option value={'Main'}>select category</option>
-          {categoryList?.length > 0 &&
-            listCategoryOptions(categoryList).map((option) => {
-              return (
-                <option value={option.value} key={option.value}>
-                  {option.name}
-                </option>
-              )
-            })}
-        </select>
-        <input type="file" name="categoryImage" onChange={handleImage} />
-      </CustomModal>
-
-      <CustomModal
-        modalTitle="Edit Category"
-        showModal={showUCModal}
-        handleClose={handleUCModalClose}
-        toggleModal={() => setShowUCModal((prev) => !prev)}
-      >
-        <Row>
-          <Col>
-            <h6>Expanded</h6>
-          </Col>
-        </Row>
-        {expandedArray.length > 0 &&
-          expandedArray.map((item, i) => {
-            return (
-              <Row key={i}>
-                <Col>
-                  <Input
-                    type="text"
-                    placeholder="Enter category name"
-                    required={true}
-                    value={item.name}
-                    onChange={(e) =>
-                      updateCategoryName('name', e.target.value, i, 'expanded')
-                    }
-                  />
-                </Col>
-                <Col>
-                  <select
-                    className="form-control form-control-sm"
-                    value={item.parentId}
-                    onChange={(e) =>
-                      updateCategoryName(
-                        'parentId',
-                        e.target.value,
-                        i,
-                        'expanded'
-                      )
-                    }
-                    style={{ width: '100%' }}
-                  >
-                    <option value={'Main'}>Select Category</option>
-                    {categoryList?.length > 0 &&
-                      listCategoryOptions(categoryList).map((option) => {
-                        return (
-                          <option value={option.value} key={option.value}>
-                            {option.name}
-                          </option>
-                        )
-                      })}
-                  </select>
-                </Col>
-                <Col>
-                  <select className="form-control form-control-sm">
-                    <option value="Main">Select Display</option>
-                    <option value="store">Store Type</option>
-                    <option value="product">Products Type</option>
-                    <option value="page">Page Type</option>
-                  </select>
-                </Col>
-              </Row>
-            )
-          })}
-        <Row>
-          <Col>
-            <h6>Checked</h6>
-          </Col>
-        </Row>
-        {checkedArray.length > 0 &&
-          checkedArray.map((item, i) => {
-            return (
-              <Row key={i}>
-                <Col>
-                  <Input
-                    type="text"
-                    placeholder="Enter category name"
-                    required={true}
-                    value={item.name}
-                    onChange={(e) =>
-                      updateCategoryName('name', e.target.value, i, 'checked')
-                    }
-                  />
-                </Col>
-                <Col>
-                  <select
-                    className="form-control form-control-sm"
-                    value={item.parentId}
-                    onChange={(e) =>
-                      updateCategoryName(
-                        'parentId',
-                        e.target.value,
-                        i,
-                        'checked'
-                      )
-                    }
-                    style={{ width: '100%' }}
-                  >
-                    <option value={'Main'}>Select Category</option>
-                    {categoryList?.length > 0 &&
-                      listCategoryOptions(categoryList).map((option) => {
-                        return (
-                          <option value={option.value} key={option.value}>
-                            {option.name}
-                          </option>
-                        )
-                      })}
-                  </select>
-                </Col>
-                <Col>
-                  <select className="form-control form-control-sm">
-                    <option value="Main">Select Display</option>
-                    <option value="store">Store Type</option>
-                    <option value="product">Products Type</option>
-                    <option value="page">Page Type</option>
-                  </select>
-                </Col>
-              </Row>
-            )
-          })}
-
-        <input type="file" name="categoryImage" onChange={handleImage} />
-      </CustomModal>
+      {renderAddCategoryModal()}
+      {renderUpdateCategoryModal()}
     </Layout>
   )
 }

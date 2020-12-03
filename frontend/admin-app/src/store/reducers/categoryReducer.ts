@@ -2,7 +2,9 @@ import {
   CATEGORY_CREATE_FAIL,
   CATEGORY_CREATE_SUCCESS,
   CATEGORY_LIST_FAIL,
-  CATEGORY_LIST_SUCCESS
+  CATEGORY_LIST_SUCCESS,
+  CATEGORY_UPDATE_FAIL,
+  CATEGORY_UPDATE_SUCCESS
 } from '../constants/category'
 
 const initState = {
@@ -42,6 +44,22 @@ const categoryReducer = (state = initState, action) => {
         ...state,
         createdCategory: null,
         categoryCreateError: action.payload
+      }
+    }
+
+    // UPDATE CATEGORY
+    case CATEGORY_UPDATE_SUCCESS: {
+      return {
+        ...state,
+        updatedCategory: action.payload,
+        categoryUpdateError: null
+      }
+    }
+    case CATEGORY_UPDATE_FAIL: {
+      return {
+        ...state,
+        updatedCategory: null,
+        categoryUpdateError: action.payload
       }
     }
 

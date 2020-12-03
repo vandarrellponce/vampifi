@@ -2,9 +2,12 @@ export const organizeCategory = (categories, parentId = null) => {
   const categoryList = []
   let category
 
-  if (!parentId || parentId == 'Main') {
+  if (!parentId || parentId == 'Main' || parentId === 'undefined') {
     category = categories.filter(
-      (cat) => cat.parentId === undefined || cat.parentId === 'Main'
+      (cat) =>
+        cat.parentId === undefined ||
+        cat.parentId === 'Main' ||
+        cat.parentId === 'undefined'
     )
   } else {
     category = categories.filter((cat) => cat.parentId === parentId)
