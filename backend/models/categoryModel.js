@@ -17,8 +17,12 @@ const categorySchema = mongoose.Schema(
     },
     imageUrl: {
       type: String
+    },
+    displayType: {
+      type: String
     }
   },
+
   { timestamps: true }
 )
 

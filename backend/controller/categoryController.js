@@ -41,3 +41,59 @@ export const getCategories = async (_, res) => {
     throw new Error(error.message)
   }
 }
+
+// @desc	Update Category
+// @route	PUT /api/category/updateMany
+// @access	Private/Admin
+export const updateCategory = expressAsyncHandler(async (req, res) => {
+  const { name, parentId, displayType, _id } = req.body
+  const updates = Object.keys(req.body)
+
+  const allowedUpdates = ['name', 'parentId', 'imageUrl', 'displayType', '_id']
+  const isValidOperation = updates.every((update) =>
+    allowedUpdates.includes(update)
+  )
+
+  try {
+    const updateCategories = []
+    if (!isValidOperation) throw new Error('Invalid update fields')
+    if (name instanceof Array) {
+      for (let i = 0; i < name.length; i++) {
+        const newCategory = {
+          name: name[i],
+          displayType: displayType[i],
+          slug: slugify(name[i])
+        }
+        if (parentId) {
+          newCategory.parentId = parentId[i]
+        }
+        const updated = await Category.findOneAndUpdate(
+          { _id: _id[i] },
+          newCategory,
+          {
+            new: true
+          }
+        )
+        updateCategories.push(updated)
+      }
+      return res.send(updateCategories)
+    } else {
+      const newCategory = {
+        name,
+        slug: slugify(name),
+        displayType
+      }
+      if (parentId) {
+        newCategory.parentId = parentId
+      }
+
+      const updated = await Category.findOneAndUpdate({ _id }, newCategory, {
+        new: true
+      })
+      return res.send(updated)
+    }
+  } catch (error) {
+    res.status(401)
+    throw new Error(error.message)
+  }
+})

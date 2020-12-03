@@ -1,7 +1,8 @@
 import express from 'express'
 import {
   createCategory,
-  getCategories
+  getCategories,
+  updateCategory
 } from '../controller/categoryController.js'
 import admin from '../middlewares/adminMiddleware.js'
 import auth from '../middlewares/authMiddleware.js'
@@ -20,6 +21,14 @@ router.post(
   admin,
   upload.single('categoryImage'),
   createCategory
+)
+
+router.put(
+  '/category/updateMany',
+  auth,
+  admin,
+  upload.array('categoryImages'),
+  updateCategory
 )
 
 export default router
