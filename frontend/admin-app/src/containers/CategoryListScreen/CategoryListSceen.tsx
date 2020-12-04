@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Col, Container, Form, Row } from 'react-bootstrap'
+import { Button, Col, Container, Row } from 'react-bootstrap'
 import Layout from '../../components/Layout/Layout'
 import { useDispatch, useSelector } from 'react-redux'
 import './CategoryListSceen.css'
@@ -22,8 +22,7 @@ import updateCategory from '../../store/actions/category.updateCategory'
 
 const CategoryListSceen = () => {
   const [loading, setLoading] = useState(false)
-  const [showModal, setShowModal] = useState(false)
-
+  /* NEW CATEGORY STATES */
   const [newCatName, setNewCatName] = useState('')
   const [newCatParent, setNewCatParent] = useState('')
   const [newCatImage, setNewCatImage] = useState('')
@@ -33,8 +32,10 @@ const CategoryListSceen = () => {
   /* CONVERTED REACT-CHECKBOX-TREE STATES TO APP STATES */
   const [checkedArray, setCheckedArray] = useState([])
   const [expandedArray, setExpandedArray] = useState([])
-
+  /* MODALS SHOW STATUS */
+  const [showModal, setShowModal] = useState(false)
   const [showUCModal, setShowUCModal] = useState(false)
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
   /* STORE STATES */
   const { categoryList, categoryListError } = useSelector(
     (state) => state.category
@@ -46,7 +47,6 @@ const CategoryListSceen = () => {
       setLoading(true)
       dispatch(getCategories()).then((_) => setLoading(false))
     }
-    /* eslint-disable */
   }, [dispatch, categoryList])
 
   // FUNCTIONS & HANDLERS
@@ -106,6 +106,8 @@ const CategoryListSceen = () => {
     setShowUCModal(false)
   }
 
+  const submitDeleteForm = () => {}
+
   const toggleModal = () => {
     setShowModal((prevState) => !prevState)
   }
@@ -125,6 +127,14 @@ const CategoryListSceen = () => {
 
   const handleUCModalClose = () => {
     setShowUCModal(false)
+  }
+
+  const handleDeleteModalClose = () => {
+    setShowDeleteModal(false)
+  }
+
+  const deleteCategory = () => {
+    setShowDeleteModal(true)
   }
 
   const setCheckedAndExpandedCategories = () => {
@@ -323,6 +333,18 @@ const CategoryListSceen = () => {
     </CustomModal>
   )
 
+  const renderDeleteCategoryModal = () => (
+    <CustomModal
+      modalTitle="Confirm Delete"
+      showModal={showDeleteModal}
+      handleClose={handleDeleteModalClose}
+      toggleModal={(_) => setShowDeleteModal((prev) => !prev)}
+      submitForm={submitDeleteForm}
+    >
+      Are you sure to do this action?
+    </CustomModal>
+  )
+
   if (!categoryList) return <Loader />
   return (
     <Layout showSidebar>
@@ -361,7 +383,7 @@ const CategoryListSceen = () => {
         </Row>
         <Row>
           <Col>
-            <Button size="sm" variant="dark">
+            <Button size="sm" variant="dark" onClick={deleteCategory}>
               Delete
             </Button>{' '}
             <Button size="sm" variant="dark" onClick={handleUCModalShow}>
@@ -372,6 +394,7 @@ const CategoryListSceen = () => {
       </Container>
       {renderAddCategoryModal()}
       {renderUpdateCategoryModal()}
+      {renderDeleteCategoryModal()}
     </Layout>
   )
 }

@@ -29,6 +29,15 @@
   padding: 0 20px;
   font-size: 14px;
 }
+.menuheader > ul > li > a {
+  display: block;
+  line-height: 40px;
+  cursor: pointer;
+  padding: 0 20px;
+  font-size: 14px;
+  text-decoration: none;
+  color: black;
+}
 .menuheader > ul > li > span:hover {
   color: rgb(173, 173, 173);
 }
