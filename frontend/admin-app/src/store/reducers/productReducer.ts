@@ -9,7 +9,7 @@ const initState = {
   createdProduct: null,
   productCreateError: null,
 
-  productsBySlug: [],
+  productsBySlug: null,
   productsBySlugError: null
 }
 

@@ -22,10 +22,10 @@ const SlugScreen = (props) => {
   })
 
   useEffect(() => {
-    if (!productsBySlug?.length) dispatch(getProductsBySlug(slug))
+    if (!productsBySlug) dispatch(getProductsBySlug(slug))
   }, [dispatch, productsBySlug, slug, productsByPrice])
 
-  if (!productsBySlug.length) return <Loader />
+  if (!productsBySlug) return <Loader />
   return (
     <ClientLayout>
       {Object.keys(priceRange).map((key) => {

@@ -1,6 +1,7 @@
 import expressAsyncHandler from 'express-async-handler'
 import Category from '../models/categoryModel.js'
 import slugify from 'slugify'
+import shortId from 'shortid'
 import { organizeCategory } from './controllerUtils.js'
 
 // @desc	Create Category
@@ -10,7 +11,7 @@ export const createCategory = expressAsyncHandler(async (req, res) => {
   try {
     const categoryObj = {
       name: req.body.name,
-      slug: slugify(req.body.name)
+      slug: slugify(`${req.body.name}-${shortId.generate()}`)
     }
 
     if (req.file) categoryObj.imageUrl = `/${req.file.path}`
@@ -92,6 +93,27 @@ export const updateCategory = expressAsyncHandler(async (req, res) => {
       })
       return res.send(updated)
     }
+  } catch (error) {
+    res.status(401)
+    throw new Error(error.message)
+  }
+})
+
+// @desc	Delete Category or Categories
+// @route	POST /api/category/delete
+// @access	Private/Admin
+export const deleteCategories = expressAsyncHandler(async (req, res) => {
+  const { idArray } = req.body
+  console.log(idArray)
+  try {
+    const deletedCategories = []
+    for (let i = 0; i < idArray.length; i++) {
+      const deletedItem = await Category.findByIdAndDelete(idArray[i])
+      deletedCategories.push(deletedItem)
+    }
+    if (deletedCategories.length !== idArray.length)
+      throw new Error('Error in deleting categories')
+    res.send({ message: 'Deletion success' })
   } catch (error) {
     res.status(401)
     throw new Error(error.message)

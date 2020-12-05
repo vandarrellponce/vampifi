@@ -1,6 +1,8 @@
 import {
   CATEGORY_CREATE_FAIL,
   CATEGORY_CREATE_SUCCESS,
+  CATEGORY_DELETE_FAIL,
+  CATEGORY_DELETE_SUCCESS,
   CATEGORY_LIST_FAIL,
   CATEGORY_LIST_SUCCESS,
   CATEGORY_UPDATE_FAIL,
@@ -47,7 +49,7 @@ const categoryReducer = (state = initState, action) => {
       }
     }
 
-    // UPDATE CATEGORY
+    // UPDATE CATEGORY OR CATEGORIES
     case CATEGORY_UPDATE_SUCCESS: {
       return {
         ...state,
@@ -60,6 +62,22 @@ const categoryReducer = (state = initState, action) => {
         ...state,
         updatedCategory: null,
         categoryUpdateError: action.payload
+      }
+    }
+
+    // DELETE CATEGORY OR CATEGORIES
+    case CATEGORY_DELETE_SUCCESS: {
+      return {
+        ...state,
+        categoryDeleteResult: action.payload,
+        categoryDeleteError: null
+      }
+    }
+    case CATEGORY_DELETE_FAIL: {
+      return {
+        ...state,
+        categoryDeleteResult: null,
+        categoryDeleteError: action.payload
       }
     }
 

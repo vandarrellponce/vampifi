@@ -1,6 +1,7 @@
 import express from 'express'
 import {
   createCategory,
+  deleteCategories,
   getCategories,
   updateCategory
 } from '../controller/categoryController.js'
@@ -30,5 +31,7 @@ router.put(
   upload.array('categoryImages'),
   updateCategory
 )
+
+router.post('/category/delete', auth, admin, deleteCategories)
 
 export default router

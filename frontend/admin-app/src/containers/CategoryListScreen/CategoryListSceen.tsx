@@ -19,6 +19,7 @@ import {
   IoIosCheckmarkCircleOutline
 } from 'react-icons/io'
 import updateCategory from '../../store/actions/category.updateCategory'
+import deleteCategoriesAction from '../../store/actions/category.deleteCategories'
 
 const CategoryListSceen = () => {
   const [loading, setLoading] = useState(false)
@@ -37,9 +38,12 @@ const CategoryListSceen = () => {
   const [showUCModal, setShowUCModal] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   /* STORE STATES */
-  const { categoryList, categoryListError } = useSelector(
-    (state) => state.category
-  )
+  const {
+    categoryList,
+    categoryListError,
+    categoryDeleteResult,
+    categoryDeleteError
+  } = useSelector((state) => state.category)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -106,8 +110,6 @@ const CategoryListSceen = () => {
     setShowUCModal(false)
   }
 
-  const submitDeleteForm = () => {}
-
   const toggleModal = () => {
     setShowModal((prevState) => !prevState)
   }
@@ -133,8 +135,20 @@ const CategoryListSceen = () => {
     setShowDeleteModal(false)
   }
 
-  const deleteCategory = () => {
+  const confirmDeleteCategory = () => {
     setShowDeleteModal(true)
+    setCheckedAndExpandedCategories()
+  }
+
+  const deleteCategory = async () => {
+    const checkedIds = checkedArray.map((item) => item.value)
+    /*  const expandedIds = expandedArray.map((item) => item.value)
+    const ids = checkedArray.concat(expandedArray) */
+    if (checkedIds.length) {
+      await dispatch(deleteCategoriesAction(checkedIds))
+      await dispatch(getCategories())
+      setShowDeleteModal(false)
+    }
   }
 
   const setCheckedAndExpandedCategories = () => {
@@ -339,13 +353,35 @@ const CategoryListSceen = () => {
       showModal={showDeleteModal}
       handleClose={handleDeleteModalClose}
       toggleModal={(_) => setShowDeleteModal((prev) => !prev)}
-      submitForm={submitDeleteForm}
+      submitForm={deleteCategory}
     >
-      Are you sure to do this action?
+      <h5>Are you sure to delete categories below?</h5>
+      {/* <h6>
+        <strong>Expanded</strong>
+      </h6>
+      {expandedArray.map((item, i) => {
+        return (
+          <span key={i} style={{ display: 'block' }}>
+            {item.name}
+          </span>
+        )
+      })}
+      <br />
+      <h6>
+        <strong>Checked</strong>
+      </h6> */}
+      {checkedArray.map((item, i) => {
+        return (
+          <span key={i} style={{ display: 'block' }}>
+            {item.name}
+          </span>
+        )
+      })}
     </CustomModal>
   )
 
   if (!categoryList) return <Loader />
+  if (categoryDeleteError) return <Message children={categoryDeleteError} />
   return (
     <Layout showSidebar>
       <Container fluid>
@@ -383,7 +419,7 @@ const CategoryListSceen = () => {
         </Row>
         <Row>
           <Col>
-            <Button size="sm" variant="dark" onClick={deleteCategory}>
+            <Button size="sm" variant="dark" onClick={confirmDeleteCategory}>
               Delete
             </Button>{' '}
             <Button size="sm" variant="dark" onClick={handleUCModalShow}>
