@@ -1,4 +1,5 @@
 import React from 'react'
+import { Col, Row } from 'react-bootstrap'
 import CustomModal from '../../../components/Modals/CustomModal/CustomModal'
 import Input from '../../../components/UI/Input/Input'
 
@@ -25,30 +26,45 @@ const AddCategoryModal = (props) => {
       handleClose={handleClose}
       submitForm={submitForm}
     >
-      <Input
-        type="text"
-        label="Category Name"
-        placeholder="Enter category name"
-        required={true}
-        value={newCatName}
-        onChange={(e) => setNewCatName(e.target.value)}
-      />
-      Parent Category <br />
-      <select
-        className="form-control"
-        value={newCatParent}
-        onChange={handleChange}
+      <Row
+        style={{
+          justifyContent: 'center'
+        }}
       >
-        <option value={'Main'}>Main</option>
-        {categoryList.map((option) => {
-          return (
-            <option value={option.value} key={option.value}>
-              {option.name}
-            </option>
-          )
-        })}
-      </select>
-      <input type="file" name="categoryImage" onChange={handleImage} />
+        <Col>
+          Category Name
+          <Input
+            type="text"
+            placeholder="Enter category name"
+            required={true}
+            value={newCatName}
+            onChange={(e) => setNewCatName(e.target.value)}
+          />
+        </Col>
+        <Col>
+          Parent Name
+          <select
+            className="form-control form-control-sm"
+            value={newCatParent}
+            onChange={handleChange}
+          >
+            <option value={'Main'}>Main</option>
+            {categoryList.map((option) => {
+              return (
+                <option value={option.value} key={option.value}>
+                  {option.name}
+                </option>
+              )
+            })}
+          </select>
+        </Col>
+      </Row>
+      <Row
+        style={{ display: 'flex', flexDirection: 'column', marginLeft: '1px' }}
+      >
+        Image
+        <input type="file" name="categoryImage" onChange={handleImage} />
+      </Row>
     </CustomModal>
   )
 }

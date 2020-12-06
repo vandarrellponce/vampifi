@@ -1,0 +1,18 @@
+.modal__main {
+  margin-top: 70px;
+}
+
+.modal__header {
+  display: flex;
+  padding: 5px 15px;
+  background: rgb(32, 32, 32);
+  background-color: rgb(32, 32, 32);
+  color: white;
+  align-items: center;
+  justify-content: center;
+  border-top-right-radius: 5px;
+  margin-right: -1px;
+}
+.modal__title {
+  font-size: 18px;
+}
