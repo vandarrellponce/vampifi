@@ -12,10 +12,13 @@ import renderCategories from '../../helpers/renderCategories'
 import CheckboxTree from 'react-checkbox-tree'
 import 'react-checkbox-tree/lib/react-checkbox-tree.css'
 import {
+  IoIosAdd,
   IoIosArrowDown,
   IoIosArrowForward,
   IoIosCheckmarkCircle,
-  IoIosCheckmarkCircleOutline
+  IoIosCheckmarkCircleOutline,
+  IoIosList,
+  IoIosTrash
 } from 'react-icons/io'
 import updateCategory from '../../store/actions/category.updateCategory'
 import deleteCategoriesAction from '../../store/actions/category.deleteCategories'
@@ -233,15 +236,25 @@ const CategoryListSceen = () => {
           <Col md={12}>
             <div className="categorylist__col__one">
               <h2>Categories</h2>
-              <button
-                type="button"
-                className="my-3 btn btn-dark"
-                onClick={toggleModal}
-              >
-                Add Category
-              </button>
+              <div className="categorylist__button__container">
+                <span>Actions</span>
+                <Button size="sm" variant="dark" onClick={toggleModal}>
+                  <IoIosAdd /> Add Category
+                </Button>
+                <Button size="sm" variant="dark" onClick={handleUCModalShow}>
+                  <IoIosList /> Edit
+                </Button>
+                <Button
+                  size="sm"
+                  variant="dark"
+                  onClick={confirmDeleteCategory}
+                >
+                  <IoIosTrash /> Delete
+                </Button>
+              </div>
             </div>
           </Col>
+
           <Col md={12} style={{ color: 'black' }}>
             <CheckboxTree
               nodes={renderCategories(categoryList)}
@@ -257,16 +270,6 @@ const CategoryListSceen = () => {
                 expandOpen: <IoIosArrowDown />
               }}
             />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Button size="sm" variant="dark" onClick={confirmDeleteCategory}>
-              Delete
-            </Button>{' '}
-            <Button size="sm" variant="dark" onClick={handleUCModalShow}>
-              Edit
-            </Button>
           </Col>
         </Row>
       </Container>

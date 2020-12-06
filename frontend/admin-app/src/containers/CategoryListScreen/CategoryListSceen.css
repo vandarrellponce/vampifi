@@ -2,3 +2,13 @@
   display: flex;
   justify-content: space-between;
 }
+
+.categgorylist__button__container {
+  display: flex;
+  align-items: center;
+}
+
+.categorylist__button__container > button {
+  margin: 6px 3px;
+  font-size: 13px;
+}
