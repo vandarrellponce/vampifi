@@ -6,7 +6,6 @@ import './CategoryListSceen.css'
 import getCategories from '../../store/actions/category.getCategories'
 import Message from '../../components/Message/Message'
 import Loader from '../../components/Loader/Loader'
-import Input from '../../components/UI/Input/Input'
 import addCategory from '../../store/actions/category.addCategory'
 import CustomModal from '../../components/Modals/CustomModal/CustomModal'
 import renderCategories from '../../helpers/renderCategories'
@@ -21,6 +20,7 @@ import {
 import updateCategory from '../../store/actions/category.updateCategory'
 import deleteCategoriesAction from '../../store/actions/category.deleteCategories'
 import UpdateCategoryModal from './components/UpdateCategoryModal'
+import AddCategoryModal from './components/AddCategoryModal'
 
 const CategoryListSceen = () => {
   const [loading, setLoading] = useState(false)
@@ -35,7 +35,7 @@ const CategoryListSceen = () => {
   const [checkedArray, setCheckedArray] = useState([])
   const [expandedArray, setExpandedArray] = useState([])
   /* MODALS SHOW STATUS */
-  const [showModal, setShowModal] = useState(false)
+  const [showAddModal, setShowAddModal] = useState(false)
   const [showUCModal, setShowUCModal] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   /* STORE STATES */
@@ -68,11 +68,11 @@ const CategoryListSceen = () => {
     return options
   }
 
-  const handleClose = async () => {
-    setShowModal(false)
+  const handleAddModalClose = async () => {
+    setShowAddModal(false)
   }
 
-  const submitForm = async () => {
+  const submitAddModalForm = async () => {
     const form = new FormData()
     form.append('name', newCatName)
     if (newCatParent !== 'Main') form.append('parentId', newCatParent)
@@ -109,14 +109,14 @@ const CategoryListSceen = () => {
   }
 
   const toggleModal = () => {
-    setShowModal((prevState) => !prevState)
+    setShowAddModal((prevState) => !prevState)
   }
 
-  const handleImage = (e) => {
+  const handleAddModalImage = (e) => {
     setNewCatImage(e.target.files[0])
   }
 
-  const handleChange = (e) => {
+  const handleAddModalChange = (e) => {
     setNewCatParent(e.currentTarget.value)
   }
 
@@ -188,42 +188,6 @@ const CategoryListSceen = () => {
       setExpandedArray(updatedArray)
     }
   }
-
-  const renderAddCategoryModal = () => (
-    <CustomModal
-      modalTitle="Add New Category"
-      showModal={showModal}
-      toggleModal={toggleModal}
-      handleClose={handleClose}
-      submitForm={submitForm}
-    >
-      <Input
-        type="text"
-        label="Category Name"
-        placeholder="Enter category name"
-        required={true}
-        value={newCatName}
-        onChange={(e) => setNewCatName(e.target.value)}
-      />
-      Parent Category <br />
-      <select
-        className="form-control"
-        value={newCatParent}
-        onChange={handleChange}
-      >
-        <option value={'Main'}>Main</option>
-        {categoryList?.length > 0 &&
-          listCategoryOptions(categoryList).map((option) => {
-            return (
-              <option value={option.value} key={option.value}>
-                {option.name}
-              </option>
-            )
-          })}
-      </select>
-      <input type="file" name="categoryImage" onChange={handleImage} />
-    </CustomModal>
-  )
 
   const renderDeleteCategoryModal = () => (
     <CustomModal
@@ -306,7 +270,19 @@ const CategoryListSceen = () => {
           </Col>
         </Row>
       </Container>
-      {renderAddCategoryModal()}
+      <AddCategoryModal
+        modalTitle="Add New Category"
+        showModal={showAddModal}
+        handleClose={handleAddModalClose}
+        toggleModal={(e) => setShowAddModal((prev) => !prev)}
+        submitForm={submitAddModalForm}
+        categoryList={listCategoryOptions(categoryList)}
+        handleImage={handleAddModalImage}
+        setNewCatName={setNewCatName}
+        newCatName={newCatName}
+        newCatParent={newCatParent}
+        handleChange={handleAddModalChange}
+      />
 
       <UpdateCategoryModal
         modalTitle="Edit Category"
@@ -317,7 +293,7 @@ const CategoryListSceen = () => {
         expandedArray={expandedArray}
         checkedArray={checkedArray}
         categoryList={listCategoryOptions(categoryList)}
-        handleImage={handleImage}
+        handleImage={handleAddModalImage}
         updateCategoryName={updateCategoryName}
       />
       {renderDeleteCategoryModal()}
