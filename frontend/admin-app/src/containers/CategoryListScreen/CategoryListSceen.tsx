@@ -20,6 +20,7 @@ import {
 } from 'react-icons/io'
 import updateCategory from '../../store/actions/category.updateCategory'
 import deleteCategoriesAction from '../../store/actions/category.deleteCategories'
+import UpdateCategoryModal from './components/UpdateCategoryModal'
 
 const CategoryListSceen = () => {
   const [loading, setLoading] = useState(false)
@@ -38,12 +39,9 @@ const CategoryListSceen = () => {
   const [showUCModal, setShowUCModal] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   /* STORE STATES */
-  const {
-    categoryList,
-    categoryListError,
-    categoryDeleteResult,
-    categoryDeleteError
-  } = useSelector((state) => state.category)
+  const { categoryList, categoryListError, categoryDeleteError } = useSelector(
+    (state) => state.category
+  )
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -227,126 +225,6 @@ const CategoryListSceen = () => {
     </CustomModal>
   )
 
-  const renderUpdateCategoryModal = () => (
-    <CustomModal
-      modalTitle="Edit Category"
-      showModal={showUCModal}
-      handleClose={handleUCModalClose}
-      toggleModal={() => setShowUCModal((prev) => !prev)}
-      submitForm={submitUpdateForm}
-    >
-      <Row>
-        <Col>
-          <h6>Expanded</h6>
-        </Col>
-      </Row>
-      {expandedArray.length > 0 &&
-        expandedArray.map((item, i) => {
-          return (
-            <Row key={i}>
-              <Col>
-                <Input
-                  type="text"
-                  placeholder="Enter category name"
-                  required={true}
-                  value={item.name}
-                  onChange={(e) =>
-                    updateCategoryName('name', e.target.value, i, 'expanded')
-                  }
-                />
-              </Col>
-              <Col>
-                <select
-                  className="form-control form-control-sm"
-                  value={item.parentId}
-                  onChange={(e) =>
-                    updateCategoryName(
-                      'parentId',
-                      e.target.value,
-                      i,
-                      'expanded'
-                    )
-                  }
-                  style={{ width: '100%' }}
-                >
-                  <option value={'Main'}>Main</option>
-                  {categoryList?.length > 0 &&
-                    listCategoryOptions(categoryList).map((option) => {
-                      return (
-                        <option value={option.value} key={option.value}>
-                          {option.name}
-                        </option>
-                      )
-                    })}
-                </select>
-              </Col>
-              <Col>
-                <select className="form-control form-control-sm">
-                  <option value="Main">Select Display</option>
-                  <option value="store">Store Type</option>
-                  <option value="product">Products Type</option>
-                  <option value="page">Page Type</option>
-                </select>
-              </Col>
-            </Row>
-          )
-        })}
-      <Row>
-        <Col>
-          <h6>Checked</h6>
-        </Col>
-      </Row>
-      {checkedArray.length > 0 &&
-        checkedArray.map((item, i) => {
-          return (
-            <Row key={i}>
-              <Col>
-                <Input
-                  type="text"
-                  placeholder="Enter category name"
-                  required={true}
-                  value={item.name}
-                  onChange={(e) =>
-                    updateCategoryName('name', e.target.value, i, 'checked')
-                  }
-                />
-              </Col>
-              <Col>
-                <select
-                  className="form-control form-control-sm"
-                  value={item.parentId}
-                  onChange={(e) =>
-                    updateCategoryName('parentId', e.target.value, i, 'checked')
-                  }
-                  style={{ width: '100%' }}
-                >
-                  <option value={'Main'}>Main</option>
-                  {categoryList?.length > 0 &&
-                    listCategoryOptions(categoryList).map((option) => {
-                      return (
-                        <option value={option.value} key={option.value}>
-                          {option.name}
-                        </option>
-                      )
-                    })}
-                </select>
-              </Col>
-              <Col>
-                <select className="form-control form-control-sm">
-                  <option value="Main">Select Display</option>
-                  <option value="store">Store Type</option>
-                  <option value="product">Products Type</option>
-                  <option value="page">Page Type</option>
-                </select>
-              </Col>
-            </Row>
-          )
-        })}
-
-      <input type="file" name="categoryImage" onChange={handleImage} />
-    </CustomModal>
-  )
-
   const renderDeleteCategoryModal = () => (
     <CustomModal
       modalTitle="Confirm Delete"
@@ -429,7 +307,19 @@ const CategoryListSceen = () => {
         </Row>
       </Container>
       {renderAddCategoryModal()}
-      {renderUpdateCategoryModal()}
+
+      <UpdateCategoryModal
+        modalTitle="Edit Category"
+        showModal={showUCModal}
+        handleClose={handleUCModalClose}
+        toggleModal={(_) => setShowUCModal((prev) => !prev)}
+        submitForm={submitUpdateForm}
+        expandedArray={expandedArray}
+        checkedArray={checkedArray}
+        categoryList={listCategoryOptions(categoryList)}
+        handleImage={handleImage}
+        updateCategoryName={updateCategoryName}
+      />
       {renderDeleteCategoryModal()}
     </Layout>
   )
