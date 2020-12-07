@@ -48,14 +48,14 @@ const UpdateCategoryModal = (props) => {
                 <select
                   className="form-control form-control-sm"
                   value={item.parentId}
-                  onChange={(e) =>
+                  onChange={(e) => {
                     updateCategoryName(
                       'parentId',
                       e.target.value,
                       i,
                       'expanded'
                     )
-                  }
+                  }}
                   style={{ width: '100%' }}
                 >
                   <option value={'Main'}>Main</option>
@@ -69,7 +69,18 @@ const UpdateCategoryModal = (props) => {
                 </select>
               </Col>
               <Col>
-                <select className="form-control form-control-sm">
+                <select
+                  className="form-control form-control-sm"
+                  value={item.display}
+                  onChange={(e) => {
+                    updateCategoryName(
+                      'displayType',
+                      e.target.value,
+                      i,
+                      'expanded'
+                    )
+                  }}
+                >
                   <option value="Main">Select Display</option>
                   <option value="store">Store Type</option>
                   <option value="product">Products Type</option>
@@ -119,7 +130,18 @@ const UpdateCategoryModal = (props) => {
                 </select>
               </Col>
               <Col>
-                <select className="form-control form-control-sm">
+                <select
+                  className="form-control form-control-sm"
+                  value={item.displayType}
+                  onChange={(e) => {
+                    updateCategoryName(
+                      'displayType',
+                      e.target.value,
+                      i,
+                      'checked'
+                    )
+                  }}
+                >
                   <option value="Main">Select Display</option>
                   <option value="store">Store Type</option>
                   <option value="product">Products Type</option>

@@ -61,7 +61,8 @@ const CategoryListSceen = () => {
       options.push({
         value: cat._id,
         name: cat.name,
-        parentId: cat.parentId
+        parentId: cat.parentId,
+        displayType: cat.displayType
       })
       if (cat.children.length) {
         listCategoryOptions(cat.children, options)
@@ -179,12 +180,14 @@ const CategoryListSceen = () => {
   }
 
   const updateCategoryName = (key, value, index, type) => {
+    console.log({ key, value })
     if (type === 'checked') {
       const updatedArray = checkedArray.map((item, i) =>
         i === index ? { ...item, [key]: value } : item
       )
       setCheckedArray(updatedArray)
-    } else if (type === 'expanded') {
+    }
+    if (type === 'expanded') {
       const updatedArray = expandedArray.map((item, i) =>
         i === index ? { ...item, [key]: value } : item
       )

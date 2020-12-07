@@ -49,6 +49,7 @@ export const getCategories = async (_, res) => {
 export const updateCategory = expressAsyncHandler(async (req, res) => {
   const { name, parentId, displayType, _id } = req.body
   const updates = Object.keys(req.body)
+  console.log(req.body)
 
   const allowedUpdates = ['name', 'parentId', 'imageUrl', 'displayType', '_id']
   const isValidOperation = updates.every((update) =>
