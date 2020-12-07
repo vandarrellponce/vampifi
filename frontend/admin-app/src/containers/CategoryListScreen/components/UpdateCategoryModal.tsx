@@ -71,7 +71,7 @@ const UpdateCategoryModal = (props) => {
               <Col>
                 <select
                   className="form-control form-control-sm"
-                  value={item.display}
+                  value={item.displayType}
                   onChange={(e) => {
                     updateCategoryName(
                       'displayType',
