@@ -13,11 +13,11 @@ import uploadRoutes from './routes/uploadRoutes.js'
 import googleAuthRoutes from './routes/googleAuthRoutes.js'
 import notifRoutes from './routes/notifRoutes.js'
 import cartRoutes from './routes/cartRoutes.js'
+import pageRoutes from './routes/pageRoutes.js'
 import morgan from 'morgan'
 import cookieParser from 'cookie-parser'
 import './config/passport.js'
 import passport from 'passport'
-
 import http from 'http'
 import socketio from 'socket.io'
 
@@ -56,6 +56,7 @@ app.use('/api/admin', adminRoutes)
 app.use('/api', categoryRoutes)
 app.use('/api', cartRoutes)
 app.use('/api/products', productRoutes)
+app.use('/api/page', pageRoutes)
 
 /* app.use('/auth/google', googleAuthRoutes)
 
