@@ -24,6 +24,7 @@ import updateCategory from '../../store/actions/category.updateCategory'
 import deleteCategoriesAction from '../../store/actions/category.deleteCategories'
 import UpdateCategoryModal from './components/UpdateCategoryModal'
 import AddCategoryModal from './components/AddCategoryModal'
+import listCategoryOptions from '../../helpers/listCategoryOptions'
 
 const CategoryListSceen = () => {
   const [loading, setLoading] = useState(false)
@@ -55,22 +56,6 @@ const CategoryListSceen = () => {
   }, [dispatch, categoryList])
 
   // FUNCTIONS & HANDLERS
-
-  const listCategoryOptions = (categories, options = []) => {
-    categories.forEach((cat) => {
-      options.push({
-        value: cat._id,
-        name: cat.name,
-        parentId: cat.parentId,
-        displayType: cat.displayType
-      })
-      if (cat.children.length) {
-        listCategoryOptions(cat.children, options)
-      }
-    })
-
-    return options
-  }
 
   const handleAddModalClose = async () => {
     setShowAddModal(false)
@@ -242,7 +227,7 @@ const CategoryListSceen = () => {
               <div className="categorylist__button__container">
                 <span>Actions</span>
                 <Button size="sm" variant="dark" onClick={toggleModal}>
-                  <IoIosAdd /> Add Category
+                  <IoIosAdd /> Add
                 </Button>
                 <Button size="sm" variant="dark" onClick={handleUCModalShow}>
                   <IoIosList /> Edit

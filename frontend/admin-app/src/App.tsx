@@ -15,6 +15,7 @@ import Toolbar from './components/Header/Toolbar/Toolbar'
 import MenuHeader from './components/MenuHeader/MenuHeader'
 import ClientHome from './containers/ClientHome/ClientHome'
 import SlugScreen from './containers/SlugScreen/SlugScreen'
+import PageScreen from './containers/PageScreen/PageScreen'
 
 const App = () => {
   // Authenticate user everytime the app starts
@@ -25,14 +26,15 @@ const App = () => {
 
   return (
     <div className="app">
+      {/* Component, privateRoute, adminRoute */}
       <BrowserRouter>
         {/* PUBLIC ROUTES */}
         <Toolbar />
 
-        {/* Component, privateRoute, adminRoute */}
         <Route path="/" exact component={ClientHome} />
         <Route path="/signup" component={authWrapper(Signup, false, false)} />
         <Route path="/signin" component={authWrapper(Signin, false, false)} />
+        <Route path="/page" component={PageScreen} />
 
         <Route path="/slug/:slug" component={SlugScreen} />
 

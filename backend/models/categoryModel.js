@@ -19,7 +19,8 @@ const categorySchema = mongoose.Schema(
       type: String
     },
     displayType: {
-      type: String
+      type: String,
+      default: 'page'
     }
   },
 
