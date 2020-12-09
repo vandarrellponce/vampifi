@@ -17,7 +17,7 @@ const PageScreen = () => {
   const [categoryId, setCategoryId] = useState('')
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [banners, setBannders] = useState([])
+  const [banners, setBanners] = useState([])
   const [products, setProducts] = useState([])
 
   const { categoryList } = useSelector((state) => state.category)
@@ -31,10 +31,12 @@ const PageScreen = () => {
     if (categoryList) setCategoryOptions(listCategoryOptions(categoryList))
   }, [categoryList])
 
-  const handleBannerImages = () => {}
+  const handleBannerImages = (e) => {
+    setBanners([...banners, e.target.files[0]])
+  }
 
-  const handleProductImages = () => {
-    console.log('product images handler')
+  const handleProductImages = (e) => {
+    setProducts([...products, e.target.files[0]])
   }
 
   const renderCreatePageModal = () => {
@@ -89,6 +91,13 @@ const PageScreen = () => {
           </Col>
         </Row>
         <Row style={{ marginTop: '10px' }}>
+          {banners.length > 0
+            ? banners.map((banner, i) => (
+                <Col md={12} key={i}>
+                  {banner.name}
+                </Col>
+              ))
+            : null}
           <Col>
             <div className="custom-file">
               <input
@@ -101,7 +110,15 @@ const PageScreen = () => {
             </div>
           </Col>
         </Row>
+
         <Row style={{ marginTop: '10px' }}>
+          {products.length > 0
+            ? products.map((product, i) => (
+                <Col md={12} key={i}>
+                  {product.name}
+                </Col>
+              ))
+            : null}
           <Col>
             <div className="custom-file">
               <input
