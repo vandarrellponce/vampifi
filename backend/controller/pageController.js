@@ -3,13 +3,12 @@ import Page from '../models/pageModel.js'
 
 export const createPage = expressAsyncHandler(async (req, res) => {
   try {
-    const { title, description, category, createdBy, displayType } = req.body
+    const { title, description, category, type } = req.body
     const page = new Page({
       title,
       description,
       category,
-      createdBy,
-      displayType
+      createdBy: req.user._id
     })
 
     if (req.files) {
