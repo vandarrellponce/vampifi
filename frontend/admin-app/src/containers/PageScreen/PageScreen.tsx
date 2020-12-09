@@ -19,6 +19,7 @@ const PageScreen = () => {
   const [description, setDescription] = useState('')
   const [banners, setBanners] = useState([])
   const [products, setProducts] = useState([])
+  const [displayType, setDisplayType] = useState('')
 
   const { categoryList } = useSelector((state) => state.category)
   const dispatch = useDispatch()
@@ -29,7 +30,34 @@ const PageScreen = () => {
       dispatch(getCategories()).then((_) => setLoading(false))
     }
     if (categoryList) setCategoryOptions(listCategoryOptions(categoryList))
-  }, [categoryList])
+  }, [categoryList, dispatch])
+
+  const submitForm = async (e) => {
+    e.preventDefault()
+    const form = new FormData()
+    form.append('title', title)
+    form.append('description', description)
+    form.append('category', categoryId)
+    form.append('displayType', displayType)
+    banners.forEach((item) => form.append('banners', item))
+    products.forEach((item) => form.append('products', item))
+    console.log({
+      title,
+      description,
+      categoryId,
+      displayType,
+      banners,
+      products
+    })
+  }
+
+  const handleCategorySelect = (e) => {
+    const category = listCategoryOptions(categoryList).find(
+      (item) => item.value === e.target.value
+    )
+    if (category) setDisplayType(category.displayType)
+    setCategoryId(e.target.value)
+  }
 
   const handleBannerImages = (e) => {
     setBanners([...banners, e.target.files[0]])
@@ -46,6 +74,7 @@ const PageScreen = () => {
         modalTitle="Create New Page"
         handleClose={(_) => setShowModal(false)}
         toggleModal={(_) => setShowModal((prev) => !prev)}
+        submitForm={submitForm}
       >
         <Row>
           <Col>
@@ -76,7 +105,7 @@ const PageScreen = () => {
             Category
             <select
               value={categoryId}
-              onChange={(e) => setCategoryId(e.target.value)}
+              onChange={handleCategorySelect}
               className="form-control form-control-sm"
             >
               <option value="Main">Main</option>
