@@ -7,6 +7,7 @@ import listCategoryOptions from '../../helpers/listCategoryOptions'
 import { useSelector, useDispatch } from 'react-redux'
 import Loader from '../../components/Loader/Loader'
 import getCategories from '../../store/actions/category.getCategories'
+import addPage from '../../store/actions/page.addPage'
 
 const PageScreen = () => {
   const [loading, setLoading] = useState(false)
@@ -41,14 +42,11 @@ const PageScreen = () => {
     form.append('displayType', displayType)
     banners.forEach((item) => form.append('banners', item))
     products.forEach((item) => form.append('products', item))
-    console.log({
-      title,
-      description,
-      categoryId,
-      displayType,
-      banners,
-      products
-    })
+
+    setLoading(true)
+    await dispatch(addPage(form))
+    setLoading(false)
+    setShowModal(false)
   }
 
   const handleCategorySelect = (e) => {

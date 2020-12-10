@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import userReducer from './reducers/userReducer'
 import categoryReducer from './reducers/categoryReducer'
 import productReducer from './reducers/productReducer'
+import pageReducer from './reducers/pageReducer'
 
 // INITIAL STATE
 const initialState = {}
@@ -11,7 +12,8 @@ const initialState = {}
 const rootReducer = combineReducers({
   user: userReducer,
   category: categoryReducer,
-  product: productReducer
+  product: productReducer,
+  page: pageReducer
 })
 // STORE
 const middleware = [thunk]
