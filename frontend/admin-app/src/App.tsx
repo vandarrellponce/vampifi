@@ -3,7 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import Signin from './containers/Signin/Signin'
 import Signup from './containers/Signup/Signup'
 import authUser from './store/actions/user.auth'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import authWrapper from './components/Hoc/authWrapper'
 import ProductListScreen from './containers/ProductListScreen/ProductListScreen'
 import OrderListScreen from './containers/OrderlistScreen/OrderListScreen'
@@ -18,10 +18,11 @@ import PageScreen from './containers/PageScreen/PageScreen'
 
 const App = () => {
   // Authenticate user everytime the app starts
+  const { currentUserInfo } = useSelector((state) => state.user)
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(authUser())
-  }, [])
+    if (!currentUserInfo) dispatch(authUser())
+  }, [currentUserInfo])
 
   return (
     <div className="app">
