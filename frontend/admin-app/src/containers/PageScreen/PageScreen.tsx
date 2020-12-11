@@ -39,7 +39,7 @@ const PageScreen = () => {
     form.append('title', title)
     form.append('description', description)
     form.append('category', categoryId)
-    form.append('displayType', displayType)
+    form.append('type', displayType)
     banners.forEach((item) => form.append('banners', item))
     products.forEach((item) => form.append('products', item))
 
