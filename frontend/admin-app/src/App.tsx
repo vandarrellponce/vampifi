@@ -12,7 +12,6 @@ import CategoryListSceen from './containers/CategoryListScreen/CategoryListSceen
 import ProductEditScreen from './containers/ProductEditScreen/ProductEditScreen'
 import AdminHome from './containers/AdminHome/AdminHome'
 import Toolbar from './components/Header/Toolbar/Toolbar'
-import MenuHeader from './components/MenuHeader/MenuHeader'
 import ClientHome from './containers/ClientHome/ClientHome'
 import SlugScreen from './containers/SlugScreen/SlugScreen'
 import PageScreen from './containers/PageScreen/PageScreen'

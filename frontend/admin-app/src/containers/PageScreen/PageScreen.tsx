@@ -23,6 +23,7 @@ const PageScreen = () => {
   const [displayType, setDisplayType] = useState('')
 
   const { categoryList } = useSelector((state) => state.category)
+  const { createdPage } = useSelector((state) => state.page)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -46,6 +47,13 @@ const PageScreen = () => {
     setLoading(true)
     await dispatch(addPage(form))
     setLoading(false)
+
+    setTitle('')
+    setDescription('')
+    setCategoryId('')
+    setDisplayType('')
+    setBanners([])
+    setProducts([])
     setShowModal(false)
   }
 
