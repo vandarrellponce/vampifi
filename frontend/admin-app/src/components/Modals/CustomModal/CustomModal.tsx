@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, FormGroup, Modal } from 'react-bootstrap'
+import { Button, Form, Modal } from 'react-bootstrap'
 import './CustomModal.css'
 
 interface myProps {
@@ -8,6 +8,8 @@ interface myProps {
   modalTitle: string
   handleClose?: any
   submitForm?: any
+  positiveButton?: string
+  negativeButton?: string
 }
 
 const CustomModal: React.FC<myProps> = (props) => {
@@ -32,16 +34,11 @@ const CustomModal: React.FC<myProps> = (props) => {
               variant="secondary"
               onClick={props.handleClose || handleClose}
             >
-              Close
+              {props.negativeButton || 'Close'}
             </Button>
 
-            <Button
-              size="sm"
-              variant="dark"
-              /* onClick={props.submitForm} */
-              type="submit"
-            >
-              Save Changes
+            <Button size="sm" variant="dark" type="submit">
+              {props.positiveButton || 'Save Changes'}
             </Button>
           </Modal.Footer>
         </Form>

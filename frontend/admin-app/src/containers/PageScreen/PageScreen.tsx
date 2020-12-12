@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Col, Form, FormGroup, Row } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 import Layout from '../../components/Layout/Layout'
 import CustomModal from '../../components/Modals/CustomModal/CustomModal'
 import Input from '../../components/UI/Input/Input'
@@ -81,6 +81,8 @@ const PageScreen = () => {
         handleClose={(_) => setShowModal(false)}
         toggleModal={(_) => setShowModal((prev) => !prev)}
         submitForm={submitForm}
+        positiveButton="Create Page"
+        negativeButton="Cancel"
       >
         <Row>
           <Col>
