@@ -58,11 +58,13 @@ const PageScreen = () => {
   }
 
   const handleCategorySelect = (e) => {
+    setCategoryId(e.target.value)
+
     const category = listCategoryOptions(categoryList).find(
       (item) => item.value === e.target.value
     )
+
     if (category) setDisplayType(category.displayType)
-    setCategoryId(e.target.value)
   }
 
   const handleBannerImages = (e) => {
@@ -81,9 +83,29 @@ const PageScreen = () => {
         handleClose={(_) => setShowModal(false)}
         toggleModal={(_) => setShowModal((prev) => !prev)}
         submitForm={submitForm}
-        positiveButton="Create Page"
+        positiveButton="Save Changes"
         negativeButton="Cancel"
       >
+        <Row>
+          <Col>
+            Category
+            <select
+              style={{ marginBottom: '20px' }}
+              value={categoryId}
+              onChange={handleCategorySelect}
+              className="form-control form-control-sm"
+            >
+              <option value="Main">Main</option>
+              {categoryOptions.map((item, i) => {
+                return (
+                  <option key={i} value={item.value}>
+                    {item.name}
+                  </option>
+                )
+              })}
+            </select>
+          </Col>
+        </Row>
         <Row>
           <Col>
             Page Title
@@ -108,25 +130,7 @@ const PageScreen = () => {
             />
           </Col>
         </Row>
-        <Row>
-          <Col>
-            Category
-            <select
-              value={categoryId}
-              onChange={handleCategorySelect}
-              className="form-control form-control-sm"
-            >
-              <option value="Main">Main</option>
-              {categoryOptions.map((item, i) => {
-                return (
-                  <option key={i} value={item.value}>
-                    {item.name}
-                  </option>
-                )
-              })}
-            </select>
-          </Col>
-        </Row>
+
         <Row style={{ marginTop: '10px' }}>
           {banners.length > 0
             ? banners.map((banner, i) => (
