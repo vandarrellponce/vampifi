@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Row } from 'react-bootstrap'
+import { Button, Col, Form, FormGroup, Row } from 'react-bootstrap'
 import Layout from '../../components/Layout/Layout'
 import CustomModal from '../../components/Modals/CustomModal/CustomModal'
 import Input from '../../components/UI/Input/Input'
@@ -23,7 +23,7 @@ const PageScreen = () => {
   const [displayType, setDisplayType] = useState('')
 
   const { categoryList } = useSelector((state) => state.category)
-  const { createdPage } = useSelector((state) => state.page)
+  const { createdPage, pageList } = useSelector((state) => state.page)
   const dispatch = useDispatch()
 
   useEffect(() => {
