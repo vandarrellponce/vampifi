@@ -146,9 +146,13 @@ const ProductListScreen = ({ history }) => {
             <h2>Products</h2>
           </Col>
           <Col className="text-right">
-            <Button className="my-3" onClick={toggleModal} variant="dark">
-              <i className="fas fa-plus"></i>
-              Create Product
+            <Button
+              className="my-3"
+              onClick={toggleModal}
+              variant="dark"
+              size="sm"
+            >
+              <i className="fas fa-plus"></i> Create Product
             </Button>
           </Col>
         </Row>

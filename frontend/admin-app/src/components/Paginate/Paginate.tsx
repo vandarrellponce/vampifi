@@ -4,7 +4,7 @@ import { Pagination } from 'react-bootstrap'
 const Paginate = ({ totalPages, setPage, page }) => {
   return (
     totalPages > 1 && (
-      <Pagination>
+      <Pagination size="sm">
         {[...Array(totalPages)].map((item, i) => (
           <Pagination.Item
             key={i}

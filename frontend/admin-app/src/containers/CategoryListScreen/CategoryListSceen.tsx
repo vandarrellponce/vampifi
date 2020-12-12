@@ -159,7 +159,7 @@ const CategoryListSceen = () => {
         )
         category && expandedArray.push(category)
       })
-    /* console.log({ checkedArray, expandedArray }) */
+
     setCheckedArray(checkedArray)
     setExpandedArray(expandedArray)
   }
@@ -189,20 +189,7 @@ const CategoryListSceen = () => {
       submitForm={deleteCategory}
     >
       <h5>Are you sure to delete categories below?</h5>
-      {/* <h6>
-        <strong>Expanded</strong>
-      </h6>
-      {expandedArray.map((item, i) => {
-        return (
-          <span key={i} style={{ display: 'block' }}>
-            {item.name}
-          </span>
-        )
-      })}
-      <br />
-      <h6>
-        <strong>Checked</strong>
-      </h6> */}
+
       {checkedArray.map((item, i) => {
         return (
           <span key={i} style={{ display: 'block' }}>
