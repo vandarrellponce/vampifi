@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import ClientLayout from '../../components/LayoutClient/ClientLayout'
 import { useSelector, useDispatch } from 'react-redux'
-import getProductsBySlug from '../../store/actions/products.getProductsBySlug'
-import './ProductStoreScreen.css'
-import generatePublicUrl from '../../helpers/generatePublicUrl'
-import Loader from '../../components/Loader/Loader'
+import './StoreDisplay.css'
 import { Button } from 'react-bootstrap'
+import getProductsBySlug from '../../../store/actions/products.getProductsBySlug'
+import Loader from '../../../components/Loader/Loader'
+import ClientLayout from '../../../components/LayoutClient/ClientLayout'
+import generatePublicUrl from '../../../helpers/generatePublicUrl'
 
-const ProductStoreScreen = (props) => {
+const StoreDisplay = (props) => {
   const slug = props.match.params.slug
   const dispatch = useDispatch()
-  const { productsBySlug, productsByPrice, productsBySlugError } = useSelector(
+  const { productsBySlug, productsByPrice } = useSelector(
     (state) => state.product
   )
   const [priceRange] = useState({
@@ -69,4 +69,4 @@ const ProductStoreScreen = (props) => {
   )
 }
 
-export default ProductStoreScreen
+export default StoreDisplay
