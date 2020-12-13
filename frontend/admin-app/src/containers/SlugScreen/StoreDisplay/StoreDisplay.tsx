@@ -4,7 +4,6 @@ import './StoreDisplay.css'
 import { Button } from 'react-bootstrap'
 import getProductsBySlug from '../../../store/actions/products.getProductsBySlug'
 import Loader from '../../../components/Loader/Loader'
-import ClientLayout from '../../../components/LayoutClient/ClientLayout'
 import generatePublicUrl from '../../../helpers/generatePublicUrl'
 
 const StoreDisplay = (props) => {
@@ -27,7 +26,7 @@ const StoreDisplay = (props) => {
 
   if (!productsBySlug) return <Loader />
   return (
-    <ClientLayout>
+    <div>
       {Object.keys(priceRange).map((key) => {
         if (!productsByPrice[key].length) return
         return (
@@ -65,7 +64,7 @@ const StoreDisplay = (props) => {
           </div>
         )
       })}
-    </ClientLayout>
+    </div>
   )
 }
 
