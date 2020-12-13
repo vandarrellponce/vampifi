@@ -53,3 +53,17 @@ export const createPage = expressAsyncHandler(async (req, res) => {
     throw new Error(error.message)
   }
 })
+
+export const getPageByCategory = expressAsyncHandler(async (req, res) => {
+  const { category, type } = req.params
+
+  try {
+    if (type === 'page') {
+      const page = await Page.findOne({ category })
+      return res.send(page)
+    }
+  } catch (error) {
+    res.status(401)
+    throw new Error(error.message)
+  }
+})

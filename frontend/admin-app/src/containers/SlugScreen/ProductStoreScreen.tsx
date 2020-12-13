@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import ClientLayout from '../../components/LayoutClient/ClientLayout'
 import { useSelector, useDispatch } from 'react-redux'
 import getProductsBySlug from '../../store/actions/products.getProductsBySlug'
-import './SlugScreen.css'
+import './ProductStoreScreen.css'
 import generatePublicUrl from '../../helpers/generatePublicUrl'
 import Loader from '../../components/Loader/Loader'
 import { Button } from 'react-bootstrap'
 
-const SlugScreen = (props) => {
+const ProductStoreScreen = (props) => {
   const slug = props.match.params.slug
   const dispatch = useDispatch()
   const { productsBySlug, productsByPrice, productsBySlugError } = useSelector(
@@ -69,4 +69,4 @@ const SlugScreen = (props) => {
   )
 }
 
-export default SlugScreen
+export default ProductStoreScreen

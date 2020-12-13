@@ -13,7 +13,7 @@ import ProductEditScreen from './containers/ProductEditScreen/ProductEditScreen'
 import AdminHome from './containers/AdminHome/AdminHome'
 import Toolbar from './components/Header/Toolbar/Toolbar'
 import ClientHome from './containers/ClientHome/ClientHome'
-import SlugScreen from './containers/SlugScreen/SlugScreen'
+import ProductStoreScreen from './containers/SlugScreen/ProductStoreScreen'
 import PageScreen from './containers/PageScreen/PageScreen'
 
 const App = () => {
@@ -36,7 +36,7 @@ const App = () => {
         <Route path="/signin" component={authWrapper(Signin, false, false)} />
         <Route path="/page" component={PageScreen} />
 
-        <Route path="/slug/:slug" component={SlugScreen} />
+        <Route path="/slug/:slug" component={ProductStoreScreen} />
 
         {/* ADMIN ROUTES */}
         <Route

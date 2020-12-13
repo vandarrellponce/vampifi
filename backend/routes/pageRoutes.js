@@ -1,5 +1,5 @@
 import express from 'express'
-import { createPage } from '../controller/pageController.js'
+import { createPage, getPageByCategory } from '../controller/pageController.js'
 import admin from '../middlewares/adminMiddleware.js'
 import auth from '../middlewares/authMiddleware.js'
 import { upload } from './uploadRoutes.js'
@@ -12,5 +12,7 @@ router.post(
   upload.fields([{ name: 'banners' }, { name: 'products' }]),
   createPage
 )
+
+router.get('/:category/:type', auth, admin, getPageByCategory)
 
 export default router
