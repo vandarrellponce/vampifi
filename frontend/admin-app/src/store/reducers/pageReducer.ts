@@ -1,8 +1,16 @@
-import { PAGE_CREATE_FAIL, PAGE_CREATE_SUCCESS } from '../constants/page'
+import {
+  PAGE_CREATE_FAIL,
+  PAGE_CREATE_SUCCESS,
+  PAGE_GET_FAIL,
+  PAGE_GET_SUCCESS
+} from '../constants/page'
 
 const initState = {
   createdPage: null,
-  createPageError: null
+  createPageError: null,
+
+  page: null,
+  getPageError: null
 }
 
 const pageReducer = (state = initState, action) => {
@@ -20,6 +28,22 @@ const pageReducer = (state = initState, action) => {
         ...state,
         createdPage: null,
         createPageError: action.payload
+      }
+    }
+
+    // GET PAGE
+    case PAGE_GET_SUCCESS: {
+      return {
+        ...state,
+        page: action.payload,
+        getPageError: null
+      }
+    }
+    case PAGE_GET_FAIL: {
+      return {
+        ...state,
+        page: null,
+        getPageError: action.payload
       }
     }
 
