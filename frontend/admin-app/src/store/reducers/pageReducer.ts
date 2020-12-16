@@ -9,7 +9,7 @@ const initState = {
   createdPage: null,
   createPageError: null,
 
-  page: null,
+  fetchedPage: null,
   getPageError: null
 }
 
@@ -35,14 +35,14 @@ const pageReducer = (state = initState, action) => {
     case PAGE_GET_SUCCESS: {
       return {
         ...state,
-        page: action.payload,
+        fetchedPage: action.payload,
         getPageError: null
       }
     }
     case PAGE_GET_FAIL: {
       return {
         ...state,
-        page: null,
+        fetchedPage: null,
         getPageError: action.payload
       }
     }
