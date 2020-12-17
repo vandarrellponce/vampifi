@@ -7,6 +7,7 @@ import './PageDisplay.css'
 import Loader from '../../../components/Loader/Loader'
 import generatePublicUrl from '../../../helpers/generatePublicUrl'
 import { Link } from 'react-router-dom'
+import Card from '../../../components/Card/Card'
 
 const PageDisplay = (props) => {
   const { fetchedPage: page } = useSelector((state) => state.page)
@@ -36,16 +37,22 @@ const PageDisplay = (props) => {
           ))}
       </Carousel>
 
-      <div>
+      <div className="page__products__container">
         {page.productImages.length > 1 &&
           page.productImages.map((product, i) => (
-            <Link to="/" key={i}>
-              <img
-                src={generatePublicUrl(product.img)}
-                alt="product"
-                style={{ objectFit: 'contain', height: '200px' }}
-              />
-            </Link>
+            <Card>
+              <Link to="/" key={i}>
+                <img
+                  src={generatePublicUrl(product.img)}
+                  alt="product"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain'
+                  }}
+                />
+              </Link>
+            </Card>
           ))}
       </div>
     </div>
