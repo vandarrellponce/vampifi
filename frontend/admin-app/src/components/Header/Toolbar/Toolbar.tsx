@@ -148,7 +148,7 @@ const Toolbar = () => {
         </CSSTransition>
       )}
 
-      <nav className="toolbar__nav">
+      <nav className="toolbar__nav container">
         {/* MENU BUTTON */}
         <div className="toolbar__icon">
           <FaBars
