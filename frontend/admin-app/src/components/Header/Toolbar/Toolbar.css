@@ -122,6 +122,28 @@
   opacity: 0;
 }
 
+.loginButton {
+  display: block;
+  width: 100px;
+  height: 30px;
+  background: #fff;
+  text-align: center;
+  line-height: 30px;
+  color: rgb(32, 32, 32);
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.firstmenu {
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+}
+
 @media screen and (max-width: 540px) {
   .view {
     width: 400px;

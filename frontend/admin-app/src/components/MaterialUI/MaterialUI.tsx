@@ -103,7 +103,7 @@ const DropdownMenu = (props) => {
     <div className="headerDropdownContainer">
       {props.menu}
       <div className="dropdown">
-        <div className="upArrow"></div>
+        {/* <div className="upArrow"></div> */}
         {props.firstMenu}
         <ul className="headerDropdownMenu">
           {props.menus &&

@@ -101,14 +101,16 @@
   box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
   border-radius: 2px;
   z-index: 1;
-  margin-top: 12px;
+  margin-top: 0px;
+  border-top: 1px solid rgb(32, 32, 32);
+
   display: none;
 }
 .headerDropdownContainer:hover .dropdown {
   display: block;
 }
 .upArrow {
-  width: 0;
+  width: 0px;
   height: 0;
   position: absolute;
   border-left: 10px solid transparent;

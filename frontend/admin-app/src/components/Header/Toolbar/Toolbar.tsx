@@ -18,6 +18,7 @@ import Submenu from '../Submenu/Submenu'
 import SearchBox from '../SearchBox/SearchBox'
 import logoutUser from '../../../store/actions/user.logout'
 import Animate from '../../Hoc/animate'
+import { DropdownMenu } from '../../MaterialUI/MaterialUI'
 /* const ENDPOINT = '/' */
 
 const Toolbar = () => {
@@ -78,11 +79,47 @@ const Toolbar = () => {
   }
 
   // PUBLIC LINKS
-  const renderPublicLinks = () => (
-    <Link to="/signin" className="toolbar__link" tabIndex={1}>
+  const renderPublicLinks = () => {
+    /*  <Link to="/signin" className="toolbar__link" tabIndex={1}>
       Login
-    </Link>
-  )
+    </Link> */
+
+    return (
+      <DropdownMenu
+        menu={
+          <Link to="/signin" className="loginButton toolbar__link">
+            Login
+          </Link>
+        }
+        menus={[
+          { label: 'My Profile', href: '', icon: null },
+          { label: 'Flipkart Plus Zone', href: '', icon: null },
+          {
+            label: 'Orders',
+            href: `/account/orders`,
+            icon: null,
+            onClick: () => {}
+          },
+          { label: 'Wishlist', href: '', icon: null },
+          { label: 'Rewards', href: '', icon: null },
+          { label: 'Gift Cards', href: '', icon: null }
+        ]}
+        firstMenu={
+          <div className="firstmenu">
+            <span>New Customer?</span>
+            <Link
+              to="signup"
+              className="toolbar__link"
+              onClick={() => {}}
+              style={{ color: '#2874f0' }}
+            >
+              Sign Up
+            </Link>
+          </div>
+        }
+      />
+    )
+  }
 
   useEffect(() => {
     /* getNotifications() */
