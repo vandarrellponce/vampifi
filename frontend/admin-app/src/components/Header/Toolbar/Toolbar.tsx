@@ -64,60 +64,58 @@ const Toolbar = () => {
 
         {/*  PROFILE  */}
 
-        <Link to="/profile" className="toolbar__link" tabIndex={1}>
-          {currentUserInfo.name}{' '}
-          <CgProfile size="25px" className="toolbar__link__icon" />
-        </Link>
-
-        {/* LOGOUT */}
-
-        <div className="toolbar__link" tabIndex={1} onClick={logoutHandler}>
-          Logout <BiExit size="25px" className="toolbar__link__icon" />
-        </div>
+        <DropdownMenu
+          menu={
+            <Link to="/profile" className="toolbar__link" tabIndex={1}>
+              {currentUserInfo.name}{' '}
+              <CgProfile size="25px" className="toolbar__link__icon" />
+            </Link>
+          }
+          menus={[
+            { label: 'My Profile', href: '', icon: null },
+            {
+              label: 'Orders',
+              href: `/account/orders`,
+              icon: null,
+              onClick: () => {}
+            },
+            { label: 'Wishlist', href: '', icon: null },
+            { label: 'Rewards', href: '', icon: null },
+            {
+              label: (
+                <div>
+                  Logout <BiExit size="25px" color="black" />
+                </div>
+              ),
+              href: '',
+              icon: null,
+              onClick: logoutHandler
+            }
+          ]}
+          /* firstMenu={
+            <div className="firstmenu">
+              <span>New Customer?</span>
+              <Link
+                to="signup"
+                className="toolbar__link"
+                onClick={() => {}}
+                style={{ color: '#2874f0' }}
+              >
+                Sign Up
+              </Link>
+            </div>
+          } */
+        />
       </div>
     )
   }
 
   // PUBLIC LINKS
   const renderPublicLinks = () => {
-    /*  <Link to="/signin" className="toolbar__link" tabIndex={1}>
-      Login
-    </Link> */
-
     return (
-      <DropdownMenu
-        menu={
-          <Link to="/signin" className="loginButton toolbar__link">
-            Login
-          </Link>
-        }
-        menus={[
-          { label: 'My Profile', href: '', icon: null },
-          { label: 'Flipkart Plus Zone', href: '', icon: null },
-          {
-            label: 'Orders',
-            href: `/account/orders`,
-            icon: null,
-            onClick: () => {}
-          },
-          { label: 'Wishlist', href: '', icon: null },
-          { label: 'Rewards', href: '', icon: null },
-          { label: 'Gift Cards', href: '', icon: null }
-        ]}
-        firstMenu={
-          <div className="firstmenu">
-            <span>New Customer?</span>
-            <Link
-              to="signup"
-              className="toolbar__link"
-              onClick={() => {}}
-              style={{ color: '#2874f0' }}
-            >
-              Sign Up
-            </Link>
-          </div>
-        }
-      />
+      <Link to="/signin" className="toolbar__link" tabIndex={1}>
+        Login
+      </Link>
     )
   }
 
@@ -131,8 +129,7 @@ const Toolbar = () => {
   }, [currentUserInfo, authError])
 
   // HANDLERS
-  const logoutHandler = (e) => {
-    e.preventDefault()
+  const logoutHandler = () => {
     dispatch(logoutUser()).then((_) => window.location.reload())
   }
 
