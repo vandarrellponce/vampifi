@@ -72,15 +72,17 @@ const Toolbar = () => {
             </Link>
           }
           menus={[
-            { label: 'My Profile', href: '', icon: null },
+            currentUserInfo.isAdmin
+              ? { label: 'Admin', href: '/admin', icon: null }
+              : { label: 'My Profile', href: '', icon: null },
             {
               label: 'Orders',
               href: `/account/orders`,
-              icon: null,
-              onClick: () => {}
+              icon: null
             },
-            { label: 'Wishlist', href: '', icon: null },
-            { label: 'Rewards', href: '', icon: null },
+            { label: 'Wishlist', href: '/account/wishlist', icon: null },
+            { label: 'Rewards', href: '/account/rewards', icon: null },
+
             {
               label: (
                 <div>
