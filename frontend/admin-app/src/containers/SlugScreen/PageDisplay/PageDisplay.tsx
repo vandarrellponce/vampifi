@@ -8,6 +8,7 @@ import Loader from '../../../components/Loader/Loader'
 import generatePublicUrl from '../../../helpers/generatePublicUrl'
 import { Link } from 'react-router-dom'
 import Card from '../../../components/Card/Card'
+import { Col, Row } from 'react-bootstrap'
 
 const PageDisplay = (props) => {
   const { fetchedPage: page } = useSelector((state) => state.page)
@@ -23,7 +24,7 @@ const PageDisplay = (props) => {
   if (!page) return <Loader />
   return (
     <div className="page__main">
-      <h3>{page.title}</h3>
+      <h5>{page.title}</h5>
       <Carousel renderThumbs={() => null}>
         {page.bannerImages.length > 1 &&
           page.bannerImages.map((banner, i) => (
