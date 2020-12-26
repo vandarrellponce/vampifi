@@ -41,7 +41,7 @@ const PageDisplay = (props) => {
       <div className="page__products__container">
         {page.productImages.length > 1 &&
           page.productImages.map((product, i) => (
-            <Card>
+            <Card key={i}>
               <Link to="/" key={i}>
                 <img
                   src={generatePublicUrl(product.img)}

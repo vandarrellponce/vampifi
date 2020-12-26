@@ -67,8 +67,8 @@ const Toolbar = () => {
         <DropdownMenu
           menu={
             <Link to="/profile" className="toolbar__link" tabIndex={1}>
-              {currentUserInfo.name}{' '}
-              <CgProfile size="25px" className="toolbar__link__icon" />
+              <CgProfile size="25px" className="toolbar__link__icon" />{' '}
+              {currentUserInfo.firstname}
             </Link>
           }
           menus={[

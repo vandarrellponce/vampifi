@@ -32,10 +32,27 @@ export const createPage = expressAsyncHandler(async (req, res) => {
     }
 
     if (existingPage) {
-      const updatedPage = await Page.findOneAndUpdate({ category }, req.body, {
-        new: true,
-        useFindAndModify: false
-      })
+      const updatedPage = await Page.findOneAndUpdate(
+        { category },
+        {
+          title,
+          description,
+          category,
+          bannerImages: [
+            ...existingPage.bannerImages,
+            ...req.body.bannerImages
+          ],
+          productImages: [
+            ...existingPage.productImages,
+            ...req.body.productImages
+          ]
+        },
+
+        {
+          new: true,
+          useFindAndModify: false
+        }
+      )
       return res.send(updatedPage)
     }
     const page = new Page({

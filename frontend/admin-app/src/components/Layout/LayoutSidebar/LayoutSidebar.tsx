@@ -62,7 +62,7 @@ const LayoutSidebar = (props) => {
           <div className="layout__sidebar__container1__title">
             Admin Controls
           </div>
-          <Link to="/page" className="layout__sidebar__link">
+          <Link to="/admin/page" className="layout__sidebar__link">
             <div className="layout__sidebar__nav__item" tabIndex={1}>
               &#x1F4C4; Page
             </div>

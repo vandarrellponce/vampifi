@@ -34,7 +34,6 @@ const App = () => {
         <Route path="/" exact component={ClientHome} />
         <Route path="/signup" component={authWrapper(Signup, false, false)} />
         <Route path="/signin" component={authWrapper(Signin, false, false)} />
-        <Route path="/page" component={PageScreen} />
 
         <Route path="/slug/:slug" component={SlugScreen} />
 
@@ -63,6 +62,10 @@ const App = () => {
         <Route
           path="/admin/products/:productId/edit"
           component={authWrapper(ProductEditScreen, true, true)}
+        />
+        <Route
+          path="/admin/page"
+          component={authWrapper(PageScreen, true, true)}
         />
       </BrowserRouter>
     </div>

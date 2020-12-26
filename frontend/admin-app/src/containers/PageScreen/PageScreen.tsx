@@ -8,6 +8,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import Loader from '../../components/Loader/Loader'
 import getCategories from '../../store/actions/category.getCategories'
 import addPage from '../../store/actions/page.addPage'
+import getPage from '../../store/actions/page.getPage'
+import generatePublicUrl from '../../helpers/generatePublicUrl'
 
 const PageScreen = () => {
   const [loading, setLoading] = useState(false)
@@ -23,7 +25,9 @@ const PageScreen = () => {
   const [displayType, setDisplayType] = useState('')
 
   const { categoryList } = useSelector((state) => state.category)
-  const { createdPage, pageList } = useSelector((state) => state.page)
+  const { createdPage, pageList, fetchedPage, getPageError } = useSelector(
+    (state) => state.page
+  )
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -32,7 +36,19 @@ const PageScreen = () => {
       dispatch(getCategories()).then((_) => setLoading(false))
     }
     if (categoryList) setCategoryOptions(listCategoryOptions(categoryList))
-  }, [categoryList, dispatch])
+    if (fetchedPage) {
+      setTitle(fetchedPage.title)
+      setDescription(fetchedPage.description)
+      setBanners(fetchedPage.bannerImages)
+      setProducts(fetchedPage.productImages)
+    }
+    if (!fetchedPage) {
+      setTitle('')
+      setDescription('')
+      setBanners([])
+      setProducts([])
+    }
+  }, [categoryList, dispatch, fetchedPage])
 
   const submitForm = async (e) => {
     e.preventDefault()
@@ -57,7 +73,7 @@ const PageScreen = () => {
     setShowModal(false)
   }
 
-  const handleCategorySelect = (e) => {
+  const handleCategorySelect = async (e) => {
     setCategoryId(e.target.value)
 
     const category = listCategoryOptions(categoryList).find(
@@ -65,6 +81,8 @@ const PageScreen = () => {
     )
 
     if (category) setDisplayType(category.displayType)
+
+    await dispatch(getPage({ category: e.target.value, type: 'page' }))
   }
 
   const handleBannerImages = (e) => {
@@ -134,12 +152,17 @@ const PageScreen = () => {
         <Row style={{ marginTop: '10px' }}>
           {banners.length > 0
             ? banners.map((banner, i) => (
-                <Col md={12} key={i}>
-                  {banner.name}
+                <Col md={6} key={i} style={{ fontSize: '12px' }}>
+                  {banner.name || banner.img}
+                  <img
+                    style={{ height: '20px', objectFit: 'contain' }}
+                    src={generatePublicUrl(banner.img)}
+                    alt="product"
+                  />
                 </Col>
               ))
             : null}
-          <Col>
+          <Col md={12}>
             <div className="custom-file">
               <input
                 className="custom-file-input"
@@ -155,12 +178,17 @@ const PageScreen = () => {
         <Row style={{ marginTop: '10px' }}>
           {products.length > 0
             ? products.map((product, i) => (
-                <Col md={12} key={i}>
-                  {product.name}
+                <Col md={6} key={i} style={{ fontSize: '12px' }}>
+                  {product.name || product.img}{' '}
+                  <img
+                    style={{ height: '20px', objectFit: 'contain' }}
+                    src={generatePublicUrl(product.img)}
+                    alt="product"
+                  />
                 </Col>
               ))
             : null}
-          <Col>
+          <Col md={12}>
             <div className="custom-file">
               <input
                 className="custom-file-input"
