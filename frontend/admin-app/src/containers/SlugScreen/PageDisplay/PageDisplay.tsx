@@ -24,7 +24,10 @@ const PageDisplay = (props) => {
   if (!page) return <Loader />
   return (
     <div className="page__main">
-      <h5>{page.title}</h5>
+      <h5 style={{ margin: '15px 0' }}>
+        <strong>{page.title}</strong>
+      </h5>
+
       <Carousel renderThumbs={() => null}>
         {page.bannerImages.length > 1 &&
           page.bannerImages.map((banner, i) => (
