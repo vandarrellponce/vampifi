@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap'
 import getProductsBySlug from '../../../store/actions/products.getProductsBySlug'
 import Loader from '../../../components/Loader/Loader'
 import generatePublicUrl from '../../../helpers/generatePublicUrl'
+import { Link } from 'react-router-dom'
 
 const StoreDisplay = (props) => {
   const slug = props.match.params.slug
@@ -28,7 +29,7 @@ const StoreDisplay = (props) => {
   return (
     <div>
       {Object.keys(priceRange).map((key) => {
-        if (!productsByPrice[key].length) return
+        if (!productsByPrice[key].length) return null
         return (
           <div className="slugscreen__card" key={key}>
             <div className="slugscreen__card__header">
@@ -39,7 +40,11 @@ const StoreDisplay = (props) => {
             </div>
             <div className="slugscreen__products__container">
               {productsByPrice[key].map((product, i) => (
-                <div className="slugscreen__product__container" key={i}>
+                <Link
+                  to={`/${product.slug}/${product._id}`}
+                  className="slugscreen__product__container"
+                  key={i}
+                >
                   <div className="slugscreen__product__image__container">
                     <img
                       src={generatePublicUrl(product.images[0].img)}
@@ -58,7 +63,7 @@ const StoreDisplay = (props) => {
                       {product.price}
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>

@@ -8,7 +8,6 @@ import Loader from '../../../components/Loader/Loader'
 import generatePublicUrl from '../../../helpers/generatePublicUrl'
 import { Link } from 'react-router-dom'
 import Card from '../../../components/Card/Card'
-import { Col, Row } from 'react-bootstrap'
 
 const PageDisplay = (props) => {
   const { fetchedPage: page } = useSelector((state) => state.page)

@@ -21,6 +21,13 @@
 .slugscreen__product__container {
   width: 200px;
   margin: 10px 10px;
+  text-decoration: none;
+  color: black;
+}
+.slugscreen__product__container:hover {
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
 }
 .slugscreen__product__image__container {
   width: 150px;
