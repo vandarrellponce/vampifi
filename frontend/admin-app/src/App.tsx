@@ -15,6 +15,7 @@ import Toolbar from './components/Header/Toolbar/Toolbar'
 import ClientHome from './containers/ClientHome/ClientHome'
 import SlugScreen from './containers/SlugScreen/SlugScreen'
 import PageScreen from './containers/PageScreen/PageScreen'
+import ProductDetailScreen from './containers/ProductDetailScreen/ProductDetailScreen'
 
 const App = () => {
   // Authenticate user everytime the app starts
@@ -36,6 +37,7 @@ const App = () => {
         <Route path="/signin" component={authWrapper(Signin, false, false)} />
 
         <Route path="/slug/:slug" component={SlugScreen} />
+        <Route path="/:slug/:productId" component={ProductDetailScreen} />
 
         {/* ADMIN ROUTES */}
         <Route
