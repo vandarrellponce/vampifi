@@ -33,9 +33,16 @@ const App = () => {
         <Toolbar />
 
         <Route path="/" exact component={ClientHome} />
-        <Route path="/signup" component={authWrapper(Signup, false, false)} />
-        <Route path="/signin" component={authWrapper(Signin, false, false)} />
-
+        <Route
+          exact
+          path="/account/signup"
+          component={authWrapper(Signup, false, false)}
+        />
+        <Route
+          exact
+          path="/account/signin"
+          component={authWrapper(Signin, false, false)}
+        />
         <Route exact path="/:slug" component={SlugScreen} />
         <Route exact path="/:slug/:productId" component={ProductDetailScreen} />
 

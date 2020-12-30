@@ -120,7 +120,7 @@ const Toolbar = () => {
   // PUBLIC LINKS
   const renderPublicLinks = () => {
     return (
-      <Link to="/signin" className="toolbar__link" tabIndex={1}>
+      <Link to="/account/signin" className="toolbar__link" tabIndex={1}>
         Login
       </Link>
     )
