@@ -13,7 +13,7 @@ router.route('/').post(getProductsWithOptions)
 
 router.route('/slug/:slug').get(getProductsBySlug)
 
-router.route('/:id').get(getProductById)
 router.route('/:id/reviews').post(auth, createReview)
+router.route('/:id').get(getProductById)
 
 export default router
