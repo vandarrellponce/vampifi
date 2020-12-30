@@ -1,6 +1,8 @@
 import {
   PRODUCT_CREATE_FAIL,
   PRODUCT_CREATE_SUCCESS,
+  PRODUCT_GETBYID_FAIL,
+  PRODUCT_GETBYID_SUCCESS,
   PRODUCT_GETBYSLUG_FAIL,
   PRODUCT_GETBYSLUG_SUCCESS
 } from '../constants/product'
@@ -10,7 +12,10 @@ const initState = {
   productCreateError: null,
 
   productsBySlug: null,
-  productsBySlugError: null
+  productsBySlugError: null,
+
+  productById: null,
+  productByIdError: null
 }
 
 const productReducer = (state = initState, action) => {
@@ -60,6 +65,23 @@ const productReducer = (state = initState, action) => {
         ...state,
         productsBySlug: null,
         productsBySlugError: action.payload
+      }
+    }
+
+    // GET PRODUCT BY ID
+    case PRODUCT_GETBYID_SUCCESS: {
+      return {
+        ...state,
+        productById: action.payload,
+        productByIdError: null
+      }
+    }
+
+    case PRODUCT_GETBYID_FAIL: {
+      return {
+        ...state,
+        productById: null,
+        productByIdError: action.payload
       }
     }
 
