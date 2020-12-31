@@ -6,8 +6,6 @@
 
 .productdetail__row {
   display: flex;
-  justify-content: center;
-
   margin: 10px 0;
 }
 
@@ -55,6 +53,12 @@
   max-height: 100%;
   object-fit: contain;
 }
+
+.productdetail__right__row {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 20px;
+}
 .breed ul {
   padding: 0;
   margin: 0;
@@ -62,6 +66,7 @@
   align-items: center;
 }
 .breed ul li {
+  margin: 0;
   list-style: none;
   margin-right: 5px;
   display: flex;
@@ -73,10 +78,43 @@
   color: #777;
   display: inline-block;
   font-size: 12px;
-  margin: 0 10px;
 
   max-width: 150px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.productdetail__detail__container .productdetail__productTitle {
+  font-size: 18px;
+  color: #212121;
+  font-weight: 400;
+}
+
+.ratingCount {
+  display: inline-block;
+  background: #f38d3a;
+  color: #fff;
+  font-weight: 400;
+  font-size: 12px;
+  border-radius: 3px;
+  padding: 2px 5px;
+}
+.ratingNumbersReviews {
+  font-size: 12px;
+  color: #777;
+  font-weight: 600;
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.priceContainer {
+  align-items: center;
+}
+
+.price {
+  font-size: 28px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
 }

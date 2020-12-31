@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { IoIosArrowForward, IoMdCart, IoIosThunderstorm } from 'react-icons/io'
+import {
+  IoIosArrowForward,
+  IoMdCart,
+  IoIosThunderstorm,
+  IoIosStar
+} from 'react-icons/io'
 import { useDispatch, useSelector } from 'react-redux'
 import ClientLayout from '../../components/LayoutClient/ClientLayout'
 import Loader from '../../components/Loader/Loader'
@@ -70,7 +75,7 @@ const ProductDetailScreen = (props) => {
               />
             </div>
           </div>
-          <div>
+          <div className="productdetail__right__row">
             {/* home > category > subCategory > productName */}
             <div className="breed">
               <ul>
@@ -93,6 +98,52 @@ const ProductDetailScreen = (props) => {
             </div>
 
             {/* product description */}
+            <div className="productdetail__detail__container">
+              {/* name */}
+              <p className="productdetail__productTitle">{product.name}</p>
+
+              {/* rating */}
+              <div>
+                <span className="ratingCount">
+                  4.3 <IoIosStar />
+                </span>
+                <span className="ratingNumbersReviews">
+                  72,234 Ratings & 8,140 Reviews
+                </span>
+              </div>
+
+              {/* price */}
+              <div className="productdetail__row priceContainer">
+                ₱ <span className="price">{product.price}</span>
+                <span className="discount" style={{ margin: '0 10px' }}>
+                  22% off
+                </span>
+                {/* <span>i</span> */}
+              </div>
+
+              {/* description */}
+              <p style={{ display: 'flex' }}>
+                <span
+                  style={{
+                    width: '100px',
+                    fontSize: '12px',
+                    color: '#878787',
+                    fontWeight: 'bold',
+                    marginRight: '20px'
+                  }}
+                >
+                  Description
+                </span>
+                <span
+                  style={{
+                    fontSize: '12px',
+                    color: '#212121'
+                  }}
+                >
+                  {product.description}
+                </span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
