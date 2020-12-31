@@ -34,6 +34,9 @@
 .thumbnail:hover {
   border: 2px solid #2874f0;
 }
+/* .thumbnail:active {
+  border: 2px solid #2874f0;
+} */
 
 .productdetail__desc__container {
   width: 485px;

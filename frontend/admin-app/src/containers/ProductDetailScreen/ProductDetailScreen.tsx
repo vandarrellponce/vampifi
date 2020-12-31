@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoIosArrowForward, IoMdCart, IoIosThunderstorm } from 'react-icons/io'
 import { useDispatch, useSelector } from 'react-redux'
 import ClientLayout from '../../components/LayoutClient/ClientLayout'
@@ -12,13 +12,15 @@ const ProductDetailScreen = (props) => {
   const slug = props.match.params.slug
   const productId = props.match.params.productId
   const { productById: product } = useSelector((state) => state.product)
+
+  const [mainImageIndex, setMainImageIndex] = useState(0)
   const dispatch = useDispatch()
 
   useEffect(() => {
     if (!product) {
       dispatch(getProductById(productId))
     }
-  }, [dispatch, product, productId])
+  }, [dispatch, product, productId, mainImageIndex])
   if (!product) return <Loader />
   return (
     <ClientLayout>
@@ -27,14 +29,20 @@ const ProductDetailScreen = (props) => {
           <div className="productdetail__verticalImageStack">
             {product.images.map((image, i) => (
               <div className="thumbnail" key={i}>
-                <img src={generatePublicUrl(image.img)} alt={image.img} />
+                <img
+                  src={generatePublicUrl(image.img)}
+                  alt={image.img}
+                  onMouseEnter={(_) => {
+                    setMainImageIndex((_) => i)
+                  }}
+                />
               </div>
             ))}
           </div>
           <div className="productdetail__desc__container">
             <div className="productdetail__desc__image">
               <img
-                src={generatePublicUrl(product.images[0].img)}
+                src={generatePublicUrl(product.images[mainImageIndex].img)}
                 alt="single"
               />
             </div>
