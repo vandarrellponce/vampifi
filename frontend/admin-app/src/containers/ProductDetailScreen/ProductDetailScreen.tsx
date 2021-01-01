@@ -121,6 +121,18 @@ const ProductDetailScreen = (props) => {
                 {/* <span>i</span> */}
               </div>
 
+              <div>
+                <p
+                  style={{
+                    color: '#212121',
+                    fontSize: '14px',
+                    fontWeight: 'bold'
+                  }}
+                >
+                  Available Offers
+                </p>
+              </div>
+
               {/* description */}
               <p style={{ display: 'flex' }}>
                 <span
