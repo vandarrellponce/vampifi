@@ -43,8 +43,12 @@ const App = () => {
           path="/account/signin"
           component={authWrapper(Signin, false, false)}
         />
-        <Route exact path="/:slug" component={SlugScreen} />
-        <Route exact path="/:slug/:productId" component={ProductDetailScreen} />
+        <Route exact path="/slugs/:slug" component={SlugScreen} />
+        <Route
+          exact
+          path="/products/:slug/:productId"
+          component={ProductDetailScreen}
+        />
 
         {/* ADMIN ROUTES */}
         <Route

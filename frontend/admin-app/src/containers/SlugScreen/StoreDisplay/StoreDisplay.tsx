@@ -31,35 +31,35 @@ const StoreDisplay = (props) => {
       {Object.keys(priceRange).map((key) => {
         if (!productsByPrice[key].length) return null
         return (
-          <div className="slugscreen__card" key={key}>
-            <div className="slugscreen__card__header">
+          <div className="storedisplay__card" key={key}>
+            <div className="storedisplay__card__header">
               <div>{`${slug} mobiles under ${priceRange[key]}`}</div>
               <Button size="sm" variant="dark">
                 View All
               </Button>
             </div>
-            <div className="slugscreen__products__container">
+            <div className="storedisplay__products__container">
               {productsByPrice[key].map((product, i) => (
                 <Link
-                  to={`/${product.slug}/${product._id}`}
-                  className="slugscreen__product__container"
+                  to={`/products/${product.slug}/${product._id}`}
+                  className="storedisplay__product__container"
                   key={i}
                 >
-                  <div className="slugscreen__product__image__container">
+                  <div className="storedisplay__product__image__container">
                     <img
                       src={generatePublicUrl(product.images[0].img)}
                       alt="product"
                     />
                   </div>
-                  <div className="slugscreen__product__details__container">
-                    <div className="slugscreen__product__name">
+                  <div className="storedisplay__product__details__container">
+                    <div className="storedisplay__product__name">
                       {product.name}
                     </div>
-                    <div className="slugscreen__product__rating">
+                    <div className="storedisplay__product__rating">
                       <span>{product.rating}</span>{' '}
                       <span>{product.numReviews}</span>
                     </div>
-                    <div className="slugscreen__product__price">
+                    <div className="storedisplay__product__price">
                       {product.price}
                     </div>
                   </div>
