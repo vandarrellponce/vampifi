@@ -62,7 +62,9 @@ const ProductDetailScreen = (props) => {
                   marginRight: '5px'
                 }}
                 icon={<IoMdCart />}
-                onClick={() => {}}
+                onClick={() => {
+                  props.history.push('/cart')
+                }}
               />
               <MaterialButton
                 title="BUY NOW"

@@ -3,12 +3,18 @@ import './Card.css'
 
 type Props = {
   headerLeft?: string
-  headerRight?: string
+  headerRight?: any
+  style?: any
 }
 
-const Card: React.FC<Props> = ({ headerLeft, headerRight, children }) => {
+const Card: React.FC<Props> = ({
+  headerLeft,
+  headerRight,
+  children,
+  style
+}) => {
   return (
-    <div className="card">
+    <div className="card" style={style}>
       {(headerLeft || headerRight) && (
         <div className="cardHeader">
           {headerLeft && (

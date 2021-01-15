@@ -16,6 +16,7 @@ import ClientHome from './containers/ClientHome/ClientHome'
 import SlugScreen from './containers/SlugScreen/SlugScreen'
 import PageScreen from './containers/PageScreen/PageScreen'
 import ProductDetailScreen from './containers/ProductDetailScreen/ProductDetailScreen'
+import CartScreen from './containers/CartScreen/CartScreen'
 
 const App = () => {
   // Authenticate user everytime the app starts
@@ -49,6 +50,8 @@ const App = () => {
           path="/products/:slug/:productId"
           component={ProductDetailScreen}
         />
+
+        <Route exact path="/cart" component={CartScreen} />
 
         {/* ADMIN ROUTES */}
         <Route
