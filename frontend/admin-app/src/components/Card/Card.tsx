@@ -1,8 +1,33 @@
 import React from 'react'
 import './Card.css'
 
-const Card = (props) => {
-  return <div className="card__main">{props.children}</div>
+type Props = {
+  headerLeft?: string
+  headerRight?: string
+}
+
+const Card: React.FC<Props> = ({ headerLeft, headerRight, children }) => {
+  return (
+    <div className="card">
+      {(headerLeft || headerRight) && (
+        <div className="cardHeader">
+          {headerLeft && (
+            <div
+              style={{
+                alignSelf: 'center',
+                fontSize: '20px',
+                fontWeight: 'bold'
+              }}
+            >
+              {headerLeft}
+            </div>
+          )}
+          {headerRight && headerRight}
+        </div>
+      )}
+      {children}
+    </div>
+  )
 }
 
 export default Card
