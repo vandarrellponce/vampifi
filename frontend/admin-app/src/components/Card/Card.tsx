@@ -31,7 +31,7 @@ const Card: React.FC<Props> = ({
           {headerRight && headerRight}
         </div>
       )}
-      {children}
+      <div className="card__body">{children}</div>
     </div>
   )
 }
