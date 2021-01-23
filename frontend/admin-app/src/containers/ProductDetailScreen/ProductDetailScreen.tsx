@@ -10,6 +10,7 @@ import ClientLayout from '../../components/LayoutClient/ClientLayout'
 import Loader from '../../components/Loader/Loader'
 import { MaterialButton } from '../../components/MaterialUI/MaterialUI'
 import generatePublicUrl from '../../helpers/generatePublicUrl'
+import addToCart from '../../store/actions/cart.addToCart'
 import getProductById from '../../store/actions/product.getProductById'
 import './ProductDetailScreen.css'
 
@@ -19,6 +20,7 @@ const ProductDetailScreen = (props) => {
   const { productById: product } = useSelector((state) => state.product)
 
   const [mainImageIndex, setMainImageIndex] = useState(0)
+  const [qty, setQty] = useState(1)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -63,6 +65,7 @@ const ProductDetailScreen = (props) => {
                 }}
                 icon={<IoMdCart />}
                 onClick={() => {
+                  dispatch(addToCart(product._id, qty))
                   props.history.push('/cart')
                 }}
               />
