@@ -28,6 +28,7 @@ const ProductDetailScreen = (props) => {
       dispatch(getProductById(productId))
     }
   }, [dispatch, product, productId, mainImageIndex])
+
   if (!product) return <Loader />
   return (
     <ClientLayout>

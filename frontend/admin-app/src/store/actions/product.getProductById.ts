@@ -15,3 +15,9 @@ const getProductById = (productId) => async (dispatch) => {
 }
 
 export default getProductById
+
+export const queryProductById = (productId) => async () => {
+  const product = await (await axiosHelper.get(`/products/${productId}`)).data
+  console.log(product)
+  return product
+}
