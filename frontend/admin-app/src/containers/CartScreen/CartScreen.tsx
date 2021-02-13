@@ -4,6 +4,7 @@ import Card from '../../components/Card/Card'
 import ClientLayout from '../../components/LayoutClient/ClientLayout'
 import './CartScreen.css'
 import { useSelector, useDispatch } from 'react-redux'
+import generatePublicUrl from '../../helpers/generatePublicUrl'
 
 const CartScreen = (props) => {
   const { cartItems } = useSelector((state) => state.cart)
@@ -17,9 +18,22 @@ const CartScreen = (props) => {
                 <div className="cartscreen__product__container">
                   <div className="cartscreen__productDetail">
                     {cartItems.map((item, i) => (
-                      <div key={i}>
-                        {item.name} - {item.qty} units
-                      </div>
+                      <Row key={i} className="cartscreen__items__container">
+                        <Col md={3} className="cartscreen__item__image">
+                          <img src={generatePublicUrl(item.image)} alt="item" />
+                          <div className="quantity__container">
+                            <button className="cartscreen__button">-</button>{' '}
+                            <button className="cartscreen__button__center">
+                              {item.qty}
+                            </button>{' '}
+                            <button className="cartscreen__button">+</button>
+                          </div>
+                        </Col>
+                        <Col md={9}>
+                          <div>{item.name}</div>
+                          <div>{item.price}</div>
+                        </Col>
+                      </Row>
                     ))}
                   </div>
                 </div>
