@@ -17,7 +17,9 @@ const CartScreen = (props) => {
                 <div className="cartscreen__product__container">
                   <div className="cartscreen__productDetail">
                     {cartItems.map((item, i) => (
-                      <div key={i}>{item.name}</div>
+                      <div key={i}>
+                        {item.name} - {item.qty} units
+                      </div>
                     ))}
                   </div>
                 </div>
