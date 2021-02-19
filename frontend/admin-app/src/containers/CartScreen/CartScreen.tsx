@@ -4,7 +4,6 @@ import Card from '../../components/Card/Card'
 import ClientLayout from '../../components/LayoutClient/ClientLayout'
 import './CartScreen.css'
 import { useSelector, useDispatch } from 'react-redux'
-import generatePublicUrl from '../../helpers/generatePublicUrl'
 import CartItem from '../../components/CartItem/CartItem'
 
 const CartScreen = (props) => {
