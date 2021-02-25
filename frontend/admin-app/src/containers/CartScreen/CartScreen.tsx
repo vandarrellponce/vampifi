@@ -3,7 +3,7 @@ import { Col, Row } from 'react-bootstrap'
 import Card from '../../components/Card/Card'
 import ClientLayout from '../../components/LayoutClient/ClientLayout'
 import './CartScreen.css'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import CartItem from '../../components/CartItem/CartItem'
 
 const CartScreen = (props) => {
@@ -15,7 +15,7 @@ const CartScreen = (props) => {
           <Col md={8}>
             <Card headerLeft="My Cart" headerRight={<div>Deliver to</div>}>
               {cartItems.map((item, i) => (
-                <CartItem item={item} index={i} />
+                <CartItem item={item} key={i} />
               ))}
             </Card>
           </Col>

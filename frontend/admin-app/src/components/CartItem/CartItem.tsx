@@ -3,25 +3,24 @@ import { Col, Row } from 'react-bootstrap'
 import generatePublicUrl from '../../helpers/generatePublicUrl'
 import { useDispatch } from 'react-redux'
 import './CartItem.css'
-import addToCart from '../../store/actions/cart.addToCart'
+import { alterQuantity } from '../../store/actions/cart.addToCart'
 
 type myProps = {
   item: any
-  index: any
 }
 
-const CartItem: React.FC<myProps> = ({ item, index }) => {
+const CartItem: React.FC<myProps> = ({ item }) => {
   const dispatch = useDispatch()
 
   const handlePlusQty = (item) => {
-    dispatch(addToCart(item.productId, 1))
+    dispatch(alterQuantity(item.productId, 1))
   }
 
   const handleMinusQty = (item) => {
-    dispatch(addToCart(item.productId, -1))
+    dispatch(alterQuantity(item.productId, -1))
   }
   return (
-    <Row key={index} className="cartitem__items__container">
+    <Row className="cartitem__items__container">
       <Col md={3} className="cartitem__item__image">
         <img src={generatePublicUrl(item.image)} alt="item" />
         <div className="quantity__container">
@@ -53,18 +52,10 @@ const CartItem: React.FC<myProps> = ({ item, index }) => {
             justifyContent: 'space-between'
           }}
         >
-          <div
-            style={{
-              cursor: 'pointer'
-            }}
-          >
+          <div className="cartitem__options">
             <strong>SAVE FOR LATER</strong>
           </div>{' '}
-          <div
-            style={{
-              cursor: 'pointer'
-            }}
-          >
+          <div className="cartitem__options">
             <strong>REMOVE</strong>
           </div>
         </div>

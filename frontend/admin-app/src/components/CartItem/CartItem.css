@@ -32,7 +32,7 @@
 }
 
 .cartitem__item__delivery {
-  font-size: 13px;
+  font-size: 12px;
   padding: 25px;
   margin: 0;
   text-align: end;
@@ -61,4 +61,10 @@
   border: 1px rgb(201, 201, 201) solid;
   height: 25px;
   width: 35px;
+}
+
+.cartitem__options {
+  cursor: pointer;
+  padding: 0 5px;
+  border: rgb(212, 212, 212) solid 1px;
 }
