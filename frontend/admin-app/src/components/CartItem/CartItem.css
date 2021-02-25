@@ -44,7 +44,7 @@
 }
 
 .cartitem__button {
-  background: rgb(248, 248, 248);
+  background: rgb(255, 255, 255);
   border: 1px rgb(201, 201, 201) solid;
   border-radius: 12px;
   height: 25px;
@@ -57,7 +57,7 @@
 }
 
 .cartitem__button__center {
-  background: rgb(248, 248, 248);
+  background: rgb(255, 255, 255);
   border: 1px rgb(201, 201, 201) solid;
   height: 25px;
   width: 35px;
@@ -67,4 +67,5 @@
   cursor: pointer;
   padding: 0 5px;
   border: rgb(212, 212, 212) solid 1px;
+  background: rgb(255, 255, 255);
 }
