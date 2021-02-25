@@ -1,6 +1,6 @@
 .card {
   width: 100%;
-  background: #fff;
+  background: #fafafa;
 
   box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 1px 0px !important;
 }
@@ -9,6 +9,9 @@
   justify-content: space-between;
   padding: 20px 20px;
   border-bottom: 1px solid #cecece;
+  background: rgb(52, 52, 52);
+  color: #fff;
+  height: 50px;
 }
 
 .card__body {

@@ -28,7 +28,16 @@ const Card: React.FC<Props> = ({
               {headerLeft}
             </div>
           )}
-          {headerRight && headerRight}
+          {headerRight && (
+            <div
+              style={{
+                alignSelf: 'center',
+                fontSize: '16px'
+              }}
+            >
+              {headerRight}
+            </div>
+          )}
         </div>
       )}
       <div className="card__body">{children}</div>
